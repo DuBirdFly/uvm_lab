@@ -1,0 +1,21 @@
+vlib work
+
+set UVM_HOME D:/Codes/Modelsim/Modelsim_10_7/verilog_src/uvm-1.1d
+set WORK_HOME C:/Users/Administrator/Desktop/lab/lab_01
+set UVM_DPI_HOME D:/Codes/Modelsim/Modelsim_10_7/uvm-1.1d/win64
+
+vlog +incdir+$UVM_HOME/src -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF $UVM_HOME/src/uvm_pkg.sv ../../user/sim/test.sv
+# vlog +incdir+$WORK_HOME/user/sim
+
+vsim -c -sv_lib $UVM_DPI_HOME/uvm_dpi +UVM_TESTNAME=my_test -t 1ns -sv_seed 0 work.test
+
+view wave *
+
+run -all
+q
+
+# vlog -work work +acc -sv -f "../../user/flist/run.f"
+# vsim -c work.test -t 1ns -sv_seed 0
+
+# run -all
+# q
