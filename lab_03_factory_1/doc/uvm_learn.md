@@ -231,7 +231,7 @@ UVM_BIN, UVM_DEC, UVM_UNSIGNED, UVM_OCT, UVM_HEX, UVM_STRING, UVM_TIME, UVM_REAL
 
 ### UVM Information Macro
 
-```verilog
+```py
 ID : String = "message ID"
 MSG : String = "message content"
 VERBOSITY : Enum = MESSAGE_SAFE_LEVEL
@@ -245,14 +245,14 @@ typedef enum {
     UVM_DEBUG  = 500
 } uvm_verbosity;
 
-// prj\uvm-1.1d\src\macros\uvm_message_defines.svh
+# prj\uvm-1.1d\src\macros\uvm_message_defines.svh
 `define uvm_info(ID,MSG,VERBOSITY) \
    begin \
      if (uvm_report_enabled(VERBOSITY,UVM_INFO,ID)) \
        uvm_report_info (ID, MSG, VERBOSITY, `uvm_file, `uvm_line); \
    end
 
-// eg.
+# eg.
 `uvm_info("MON_RESET_PHASE", "Monitor 正在进行复位", UVM_MEDIUM)
 ```
 
@@ -304,3 +304,80 @@ Use function to configure individual component or hierarchy
 set_report_verbosity_level(verbosity);
 set_report_verbosity_level_hier(verbosity);
 ```
+
+## UVM Configuration
+
+UVM Configuration is a tool to configure attributes
+
+1. Pass(传递) Value
+2. Pass Object
+3. Pass Interface
+
+```verilog
+// eg. user\sim_uvm\top\my_test.sv
+
+// Source(uvm_component): this (my_test)
+// Path: "*.m_seqr.run_phase"
+// Type: ...
+// ID: "default_sequence" -> any name you want
+// Value: my_sequence::get_type()
+uvm_config_db#(uvm_object_wrapper)::set(
+    this, "*.m_seqr.run_phase", "default_sequence", my_sequence::get_type()
+);
+
+```
+
+The feature of UVM Configuration:
+
+1. Semi-global(半全局) variable -> avoid the risk associated with global variable
+2. High-level component can change the variable of their included sub-components without modifying the code
+3. UVM Configuration can be used at **EVERY LEVEL**
+4. Support **wildcard**(通配符) and **RegEx**(正则表达式) -> for path searching, and can configure multiple variables
+5. Support user-defined data type -> value, object, interface
+6. Dynamic configure during the simulation
+
+### Use UVM Configuration
+
+2 Steps:
+
+1. Set the configuration -> `uvm_config_db#(type)::set()`
+2. Get the configuration -> `uvm_config_db#(type)::get()`
+
+```verilog
+// prj\uvm-1.1d\src\base\uvm_config_db.svh -> line 148
+uvm_config_db#(type)::set(
+    uvm_component   cntxt,
+    string          inst_name,
+    string          field_name,
+    T               value
+);
+uvm_config_db#(type)::get(
+    uvm_component   cntxt,
+    string          inst_name,
+    string          field_name,
+    inout T         value
+);
+```
+
+<center>
+Set Configuration: UVM resource database
+</center>
+
+| Source(UVM_Comp) | Path         | Type          | ID         | Value     |
+| ---------------- | ------------ | ------------- | ---------- | --------- |
+| uvm_top          | "*.m_seqr"   | int           | "num"      | 10        |
+| uvm_test_top     | "*.m_agent   | str           | "massage"  | "config"  |
+| m_env            | "*.m_master" | uvm_object    | "m_config" | my_config |
+| m_agent          | "*.m_drv"    | uvm_component | "m_comp"   | my_comp   |
+| ...              | ...          | ...           | ...        | ...       |
+
+
+
+
+
+
+
+
+
+
+
