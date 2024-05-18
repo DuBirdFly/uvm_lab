@@ -1,0 +1,43 @@
+# MEADME
+
+## lab_03_factory_0
+
+添加文件: my_driver_count.sv, my_test_da3.sv, my_transaction_da3.sv
+修改文件: pgm.sv, 新增 include
+修改脚本: vsim.f, `+UVM_TESTNAME=my_test` --> `+UVM_TESTNAME=my_test_da3`
+
+说明: 学习UVM中的factory机制的 Override 机制
+
+## lab_03_factory_1
+
+继承自 lab_03_factory_0
+修改 `user/sim_uvm` 的文件结构
+
+**Question: both in "lab_03_factory_0" and "lab_03_factory_1"**
+
+1. `my_driver_count` 并没有成功覆盖 `my_driver`
+2. 在 `my_test_da3.sv`
+3. 会报错: `set_type_override_by_type(my_driver::get_type(), my_driver_count::get_type());`
+4. 不报错, 但不覆盖: `set_inst_override_by_type("my_env.m_agent.m_drv.*", my_driver::get_type(), my_driver_count::get_type());`
+
+    ```log
+        # UVM_FATAL @ 0: reporter [FCTTYP] Factory did not return a component of type 'my_driver'. A component of type 'my_driver_count' was returned instead. Name=m_drv Parent=master_agent contxt=uvm_test_top.my_env.m_agent
+    ```
+
+## lab_04
+
+继承: lab_03_factory_1
+视频: "29-07 - UVM_configuration机制 - 03_如何使用configuration机制 - 2.mp4"
+
+修改内容:
+
+1. my_sequence.sv 里有一个 int:item_num = 3 的配置项, 这个配置项用于生成 transaction 的个数
+2. my_test.sv 里用 `uvm_config_db#(int)::set` 设置这个配置项的值 -> 在 `pre_randomize()` 里设置, 以确保能在随机化之前设置
+3. my_sequence.sv 里用 `uvm_config_db#(int)::get` 获取这个配置项的值
+
+*NOTE: 一般在 `pre_randomize()` 里干什么:*
+
+1. *检查和修改随机化变量的取值范围*
+2. *根据其他类成员的值来设置随机化变量的约束*
+3. *执行一些预处理逻辑*
+4. *调用其他函数或方法来准备随机化过程*
