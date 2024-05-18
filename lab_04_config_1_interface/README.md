@@ -41,3 +41,18 @@
 2. *根据其他类成员的值来设置随机化变量的约束*
 3. *执行一些预处理逻辑*
 4. *调用其他函数或方法来准备随机化过程*
+
+## lab_04_config_1_interface
+
+继承: lab_04_config_0_variable
+视频: "29-07 - UVM_configuration机制 - 04_如何使用configuration机制 - 3.mp4"
+
+修改内容:
+
+1. 添加了一个 dut: "router.sv" -> 只有 IO, 还没空写内容
+2. 添加了一个 interface: "dut_interface.sv"
+3. 在 "driver.sv" 里实例化了这个 interface
+   1. 声明了一个 `virtual dut_interface m_vif;` 的句柄(指针)
+   2. 在 `build_phase` 里使用 `uvm_config_db #(type)::get()`, type 使用 **virtual interface**
+   3. 在 `pre_reset_phase()` 和 `reset_phase()`, 实现 'x 和 '0 的复位
+   4. 在 `main_phase()`, 实现激励的发送

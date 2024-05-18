@@ -1,3 +1,4 @@
 .vscode
 **/prj/modelsim/work
+**/prj/modelsim/*.vcd
 **/prj/uvm-1.1d

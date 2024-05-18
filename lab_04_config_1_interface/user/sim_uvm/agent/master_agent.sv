@@ -1,12 +1,3 @@
-/*
-(1) The agent class is extends from uvm_agent
-(2) Register class-name in the factory with MACRO `uvm_component_utils(class-name)
-(3) Declare header of every component, eg. sequencer, driver, monitor, etc.
-(4) Override a 'constructor' function: new (string name, uvm_component parent)
-(5) Override a 'build_phase' task
-(6) Override a 'connect_phase' task
-*/
-
 class master_agent extends uvm_agent;
 
     `uvm_component_utils(master_agent)

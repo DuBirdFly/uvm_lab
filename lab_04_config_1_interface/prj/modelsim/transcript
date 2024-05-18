@@ -3,18 +3,21 @@
 # vmap work work 
 # Modifying D:\Codes\Xilinx\APP\VivadoCompiledLib\modelsim.ini
 # Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
-# Start time: 03:29:36 on May 19,2024
+# Start time: 06:55:54 on May 19,2024
 # vlog -f vlog.f 
 # -- Compiling package uvm_pkg (uvm-1.1d Built-in)
-# -- Compiling program pgm
+# -- Compiling module router
+# -- Compiling package top_sv_unit
 # -- Importing package uvm_pkg (uvm-1.1d Built-in)
+# -- Compiling interface dut_interface
+# -- Compiling module top
 # 
 # Top level modules:
-# 	pgm
-# End time: 03:29:36 on May 19,2024, Elapsed time: 0:00:00
+# 	top
+# End time: 06:55:55 on May 19,2024, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vsim -f vsim.f 
-# Start time: 03:29:37 on May 19,2024
+# Start time: 06:55:55 on May 19,2024
 # ** Note: (vsim-3812) Design is being optimized...
 # //  ModelSim SE-64 10.7 Dec  7 2017
 # //
@@ -31,12 +34,18 @@
 # //
 # Loading sv_std.std
 # Loading work.uvm_pkg(fast)
-# Loading work.pgm(fast)
+# Loading work.top_sv_unit(fast)
 # ** Note: (vsim-8785) UVM-aware debugging capabilities will be disabled since no compiled "questa_uvm_pkg" can be found.
 # This also means that later if you turn on UVM-aware debugging your debug simulations may have
 # different random seeds from your non-debug simulations.
-# ** Warning: (vsim-3764) ../../user/sim_uvm/agent/my_sequence.sv(28): Stand-alone call to function 'get' treated as implicit void cast.
-#    Time: 0 ns  Iteration: 0  Region: /pgm/my_sequence File: ../../user/sim_uvm/top/pgm.sv
+# Loading work.top(fast)
+# Loading work.dut_interface(fast)
+# Loading work.router(fast)
+# Loading work.dut_interface(fast)
+# ** Warning: (vsim-3764) ../../user/sim_uvm/agent/my_sequence.sv(17): Stand-alone call to function 'get' treated as implicit void cast.
+#    Time: 0 ns  Iteration: 0  Region: /top_sv_unit::my_sequence File: ../../user/sim_uvm/top/top.sv
+# ** Warning: (vsim-3764) ../../user/sim_uvm/agent/my_driver.sv(13): Stand-alone call to function 'get' treated as implicit void cast.
+#    Time: 0 ns  Iteration: 0  Region: /top_sv_unit::my_driver File: ../../user/sim_uvm/top/top.sv
 # Loading .\../uvm-1.1d/win64/uvm_dpi.dll
 # ----------------------------------------------------------------
 # UVM-1.1d
@@ -58,19 +67,19 @@
 # 
 #       (Specify +UVM_NO_RELNOTES to turn off this notice)
 # 
-# UVM_INFO @ 0: reporter [RNTST] Running test my_test_da3...
+# UVM_INFO @ 0: reporter [RNTST] Running test my_test...
 # UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
-# uvm_test_top: (my_test_da3@443) {
-#   my_env: (my_environment@451) {
-#     m_agent: (master_agent@467) {
-#       m_drv: (my_driver@599) {
-#         rsp_port: (uvm_analysis_port@616) @616 
-#         seq_item_port: (uvm_seq_item_pull_port@607) @607 
+# uvm_test_top: (my_test@448) {
+#   my_env: (my_environment@456) {
+#     m_agent: (master_agent@472) {
+#       m_drv: (my_driver@604) {
+#         rsp_port: (uvm_analysis_port@621) @621 
+#         seq_item_port: (uvm_seq_item_pull_port@612) @612 
 #       }
-#       m_mon: (my_monitor@625) @625 
-#       m_seqr: (uvm_sequencer@476) {
-#         rsp_export: (uvm_analysis_export@484) @484 
-#         seq_item_export: (uvm_seq_item_pull_imp@590) @590 
+#       m_mon: (my_monitor@630) @630 
+#       m_seqr: (uvm_sequencer@481) {
+#         rsp_export: (uvm_analysis_export@489) @489 
+#         seq_item_export: (uvm_seq_item_pull_imp@595) @595 
 #         arbitration_queue: - 
 #         lock_queue: - 
 #         num_last_reqs: 'd1 
@@ -80,159 +89,30 @@
 #   }
 # }
 # 
-# UVM_INFO ../../user/sim_uvm/agent/my_monitor.sv(21) @ 100: uvm_test_top.my_env.m_agent.m_mon [MON_RUN_PHASE] Monitor 目前只是 100 ns 发一次消息的空转
-# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(25) @ 100: uvm_test_top.my_env.m_agent.m_drv [DRV_RESET_PHASE] Driver 正在复位 DUT
-# UVM_INFO ../../user/sim_uvm/agent/my_monitor.sv(14) @ 150: uvm_test_top.my_env.m_agent.m_mon [MON_RESET_PHASE] Monitor 正在进行复位
-# UVM_INFO ../../user/sim_uvm/agent/my_monitor.sv(21) @ 200: uvm_test_top.my_env.m_agent.m_mon [MON_RUN_PHASE] Monitor 目前只是 100 ns 发一次消息的空转
-# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(32) @ 250: uvm_test_top.my_env.m_agent.m_drv [DRV_CONFIGURE_PHASE] Driver 正在配置 DUT
-# UVM_INFO ../../user/sim_uvm/agent/my_monitor.sv(21) @ 300: uvm_test_top.my_env.m_agent.m_mon [MON_RUN_PHASE] Monitor 目前只是 100 ns 发一次消息的空转
-# UVM_INFO ../../user/sim_uvm/agent/my_monitor.sv(21) @ 400: uvm_test_top.my_env.m_agent.m_mon [MON_RUN_PHASE] Monitor 目前只是 100 ns 发一次消息的空转
-# UVM_INFO ../../user/sim_uvm/agent/my_monitor.sv(21) @ 500: uvm_test_top.my_env.m_agent.m_mon [MON_RUN_PHASE] Monitor 目前只是 100 ns 发一次消息的空转
-# UVM_INFO ../../user/sim_uvm/agent/my_monitor.sv(21) @ 600: uvm_test_top.my_env.m_agent.m_mon [MON_RUN_PHASE] Monitor 目前只是 100 ns 发一次消息的空转
-# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(41) @ 600: uvm_test_top.my_env.m_agent.m_drv [DRV_RUN_PHASE] 
+# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(18) @ 0: uvm_test_top.my_env.m_agent.m_drv [DRV_PRE_RESET_PHASE] Driver 正在 Pre-Reset
+# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(31) @ 0: uvm_test_top.my_env.m_agent.m_drv [DRV_RESET_PHASE] Driver 正在 Reset
+# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(50) @ 195: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
 # -------------------------------------------------------------------------------------------------------
 # Name                           Type                Size  Value                                         
 # -------------------------------------------------------------------------------------------------------
-# req                            my_transaction_da3  -     @646                                          
+# req                            my_transaction_da3  -     @652                                          
 #   src_addr                     integral            4     'h8                                           
 #   dst_addr                     integral            4     'h3                                           
 #   payload                      da(integral)        3     -                                             
 #     [0]                        integral            8     'hd2                                          
 #     [1]                        integral            8     'h5d                                          
 #     [2]                        integral            8     'h19                                          
-#   begin_time                   time                64    500                                           
+#   begin_time                   time                64    195                                           
 #   depth                        int                 32    'd2                                           
 #   parent sequence (name)       string              11    my_sequence                                   
 #   parent sequence (full name)  string              46    uvm_test_top.my_env.m_agent.m_seqr.my_sequence
 #   sequencer                    string              34    uvm_test_top.my_env.m_agent.m_seqr            
 # -------------------------------------------------------------------------------------------------------
 # 
-# UVM_INFO ../../user/sim_uvm/agent/my_monitor.sv(21) @ 700: uvm_test_top.my_env.m_agent.m_mon [MON_RUN_PHASE] Monitor 目前只是 100 ns 发一次消息的空转
-# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(41) @ 700: uvm_test_top.my_env.m_agent.m_drv [DRV_RUN_PHASE] 
-# -------------------------------------------------------------------------------------------------------
-# Name                           Type                Size  Value                                         
-# -------------------------------------------------------------------------------------------------------
-# req                            my_transaction_da3  -     @675                                          
-#   src_addr                     integral            4     'h2                                           
-#   dst_addr                     integral            4     'h3                                           
-#   payload                      da(integral)        4     -                                             
-#     [0]                        integral            8     'ha5                                          
-#     [1]                        integral            8     'h43                                          
-#     [2]                        integral            8     'h1a                                          
-#     [3]                        integral            8     'hf4                                          
-#   begin_time                   time                64    600                                           
-#   depth                        int                 32    'd2                                           
-#   parent sequence (name)       string              11    my_sequence                                   
-#   parent sequence (full name)  string              46    uvm_test_top.my_env.m_agent.m_seqr.my_sequence
-#   sequencer                    string              34    uvm_test_top.my_env.m_agent.m_seqr            
-# -------------------------------------------------------------------------------------------------------
+# Break key hit
+# Break at ../../user/sim_uvm/top/top.sv line 31
+# Control-C interrupt
 # 
-# UVM_INFO ../../user/sim_uvm/agent/my_monitor.sv(21) @ 800: uvm_test_top.my_env.m_agent.m_mon [MON_RUN_PHASE] Monitor 目前只是 100 ns 发一次消息的空转
-# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(41) @ 800: uvm_test_top.my_env.m_agent.m_drv [DRV_RUN_PHASE] 
-# -------------------------------------------------------------------------------------------------------
-# Name                           Type                Size  Value                                         
-# -------------------------------------------------------------------------------------------------------
-# req                            my_transaction_da3  -     @679                                          
-#   src_addr                     integral            4     'ha                                           
-#   dst_addr                     integral            4     'h3                                           
-#   payload                      da(integral)        3     -                                             
-#     [0]                        integral            8     'h3c                                          
-#     [1]                        integral            8     'he8                                          
-#     [2]                        integral            8     'he6                                          
-#   begin_time                   time                64    700                                           
-#   depth                        int                 32    'd2                                           
-#   parent sequence (name)       string              11    my_sequence                                   
-#   parent sequence (full name)  string              46    uvm_test_top.my_env.m_agent.m_seqr.my_sequence
-#   sequencer                    string              34    uvm_test_top.my_env.m_agent.m_seqr            
-# -------------------------------------------------------------------------------------------------------
-# 
-# UVM_INFO ../../user/sim_uvm/agent/my_monitor.sv(21) @ 900: uvm_test_top.my_env.m_agent.m_mon [MON_RUN_PHASE] Monitor 目前只是 100 ns 发一次消息的空转
-# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(41) @ 900: uvm_test_top.my_env.m_agent.m_drv [DRV_RUN_PHASE] 
-# -------------------------------------------------------------------------------------------------------
-# Name                           Type                Size  Value                                         
-# -------------------------------------------------------------------------------------------------------
-# req                            my_transaction_da3  -     @683                                          
-#   src_addr                     integral            4     'h4                                           
-#   dst_addr                     integral            4     'h3                                           
-#   payload                      da(integral)        2     -                                             
-#     [0]                        integral            8     'h13                                          
-#     [1]                        integral            8     'h83                                          
-#   begin_time                   time                64    800                                           
-#   depth                        int                 32    'd2                                           
-#   parent sequence (name)       string              11    my_sequence                                   
-#   parent sequence (full name)  string              46    uvm_test_top.my_env.m_agent.m_seqr.my_sequence
-#   sequencer                    string              34    uvm_test_top.my_env.m_agent.m_seqr            
-# -------------------------------------------------------------------------------------------------------
-# 
-# UVM_INFO ../../user/sim_uvm/agent/my_monitor.sv(21) @ 1000: uvm_test_top.my_env.m_agent.m_mon [MON_RUN_PHASE] Monitor 目前只是 100 ns 发一次消息的空转
-# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(41) @ 1000: uvm_test_top.my_env.m_agent.m_drv [DRV_RUN_PHASE] 
-# -------------------------------------------------------------------------------------------------------
-# Name                           Type                Size  Value                                         
-# -------------------------------------------------------------------------------------------------------
-# req                            my_transaction_da3  -     @687                                          
-#   src_addr                     integral            4     'h1                                           
-#   dst_addr                     integral            4     'h3                                           
-#   payload                      da(integral)        2     -                                             
-#     [0]                        integral            8     'h28                                          
-#     [1]                        integral            8     'ha3                                          
-#   begin_time                   time                64    900                                           
-#   depth                        int                 32    'd2                                           
-#   parent sequence (name)       string              11    my_sequence                                   
-#   parent sequence (full name)  string              46    uvm_test_top.my_env.m_agent.m_seqr.my_sequence
-#   sequencer                    string              34    uvm_test_top.my_env.m_agent.m_seqr            
-# -------------------------------------------------------------------------------------------------------
-# 
-# UVM_INFO ../../user/sim_uvm/agent/my_monitor.sv(21) @ 1100: uvm_test_top.my_env.m_agent.m_mon [MON_RUN_PHASE] Monitor 目前只是 100 ns 发一次消息的空转
-# UVM_INFO ../uvm-1.1d/src/base/uvm_objection.svh(1267) @ 1100: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
-# 
-#### Factory Configuration (*)
-# 
-# Instance Overrides:
-# 
-#   Requested Type  Override Path                         Override Type     
-#   --------------  ------------------------------------  ------------------
-#   my_driver       uvm_test_top.my_env.m_agent.m_drv.*   my_driver_count
-#   my_transaction  uvm_test_top.my_env.m_agent.m_seqr.*  my_transaction_da3
-# 
-# No type overrides are registered with this factory
-# 
-# All types registered with the factory: 47 total
-# (types without type names will not be printed)
-# 
-#   Type Name
-#   ---------
-#   master_agent
-#   my_driver
-#   my_driver_count
-#   my_environment
-#   my_monitor
-#   my_sequence
-#   my_test
-#   my_test_da3
-#   my_transaction
-#   my_transaction_da3
-# (*) Types with no associated type name will be printed as <unknown>
-# 
-####
-# 
-# 
-# --- UVM Report Summary ---
-# 
-# ** Report counts by severity
-# UVM_INFO :   22
-# UVM_WARNING :    0
-# UVM_ERROR :    0
-# UVM_FATAL :    0
-# ** Report counts by id
-# [DRV_CONFIGURE_PHASE]     1
-# [DRV_RESET_PHASE]     1
-# [DRV_RUN_PHASE]     5
-# [MON_RESET_PHASE]     1
-# [MON_RUN_PHASE]    11
-# [RNTST]     1
-# [TEST_DONE]     1
-# [UVMTOP]     1
-# ** Note: $finish    : ../uvm-1.1d/src/base/uvm_root.svh(430)
-#    Time: 1100 ns  Iteration: 48  Instance: /pgm
-# End time: 03:29:40 on May 19,2024, Elapsed time: 0:00:03
-# Errors: 0, Warnings: 1
+# MACRO ./modelsim_shell.do PAUSED at line 11
+# End time: 06:56:16 on May 19,2024, Elapsed time: 0:00:21
+# Errors: 0, Warnings: 2

@@ -1,11 +1,3 @@
-/*
-(1) The transaction class is extends from uvm_sequence_item
-(2) Register class-name and variable-name in the factory with MACRO `uvm_object_utils(class-name)`
-    1. Before register variable-name, we need to declare the variable with 'rand' keyword 
-    2. After register variable-name, we need to constraint the variable with 'constraint' keyword
-(3) Override a 'constructor' function: new (string name)
-*/
-
 class my_transaction extends uvm_sequence_item;
 
     rand bit [3:0] src_addr;
