@@ -15,7 +15,7 @@ class master_agent extends uvm_agent;
     my_driver m_drv;
     my_monitor m_mon;
 
-    function new(string name, uvm_component parent);
+    function new(string name = "master_agent", uvm_component parent);
         super.new(name, parent);
     endfunction
 

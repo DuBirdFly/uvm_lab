@@ -4,7 +4,7 @@ class my_environment extends uvm_env;
 
     master_agent m_agent;
 
-    function new(string name, uvm_component parent);
+    function new(string name = "my_environment", uvm_component parent);
         super.new(name, parent);
     endfunction
 

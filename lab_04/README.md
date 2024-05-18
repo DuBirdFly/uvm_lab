@@ -15,3 +15,4 @@ lab_04:
     继承自 lab_03_factory_1
     Video : UVM-configuration 03
     Config sequence --> change the number of transactions
+

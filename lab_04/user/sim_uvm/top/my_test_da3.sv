@@ -2,7 +2,7 @@ class my_test_da3 extends my_test;
 
     `uvm_component_utils(my_test_da3)
 
-    function new(string name, uvm_component parent);
+    function new(string name = "my_test_da3", uvm_component parent);
         super.new(name, parent);
     endfunction
 

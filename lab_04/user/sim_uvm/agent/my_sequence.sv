@@ -10,12 +10,23 @@
 */
 
 class my_sequence extends uvm_sequence #(my_transaction);
+
     `uvm_object_utils(my_sequence)
-    
+
+    int item_num = 10;
+
+    function new(string name = "my_sequence");
+        super.new(name);
+    endfunction
+
+    function void pre_randomize();
+        uvm_config_db #(int)::get(my_sequencer, "", "item_num", item_num);    
+    endfunction
+
     virtual task body();
         if (starting_phase != null) starting_phase.raise_objection(this);
 
-        repeat(3) `uvm_do(req);     // "req" is a handle to the transaction
+        repeat(item_num) `uvm_do(req);     // "req" is a handle to the transaction
         #100;
 
         if (starting_phase != null) starting_phase.drop_objection(this);

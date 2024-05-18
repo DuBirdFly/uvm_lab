@@ -4,7 +4,7 @@ class my_test extends uvm_test;
 
     my_environment my_env;
 
-    function new(string name, uvm_component parent);
+    function new(string name = "my_test", uvm_component parent);
         super.new(name, parent);
     endfunction
 

@@ -2,7 +2,7 @@ class my_driver_count extends uvm_driver;
 
     `uvm_component_utils(my_driver_count)
 
-    function new(string name, uvm_component parent);
+    function new(string name = "my_driver_count", uvm_component parent);
         super.new(name, parent);
     endfunction
 
