@@ -14,7 +14,10 @@ class my_sequence extends uvm_sequence #(my_transaction);
         // 2st. argument is the full path of the variable
         // 3rd. argument is the ID of the variable which can be named as you like (Normally, it's the same as the variable name)
         // 4th. argument is the name of the variable
-        uvm_config_db #(int)::get(m_sequencer, "", "item_num", item_num);    
+        if (uvm_config_db #(int)::get(m_sequencer, "", "item_num", item_num))
+            `uvm_info("MY_SEQUENCE", $sformatf("change item_num to %0d", item_num), UVM_MEDIUM)
+        else
+            `uvm_error(get_type_name(), "ERROR: item_num is not set")
     endfunction
 
     virtual task body();
