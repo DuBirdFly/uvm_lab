@@ -2,16 +2,7 @@
 
 ## 疑惑
 
-### lab_03_factory
 
-1. `my_driver_count` 并没有成功覆盖 `my_driver`
-2. 在 `my_test_da3.sv`
-   1. 会报错: `set_type_override_by_type(my_driver::get_type(), my_driver_count::get_type());`
-   2. 不报错, 但不覆盖: `set_inst_override_by_type("my_env.m_agent.m_drv.*", my_driver::get_type(), my_driver_count::get_type());`
-
-    ```log
-        # UVM_FATAL @ 0: reporter [FCTTYP] Factory did not return a component of type 'my_driver'. A component of type 'my_driver_count' was returned instead. Name=m_drv Parent=master_agent contxt=uvm_test_top.my_env.m_agent
-    ```
 
 ## UVM Factory
 
@@ -338,10 +329,12 @@ The feature of UVM Configuration:
 
 ### Use UVM Configuration
 
-2 Steps:
+`uvm_config_db#(type)::set()` and `uvm_config_db#(type)::get()` is a couple of functions:
 
-1. Set the configuration -> `uvm_config_db#(type)::set()`
-2. Get the configuration -> `uvm_config_db#(type)::get()`
+1. In Low-level component, use `get()` to get the configuration
+2. In High-level component, use `set()` to set the configuration
+3. 3rd parameter of `set()` and `get()` must be the same (parameter: string field_name)
+
 
 ```verilog
 // prj\uvm-1.1d\src\base\uvm_config_db.svh -> line 148

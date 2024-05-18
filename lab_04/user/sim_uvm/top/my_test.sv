@@ -19,16 +19,19 @@ class my_test extends uvm_test;
         super.build_phase(phase);
         my_env = my_environment::type_id::create("my_env", this);
 
-        // 1st. param: the location to invoke the "set method" is THIS test
-        // 2nd. param: the relative-path of the configured object
-        // 3rd. param: the identifier of the target object
-        // 4th. param: the type of the seqr which will be lancuhed
+        // 1st. param: uvm_component cntxt
+        // 2nd. param: string        inst_name
+        // 3rd. param: string        field_name,
+        // 4th. param: T             value
         // After this line, the default_sequence of the m_seqr will be pointed to my_sequence
         // When the UVM-Platfrom run to the run_phase, sequence will be launched,
         // And then driver will get the sequence (transaction) from the sequence
         uvm_config_db #(uvm_object_wrapper)::set(
             this, "*.m_seqr.run_phase", "default_sequence", my_sequence::get_type()
         );
+
+        // Configure the item_num = 5 in the sequencer
+        uvm_config_db #(int)::set(this, "*.m_seqr", "item_num", 5);
     endfunction
 
 endclass
