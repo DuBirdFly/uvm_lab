@@ -24,7 +24,7 @@
         # UVM_FATAL @ 0: reporter [FCTTYP] Factory did not return a component of type 'my_driver'. A component of type 'my_driver_count' was returned instead. Name=m_drv Parent=master_agent contxt=uvm_test_top.my_env.m_agent
     ```
 
-## lab_04
+## lab_04_config_0_variable
 
 继承: lab_03_factory_1
 视频: "29-07 - UVM_configuration机制 - 03_如何使用configuration机制 - 2.mp4"
