@@ -1,7 +1,8 @@
 import uvm_pkg::*;
 `include "uvm_macros.svh"
 
-`define MODELSIM
+// `define DUMP_VCD
+`define DUMP_WLF
 
 `include "dut_interface.sv"
 `include "my_transaction.sv"
@@ -44,11 +45,14 @@ module top;
         .o_data         (inf.o_data)
     );
 
-    `ifdef MODELSIM
+    `ifdef DUMP_VCD
         initial begin
-            $dumpfile("top.vcd");
+            $dumpfile("gtkwave.vcd");
             $dumpvars(0, top);
         end
+    `endif
+
+    `ifdef DUMP_WLF
         initial begin
             $wlfdumpvars();
         end
