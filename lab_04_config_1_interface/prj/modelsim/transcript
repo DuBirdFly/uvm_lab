@@ -3,7 +3,7 @@
 # vmap work work 
 # Modifying D:\Codes\Xilinx\APP\VivadoCompiledLib\modelsim.ini
 # Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
-# Start time: 08:12:25 on May 19,2024
+# Start time: 08:19:49 on May 19,2024
 # vlog -f vlog.f 
 # -- Compiling package uvm_pkg (uvm-1.1d Built-in)
 # -- Compiling module router
@@ -14,10 +14,10 @@
 # 
 # Top level modules:
 # 	top
-# End time: 08:12:25 on May 19,2024, Elapsed time: 0:00:00
+# End time: 08:19:50 on May 19,2024, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vsim -f vsim.f 
-# Start time: 08:12:25 on May 19,2024
+# Start time: 08:19:50 on May 19,2024
 # ** Note: (vsim-3812) Design is being optimized...
 # //  ModelSim SE-64 10.7 Dec  7 2017
 # //
@@ -88,9 +88,10 @@
 # 
 # UVM_INFO ../../user/sim_uvm/agent/my_sequence.sv(18) @ 0: uvm_test_top.my_env.m_agent.m_seqr@@my_sequence [MY_SEQUENCE] change item_num to 5
 # UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(21) @ 0: uvm_test_top.my_env.m_agent.m_drv [DRV_PRE_RESET_PHASE] Driver 正在 Pre-Reset
-# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(34) @ 0: uvm_test_top.my_env.m_agent.m_drv [DRV_RESET_PHASE] Driver 正在 Reset
-# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(47) @ 195: uvm_test_top.my_env.m_agent.m_drv [DRV_RESET_PHASE] Driver Reset 完成
-# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(58) @ 295: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
+# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(30) @ 0: uvm_test_top.my_env.m_agent.m_drv [DRV_PRE_RESET_PHASE] Driver Pre-Reset 完成
+# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(35) @ 0: uvm_test_top.my_env.m_agent.m_drv [DRV_RESET_PHASE] Driver 正在 Reset
+# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(48) @ 195: uvm_test_top.my_env.m_agent.m_drv [DRV_RESET_PHASE] Driver Reset 完成
+# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(59) @ 295: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
 # -------------------------------------------------------------------------------------------------------
 # Name                           Type                Size  Value                                         
 # -------------------------------------------------------------------------------------------------------
@@ -108,7 +109,7 @@
 #   sequencer                    string              34    uvm_test_top.my_env.m_agent.m_seqr            
 # -------------------------------------------------------------------------------------------------------
 # 
-# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(58) @ 595: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
+# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(59) @ 595: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
 # -------------------------------------------------------------------------------------------------------
 # Name                           Type                Size  Value                                         
 # -------------------------------------------------------------------------------------------------------
@@ -127,7 +128,7 @@
 #   sequencer                    string              34    uvm_test_top.my_env.m_agent.m_seqr            
 # -------------------------------------------------------------------------------------------------------
 # 
-# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(58) @ 975: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
+# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(59) @ 975: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
 # -------------------------------------------------------------------------------------------------------
 # Name                           Type                Size  Value                                         
 # -------------------------------------------------------------------------------------------------------
@@ -145,7 +146,7 @@
 #   sequencer                    string              34    uvm_test_top.my_env.m_agent.m_seqr            
 # -------------------------------------------------------------------------------------------------------
 # 
-# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(58) @ 1255: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
+# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(59) @ 1255: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
 # -------------------------------------------------------------------------------------------------------
 # Name                           Type                Size  Value                                         
 # -------------------------------------------------------------------------------------------------------
@@ -162,7 +163,7 @@
 #   sequencer                    string              34    uvm_test_top.my_env.m_agent.m_seqr            
 # -------------------------------------------------------------------------------------------------------
 # 
-# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(58) @ 1485: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
+# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(59) @ 1485: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
 # -------------------------------------------------------------------------------------------------------
 # Name                           Type                Size  Value                                         
 # -------------------------------------------------------------------------------------------------------
@@ -214,14 +215,14 @@
 # --- UVM Report Summary ---
 # 
 # ** Report counts by severity
-# UVM_INFO :   13
+# UVM_INFO :   14
 # UVM_WARNING :    0
 # UVM_ERROR :    0
 # UVM_FATAL :    0
 # ** Report counts by id
 # [DRV_BUILD_PHASE]     1
 # [DRV_MAIN_PHASE]     5
-# [DRV_PRE_RESET_PHASE]     1
+# [DRV_PRE_RESET_PHASE]     2
 # [DRV_RESET_PHASE]     2
 # [MY_SEQUENCE]     1
 # [RNTST]     1
@@ -229,5 +230,5 @@
 # [UVMTOP]     1
 # ** Note: $finish    : ../uvm-1.1d/src/base/uvm_root.svh(430)
 #    Time: 1835 ns  Iteration: 62  Instance: /top
-# End time: 08:12:27 on May 19,2024, Elapsed time: 0:00:02
+# End time: 08:19:52 on May 19,2024, Elapsed time: 0:00:02
 # Errors: 0, Warnings: 0

@@ -27,6 +27,7 @@ class my_driver extends uvm_driver #(my_transaction);
         m_vif.drv_cb.i_data      <= 'x;
         phase.drop_objection(this);
 
+        `uvm_info("DRV_PRE_RESET_PHASE", "Driver Pre-Reset 完成", UVM_MEDIUM)
     endtask
 
     virtual task reset_phase(uvm_phase phase);
