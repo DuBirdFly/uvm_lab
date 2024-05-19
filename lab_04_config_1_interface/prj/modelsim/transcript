@@ -3,7 +3,7 @@
 # vmap work work 
 # Modifying D:\Codes\Xilinx\APP\VivadoCompiledLib\modelsim.ini
 # Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
-# Start time: 07:39:16 on May 19,2024
+# Start time: 08:04:06 on May 19,2024
 # vlog -f vlog.f 
 # -- Compiling package uvm_pkg (uvm-1.1d Built-in)
 # -- Compiling module router
@@ -14,10 +14,10 @@
 # 
 # Top level modules:
 # 	top
-# End time: 07:39:17 on May 19,2024, Elapsed time: 0:00:01
+# End time: 08:04:07 on May 19,2024, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vsim -f vsim.f 
-# Start time: 07:39:17 on May 19,2024
+# Start time: 08:04:07 on May 19,2024
 # ** Note: (vsim-3812) Design is being optimized...
 # //  ModelSim SE-64 10.7 Dec  7 2017
 # //
@@ -90,7 +90,7 @@
 # UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(21) @ 0: uvm_test_top.my_env.m_agent.m_drv [DRV_PRE_RESET_PHASE] Driver 正在 Pre-Reset
 # UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(34) @ 0: uvm_test_top.my_env.m_agent.m_drv [DRV_RESET_PHASE] Driver 正在 Reset
 # UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(47) @ 195: uvm_test_top.my_env.m_agent.m_drv [DRV_RESET_PHASE] Driver Reset 完成
-# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(57) @ 295: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
+# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(58) @ 295: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
 # -------------------------------------------------------------------------------------------------------
 # Name                           Type                Size  Value                                         
 # -------------------------------------------------------------------------------------------------------
@@ -108,7 +108,7 @@
 #   sequencer                    string              34    uvm_test_top.my_env.m_agent.m_seqr            
 # -------------------------------------------------------------------------------------------------------
 # 
-# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(57) @ 625: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
+# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(58) @ 595: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
 # -------------------------------------------------------------------------------------------------------
 # Name                           Type                Size  Value                                         
 # -------------------------------------------------------------------------------------------------------
@@ -120,14 +120,14 @@
 #     [1]                        integral            8     'h43                                          
 #     [2]                        integral            8     'h1a                                          
 #     [3]                        integral            8     'hf4                                          
-#   begin_time                   time                64    625                                           
+#   begin_time                   time                64    595                                           
 #   depth                        int                 32    'd2                                           
 #   parent sequence (name)       string              11    my_sequence                                   
 #   parent sequence (full name)  string              46    uvm_test_top.my_env.m_agent.m_seqr.my_sequence
 #   sequencer                    string              34    uvm_test_top.my_env.m_agent.m_seqr            
 # -------------------------------------------------------------------------------------------------------
 # 
-# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(57) @ 1035: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
+# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(58) @ 975: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
 # -------------------------------------------------------------------------------------------------------
 # Name                           Type                Size  Value                                         
 # -------------------------------------------------------------------------------------------------------
@@ -138,14 +138,14 @@
 #     [0]                        integral            8     'h3c                                          
 #     [1]                        integral            8     'he8                                          
 #     [2]                        integral            8     'he6                                          
-#   begin_time                   time                64    1035                                          
+#   begin_time                   time                64    975                                           
 #   depth                        int                 32    'd2                                           
 #   parent sequence (name)       string              11    my_sequence                                   
 #   parent sequence (full name)  string              46    uvm_test_top.my_env.m_agent.m_seqr.my_sequence
 #   sequencer                    string              34    uvm_test_top.my_env.m_agent.m_seqr            
 # -------------------------------------------------------------------------------------------------------
 # 
-# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(57) @ 1365: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
+# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(58) @ 1255: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
 # -------------------------------------------------------------------------------------------------------
 # Name                           Type                Size  Value                                         
 # -------------------------------------------------------------------------------------------------------
@@ -155,14 +155,14 @@
 #   payload                      da(integral)        2     -                                             
 #     [0]                        integral            8     'h13                                          
 #     [1]                        integral            8     'h83                                          
-#   begin_time                   time                64    1365                                          
+#   begin_time                   time                64    1255                                          
 #   depth                        int                 32    'd2                                           
 #   parent sequence (name)       string              11    my_sequence                                   
 #   parent sequence (full name)  string              46    uvm_test_top.my_env.m_agent.m_seqr.my_sequence
 #   sequencer                    string              34    uvm_test_top.my_env.m_agent.m_seqr            
 # -------------------------------------------------------------------------------------------------------
 # 
-# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(57) @ 1615: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
+# UVM_INFO ../../user/sim_uvm/agent/my_driver.sv(58) @ 1485: uvm_test_top.my_env.m_agent.m_drv [DRV_MAIN_PHASE] 
 # -------------------------------------------------------------------------------------------------------
 # Name                           Type                Size  Value                                         
 # -------------------------------------------------------------------------------------------------------
@@ -172,14 +172,14 @@
 #   payload                      da(integral)        2     -                                             
 #     [0]                        integral            8     'h28                                          
 #     [1]                        integral            8     'ha3                                          
-#   begin_time                   time                64    1615                                          
+#   begin_time                   time                64    1485                                          
 #   depth                        int                 32    'd2                                           
 #   parent sequence (name)       string              11    my_sequence                                   
 #   parent sequence (full name)  string              46    uvm_test_top.my_env.m_agent.m_seqr.my_sequence
 #   sequencer                    string              34    uvm_test_top.my_env.m_agent.m_seqr            
 # -------------------------------------------------------------------------------------------------------
 # 
-# UVM_INFO ../uvm-1.1d/src/base/uvm_objection.svh(1267) @ 1965: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO ../uvm-1.1d/src/base/uvm_objection.svh(1267) @ 1835: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
 # 
 #### Factory Configuration (*)
 # 
@@ -228,6 +228,6 @@
 # [TEST_DONE]     1
 # [UVMTOP]     1
 # ** Note: $finish    : ../uvm-1.1d/src/base/uvm_root.svh(430)
-#    Time: 1965 ns  Iteration: 62  Instance: /top
-# End time: 07:39:19 on May 19,2024, Elapsed time: 0:00:02
+#    Time: 1835 ns  Iteration: 62  Instance: /top
+# End time: 08:04:09 on May 19,2024, Elapsed time: 0:00:02
 # Errors: 0, Warnings: 0

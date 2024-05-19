@@ -49,6 +49,7 @@ class my_driver extends uvm_driver #(my_transaction);
 
     virtual task run_phase(uvm_phase phase);
         logic [7:0] tmp;
+        int delay_count;
 
         repeat(30) @(m_vif.drv_cb);
 
@@ -63,8 +64,8 @@ class my_driver extends uvm_driver #(my_transaction);
                 @(m_vif.drv_cb);
             end
 
-            // MARK: Use rand data
-            repeat(5) @(m_vif.drv_cb);       
+            delay_count = $urandom_range(0, 5);
+            repeat(delay_count) @(m_vif.drv_cb);
 
             while(!m_vif.drv_cb.o_busy[req.src_addr]) @(m_vif.drv_cb);
 
