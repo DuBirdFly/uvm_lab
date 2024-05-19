@@ -1,9 +1,5 @@
 # UVM LEARN
 
-## 疑惑
-
-
-
 ## UVM Factory
 
 ### What is Factory?
@@ -364,13 +360,58 @@ Set Configuration: UVM resource database
 | m_agent          | "*.m_drv"    | uvm_component | "m_comp"   | my_comp   |
 | ...              | ...          | ...           | ...        | ...       |
 
+### Configure object
+
+Configure user-defined object
+
+1. "Configurable property" provide a way to implement paltform reusability(复用性)
+2. You can package "all congiguration items of a component" into a configuration object(class)
+3. The configuration object is configured as a whole
+
+
+```mermaid {align="center"}
+classDiagram
+    class my_test {
+        env_config m_env_cfg()
+        my_environment m_env()
+    }
+    class env_config {
+        int is_coverage = 0
+        int is_check = 1
+
+        agent_config m_agent_cfg
+    }
+    class agent_config {
+        int is_active = UVM_ACTIVE
+        pad_cycles = 5
+        virtual dut_interface m_vif
+    }
+    class my_environment {
+        uvm_config_db#(env_config)::get(m_env_cfg)
+    }
+    class master_agent {
+        agent_config m_agent_cfg
+    }
+
+    class my_driver {
+        int pad_cycles
+        virtual dut_interface m_vif
+    }
+    class my_monitor {
+        int is_coverage
+        virtual dut_interface m_vif
+    }
+    class my_sequencer
+
+    style my_test stroke:#f66,stroke-dasharray: 5
 
 
 
-
-
-
-
-
-
-
+    agent_config --> env_config
+    env_config --> my_test
+    my_environment .. my_test
+    my_environment --> master_agent
+    master_agent --> my_driver
+    master_agent --> my_monitor
+    master_agent --> my_sequencer
+```

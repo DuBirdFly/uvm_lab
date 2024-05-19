@@ -56,3 +56,5 @@
    2. 在 `build_phase` 里使用 `uvm_config_db #(type)::get()`, type 使用 **virtual interface**
    3. 在 `pre_reset_phase()` 和 `reset_phase()`, 实现 'x 和 '0 的复位
    4. 在 `main_phase()`, 实现激励的发送
+
+## lab_04_config_2_object
