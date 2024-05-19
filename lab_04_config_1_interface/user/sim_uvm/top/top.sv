@@ -1,7 +1,7 @@
 import uvm_pkg::*;
 `include "uvm_macros.svh"
 
-// `define DUMP_VCD
+`define DUMP_VCD
 `define DUMP_WLF
 
 `include "dut_interface.sv"
@@ -47,7 +47,7 @@ module top;
 
     `ifdef DUMP_VCD
         initial begin
-            $dumpfile("gtkwave.vcd");
+            $dumpfile("vsim.vcd");
             $dumpvars(0, top);
         end
     `endif

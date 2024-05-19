@@ -1,5 +1,5 @@
 # command: vsim -c -do modelsim_shell.do
-# command: vsim -view vsim.wlf`
+# command: vsim -view vsim.wlf
 
 if {[file exists work]} {
 	vdel -lib work -all
