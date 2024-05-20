@@ -368,7 +368,6 @@ Configure user-defined object
 2. You can package "all congiguration items of a component" into a configuration object(class)
 3. The configuration object is configured as a whole
 
-
 ```mermaid {align="center"}
 classDiagram
     class my_test {
