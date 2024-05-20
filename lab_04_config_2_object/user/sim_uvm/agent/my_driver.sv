@@ -4,15 +4,19 @@ class my_driver extends uvm_driver #(my_transaction);
 
     virtual dut_interface m_vif;
 
+    int unsigned pad_cycles;
+
     function new(string name = "my_driver", uvm_component parent);
         super.new(name, parent);
     endfunction
 
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-        if (uvm_config_db #(virtual dut_interface)::get(this, "*", "vif", m_vif))
-            `uvm_info("DRV_BUILD_PHASE", "Driver 获取到接口", UVM_MEDIUM)
-        else
+
+        if (!uvm_config_db #(int unsigned)::get(this, "", "pad_cycles", pad_cycles))
+            `uvm_error("DRV_BUILD_PHASE", "Driver 未获取到 pad_cycles")
+        
+        if (!uvm_config_db #(virtual dut_interface)::get(this, "", "vif", m_vif))
             `uvm_error("DRV_BUILD_PHASE", "Driver 未获取到接口")
     endfunction
 
@@ -50,7 +54,6 @@ class my_driver extends uvm_driver #(my_transaction);
 
     virtual task run_phase(uvm_phase phase);
         logic [7:0] tmp;
-        int delay_count;
 
         repeat(30) @(m_vif.drv_cb);
 
@@ -65,8 +68,7 @@ class my_driver extends uvm_driver #(my_transaction);
                 @(m_vif.drv_cb);
             end
 
-            delay_count = $urandom_range(0, 5);
-            repeat(delay_count) @(m_vif.drv_cb);
+            repeat(pad_cycles) @(m_vif.drv_cb);
 
             while(!m_vif.drv_cb.o_busy[req.src_addr]) @(m_vif.drv_cb);
 

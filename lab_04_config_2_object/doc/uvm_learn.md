@@ -336,15 +336,15 @@ The feature of UVM Configuration:
 // prj\uvm-1.1d\src\base\uvm_config_db.svh -> line 148
 uvm_config_db#(type)::set(
     uvm_component   cntxt,
-    string          inst_name,
-    string          field_name,
-    T               value
+    string          inst_name,      // path
+    string          field_name,     // ID
+    T               value           // variable or handle
 );
 uvm_config_db#(type)::get(
     uvm_component   cntxt,
-    string          inst_name,
-    string          field_name,
-    inout T         value
+    string          inst_name,      // path
+    string          field_name,     // ID
+    inout T         value           // variable or handle
 );
 ```
 
@@ -371,21 +371,29 @@ Configure user-defined object
 ```mermaid {align="center"}
 classDiagram
     class my_test {
+        env_config m_env_config
         env_config m_env_cfg()
         my_environment m_env()
+
+        uvm_config_db#(virtual dut_interface)::get()
+        uvm_config_db#(env_config)::set()
     }
     class env_config {
         int is_coverage = 0
         int is_check = 1
 
         agent_config m_agent_cfg
+
+        m_agent_cfg = new("m_agent_cfg")
     }
     class agent_config {
-        int is_active = UVM_ACTIVE
-        pad_cycles = 5
+        uvm_active_passive_enum is_active = UVM_ACTIVE
+        int usigned pad_cycles = 5
         virtual dut_interface m_vif
     }
+    class uvm_object
     class my_environment {
+        env_config m_env_cfg
         uvm_config_db#(env_config)::get(m_env_cfg)
     }
     class master_agent {
@@ -402,9 +410,11 @@ classDiagram
     }
     class my_sequencer
 
-    style my_test stroke:#f66,stroke-dasharray: 5
+    style my_test stroke:#f00,stroke-dasharray: 5
+    style uvm_object stroke:#0f0,stroke-dasharray: 5
 
-
+    uvm_object <|--agent_config
+    uvm_object <|--env_config
 
     agent_config --> env_config
     env_config --> my_test

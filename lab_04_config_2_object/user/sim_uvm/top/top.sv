@@ -4,6 +4,9 @@ import uvm_pkg::*;
 `define DUMP_VCD
 `define DUMP_WLF
 
+`include "agent_config.sv"
+`include "env_config.sv"
+
 `include "dut_interface.sv"
 `include "my_transaction.sv"
 `include "my_sequence.sv"
@@ -27,7 +30,7 @@ module top;
     always #5 clk = ~clk;
 
     initial begin
-        uvm_config_db#(virtual dut_interface)::set(null, "*.m_agent.*", "vif", inf);
+        uvm_config_db#(virtual dut_interface)::set(null, "uvm_test_top", "top_if", inf);
         run_test();
     end
 
