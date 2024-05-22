@@ -1,1 +1,1 @@
-typedef uvm_sequencer #(my_seq_item) CompSeqr;
+typedef uvm_sequencer #(MySeqItem) CompSeqr;

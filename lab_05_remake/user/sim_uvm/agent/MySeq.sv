@@ -1,12 +1,12 @@
-class my_seq extends uvm_sequence #(my_seq_item);
+class MySeq extends uvm_sequence #(MySeqItem);
 
-    `uvm_object_utils(my_seq)
+    `uvm_object_utils(MySeq)
 
     /* 声明变量 */
     int item_num = 3;
 
     /* 构造函数 */
-    function new(string name = "my_seq");
+    function new(string name = "MySeq");
         super.new(name);
     endfunction
 

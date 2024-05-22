@@ -8,15 +8,16 @@ import uvm_pkg::*;
 `include "dut_interface.sv"
 
 // dir: agent
-`include "my_seq_item.sv"
-`include "my_seq.sv"
+`include "MySeqItem.sv"
+`include "MySeq.sv"
+
 `include "CompSeqr.sv"
 `include "CompDrv.sv"
 `include "CompMon.sv"
 `include "CompAgtMstr.sv"
 
 `include "CompDrvNew.sv"
-`include "my_seq_item_da3.sv"
+`include "MySeqItem_da3.sv"
 
 // dir: env
 `include "CompEnv.sv"

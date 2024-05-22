@@ -25,14 +25,14 @@ class Test extends uvm_test;
         );
         set_inst_override_by_type(
             "compEnv.compAgtMstr.compSeqr.*",
-            my_seq_item::get_type(),
-            my_seq_item_da3::get_type()
+            MySeqItem::get_type(),
+            MySeqItem_da3::get_type()
         );
 
         /* uvm_config_db::get() */
 
         /* uvm_config_db::set() */
-        uvm_config_db#(uvm_object_wrapper)::set(this, "*.compSeqr.run_phase", "default_sequence", my_seq::get_type());
+        uvm_config_db#(uvm_object_wrapper)::set(this, "*.compSeqr.run_phase", "default_sequence", MySeq::get_type());
 
         /* type_id::create() 函数开辟 Comp 组件对象空间 */
         compEnv = CompEnv::type_id::create("compEnv", this);

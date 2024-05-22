@@ -1,4 +1,4 @@
-class CompDrv extends uvm_driver #(my_seq_item);
+class CompDrv extends uvm_driver #(MySeqItem);
 
     `uvm_component_utils(CompDrv)
 
