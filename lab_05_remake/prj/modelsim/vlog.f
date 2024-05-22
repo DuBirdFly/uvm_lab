@@ -16,4 +16,4 @@
 +incdir+../../user/sim_uvm/env
 +incdir+../../user/sim_uvm/interface
 +incdir+../../user/sim_uvm/top
-../../user/sim_uvm/top/top.sv
+../../user/sim_uvm/top/Top.sv

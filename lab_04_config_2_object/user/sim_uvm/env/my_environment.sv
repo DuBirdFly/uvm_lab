@@ -13,6 +13,8 @@ class my_environment extends uvm_env;
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
 
+        m_agent = master_agent::type_id::create("m_agent", this);
+
         if (!uvm_config_db#(env_config)::get(this, "", "env_cfg", m_env_cfg))
             `uvm_fatal("NO_ENV_CFG", "ENV can not get the configuration")
 
@@ -22,7 +24,6 @@ class my_environment extends uvm_env;
 
         if (m_env_cfg.is_check) `uvm_info("CHECK", "Check is enabled", UVM_MEDIUM)
 
-        m_agent = master_agent::type_id::create("m_agent", this);
     endfunction
 
 endclass

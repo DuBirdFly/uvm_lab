@@ -5,6 +5,6 @@
 -sv_seed 0
 -sv_lib ../uvm-1.1d/win64/uvm_dpi
 
-+UVM_TESTNAME=my_test
++UVM_TESTNAME=Test
 
-work.top
+work.Top
