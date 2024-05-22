@@ -13,7 +13,7 @@ class CompDrvNew extends CompDrv;
     virtual task pre_reset_phase(uvm_phase phase);
         super.pre_reset_phase(phase);
 
-        `uvm_info(get_type_name(), "DBG: Override pre_reset_phase", UVM_MEDIUM)
+        `uvm_info("CompDrvNew", "DBG: Override pre_reset_phase", UVM_MEDIUM)
     endtask
 
 endclass

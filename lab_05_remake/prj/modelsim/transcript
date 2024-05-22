@@ -3,7 +3,7 @@
 # vmap work work 
 # Modifying D:\Codes\Xilinx\APP\VivadoCompiledLib\modelsim.ini
 # Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
-# Start time: 01:24:50 on May 23,2024
+# Start time: 01:49:51 on May 23,2024
 # vlog -f vlog.f 
 # -- Compiling package uvm_pkg (uvm-1.1d Built-in)
 # -- Compiling module router
@@ -14,10 +14,10 @@
 # 
 # Top level modules:
 # 	Top
-# End time: 01:24:50 on May 23,2024, Elapsed time: 0:00:00
+# End time: 01:49:52 on May 23,2024, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vsim -f vsim.f 
-# Start time: 01:24:50 on May 23,2024
+# Start time: 01:49:52 on May 23,2024
 # ** Note: (vsim-3812) Design is being optimized...
 # //  ModelSim SE-64 10.7 Dec  7 2017
 # //
@@ -42,6 +42,8 @@
 # Loading work.dut_interface(fast)
 # Loading work.router(fast)
 # Loading work.dut_interface(fast)
+# ** Warning: (vsim-3015) ../../user/sim_uvm/top/Top.sv(41): [PCDPC] - Port size (16) does not match connection size (1) for port 'o_busy'. The port definition is at: ../../user/dut/router.sv(11).
+#    Time: 0 ns  Iteration: 0  Instance: /Top/dut File: ../../user/dut/router.sv
 # Loading .\../uvm-1.1d/win64/uvm_dpi.dll
 # ----------------------------------------------------------------
 # UVM-1.1d
@@ -85,30 +87,37 @@
 #   }
 # }
 # 
+# UVM_INFO ../../user/sim_uvm/agent/CompDrv.sv(28) @ 0: uvm_test_top.compEnv.compAgtMstr.compDrv [CompDrv] PRE_RESET_PHASE START
 # UVM_INFO ../../user/sim_uvm/agent/CompDrvNew.sv(16) @ 0: uvm_test_top.compEnv.compAgtMstr.compDrv [CompDrvNew] DBG: Override pre_reset_phase
-# UVM_INFO ../../user/sim_uvm/agent/CompDrv.sv(26) @ 0: uvm_test_top.compEnv.compAgtMstr.compDrv [DRV_RUN_PHASE] 
+# UVM_INFO ../../user/sim_uvm/agent/CompDrv.sv(41) @ 0: uvm_test_top.compEnv.compAgtMstr.compDrv [CompDrv] RESET_PHASE START
+# UVM_INFO ../../user/sim_uvm/agent/CompDrv.sv(54) @ 195: uvm_test_top.compEnv.compAgtMstr.compDrv [CompDrv] RESET_PHASE END
+# UVM_INFO ../../user/sim_uvm/agent/CompDrv.sv(67) @ 295: uvm_test_top.compEnv.compAgtMstr.compDrv [CompDrv] 
 # ---------------------------------------------------------------------------------------------------
 # Name                           Type           Size  Value                                          
 # ---------------------------------------------------------------------------------------------------
-# req                            MySeqItem_da3  -     @646                                           
+# req                            MySeqItem_da3  -     @647                                           
 #   src_addr                     integral       4     'h0                                            
 #   dst_addr                     integral       4     'h6                                            
 #   payload                      da(integral)   3     -                                              
 #     [0]                        integral       8     'he4                                           
 #     [1]                        integral       8     'h3f                                           
 #     [2]                        integral       8     'h39                                           
-#   begin_time                   time           64    0                                              
+#   begin_time                   time           64    295                                            
 #   depth                        int            32    'd2                                            
 #   parent sequence (name)       string         5     MySeq                                          
 #   parent sequence (full name)  string         47    uvm_test_top.compEnv.compAgtMstr.compSeqr.MySeq
 #   sequencer                    string         41    uvm_test_top.compEnv.compAgtMstr.compSeqr      
 # ---------------------------------------------------------------------------------------------------
 # 
-# UVM_INFO ../../user/sim_uvm/agent/CompDrv.sv(26) @ 100: uvm_test_top.compEnv.compAgtMstr.compDrv [DRV_RUN_PHASE] 
+# DBG: 1
+# DBG: 1.1
+# DBG: 2
+# DBG: 3
+# UVM_INFO ../../user/sim_uvm/agent/CompDrv.sv(67) @ 625: uvm_test_top.compEnv.compAgtMstr.compDrv [CompDrv] 
 # ---------------------------------------------------------------------------------------------------
 # Name                           Type           Size  Value                                          
 # ---------------------------------------------------------------------------------------------------
-# req                            MySeqItem_da3  -     @675                                           
+# req                            MySeqItem_da3  -     @676                                           
 #   src_addr                     integral       4     'h1                                            
 #   dst_addr                     integral       4     'h6                                            
 #   payload                      da(integral)   4     -                                              
@@ -116,18 +125,22 @@
 #     [1]                        integral       8     'h3f                                           
 #     [2]                        integral       8     'ha                                            
 #     [3]                        integral       8     'he6                                           
-#   begin_time                   time           64    100                                            
+#   begin_time                   time           64    625                                            
 #   depth                        int            32    'd2                                            
 #   parent sequence (name)       string         5     MySeq                                          
 #   parent sequence (full name)  string         47    uvm_test_top.compEnv.compAgtMstr.compSeqr.MySeq
 #   sequencer                    string         41    uvm_test_top.compEnv.compAgtMstr.compSeqr      
 # ---------------------------------------------------------------------------------------------------
 # 
-# UVM_INFO ../../user/sim_uvm/agent/CompDrv.sv(26) @ 200: uvm_test_top.compEnv.compAgtMstr.compDrv [DRV_RUN_PHASE] 
+# DBG: 1
+# DBG: 1.1
+# DBG: 2
+# DBG: 3
+# UVM_INFO ../../user/sim_uvm/agent/CompDrv.sv(67) @ 1035: uvm_test_top.compEnv.compAgtMstr.compDrv [CompDrv] 
 # ---------------------------------------------------------------------------------------------------
 # Name                           Type           Size  Value                                          
 # ---------------------------------------------------------------------------------------------------
-# req                            MySeqItem_da3  -     @679                                           
+# req                            MySeqItem_da3  -     @680                                           
 #   src_addr                     integral       4     'hb                                            
 #   dst_addr                     integral       4     'h6                                            
 #   payload                      da(integral)   4     -                                              
@@ -135,14 +148,18 @@
 #     [1]                        integral       8     'hd3                                           
 #     [2]                        integral       8     'ha2                                           
 #     [3]                        integral       8     'h3                                            
-#   begin_time                   time           64    200                                            
+#   begin_time                   time           64    1035                                           
 #   depth                        int            32    'd2                                            
 #   parent sequence (name)       string         5     MySeq                                          
 #   parent sequence (full name)  string         47    uvm_test_top.compEnv.compAgtMstr.compSeqr.MySeq
 #   sequencer                    string         41    uvm_test_top.compEnv.compAgtMstr.compSeqr      
 # ---------------------------------------------------------------------------------------------------
 # 
-# UVM_INFO ../uvm-1.1d/src/base/uvm_objection.svh(1267) @ 400: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# DBG: 1
+# DBG: 1.1
+# DBG: 2
+# DBG: 3
+# UVM_INFO ../uvm-1.1d/src/base/uvm_objection.svh(1267) @ 1545: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
 # 
 #### Factory Configuration (*)
 # 
@@ -177,17 +194,17 @@
 # --- UVM Report Summary ---
 # 
 # ** Report counts by severity
-# UVM_INFO :    7
+# UVM_INFO :   10
 # UVM_WARNING :    0
 # UVM_ERROR :    0
 # UVM_FATAL :    0
 # ** Report counts by id
+# [CompDrv]     6
 # [CompDrvNew]     1
-# [DRV_RUN_PHASE]     3
 # [RNTST]     1
 # [TEST_DONE]     1
 # [UVMTOP]     1
 # ** Note: $finish    : ../uvm-1.1d/src/base/uvm_root.svh(430)
-#    Time: 400 ns  Iteration: 62  Instance: /Top
-# End time: 01:24:52 on May 23,2024, Elapsed time: 0:00:02
-# Errors: 0, Warnings: 0
+#    Time: 1545 ns  Iteration: 62  Instance: /Top
+# End time: 01:49:53 on May 23,2024, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1

@@ -8,10 +8,10 @@ module router (
 
     output  wire  [15:0]    o_frame,
     output  wire  [15:0]    o_valid,
-    output  wire            o_busy,
+    output  wire  [15:0]    o_busy,
     output  wire  [15:0]    o_data
 );
 
-assign o_busy = 1'b0;
+assign o_busy = '0;
 
 endmodule
