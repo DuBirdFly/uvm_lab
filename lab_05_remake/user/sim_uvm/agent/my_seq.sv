@@ -2,7 +2,7 @@ class my_seq extends uvm_sequence #(my_seq_item);
 
     `uvm_object_utils(my_seq)
 
-    /* 变量声明 */
+    /* 声明变量 */
     int item_num = 3;
 
     /* 构造函数 */

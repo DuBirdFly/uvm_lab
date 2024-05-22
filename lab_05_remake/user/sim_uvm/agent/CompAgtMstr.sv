@@ -2,7 +2,7 @@ class CompAgtMstr extends uvm_agent;
   
     `uvm_component_utils(CompAgtMstr)
 
-    /* 变量声明 */
+    /* 声明变量 */
 
     /* 创建对象的句柄 */
     CompSeqr compSeqr;

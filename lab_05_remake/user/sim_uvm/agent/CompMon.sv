@@ -2,7 +2,7 @@ class CompMon extends uvm_monitor;
 
     `uvm_component_utils(CompMon)
 
-    /* 变量声明 */
+    /* 声明变量 */
 
     /* 创建对象的句柄 */
 

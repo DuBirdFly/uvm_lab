@@ -2,7 +2,7 @@ class CompDrv extends uvm_driver #(my_seq_item);
 
     `uvm_component_utils(CompDrv)
 
-    /* 变量声明 */
+    /* 声明变量 */
 
     /* 创建对象的句柄 */
     virtual dut_interface dut_vif;

@@ -2,7 +2,7 @@ class CompEnv extends uvm_env;
 
     `uvm_component_utils(CompEnv)
 
-    /* 变量声明 */
+    /* 声明变量 */
 
     /* 创建对象的句柄 */
     CompAgtMstr compAgtMstr;

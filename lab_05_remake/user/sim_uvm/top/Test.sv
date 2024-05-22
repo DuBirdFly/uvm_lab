@@ -2,7 +2,7 @@ class Test extends uvm_test;
 
     `uvm_component_utils(Test)
 
-    /* 变量声明 */
+    /* 声明变量 */
 
     /* 创建对象的句柄 */
     CompEnv compEnv;
@@ -17,7 +17,17 @@ class Test extends uvm_test;
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
 
-        /* Override Comp 对象 */
+        /* Override 对象 */
+        set_inst_override_by_type(
+            "compEnv.compAgtMstr.*",
+            CompDrv::get_type(),
+            CompDrvNew::get_type()
+        );
+        set_inst_override_by_type(
+            "compEnv.compAgtMstr.compSeqr.*",
+            my_seq_item::get_type(),
+            my_seq_item_da3::get_type()
+        );
 
         /* uvm_config_db::get() */
 

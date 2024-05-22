@@ -15,6 +15,9 @@ import uvm_pkg::*;
 `include "CompMon.sv"
 `include "CompAgtMstr.sv"
 
+`include "CompDrvNew.sv"
+`include "my_seq_item_da3.sv"
+
 // dir: env
 `include "CompEnv.sv"
 

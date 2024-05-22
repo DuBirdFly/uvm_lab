@@ -1,6 +1,6 @@
 class my_seq_item extends uvm_sequence_item;
 
-    /* 变量声明 */
+    /* 声明变量 */
     rand bit [3:0] src_addr;
     rand bit [3:0] dst_addr;
     rand reg [7:0] payload [$];
