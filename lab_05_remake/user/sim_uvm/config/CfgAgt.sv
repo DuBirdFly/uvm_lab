@@ -3,6 +3,8 @@ class CfgAgt extends uvm_object;
     /* 声明变量 */
     uvm_active_passive_enum is_active = UVM_ACTIVE;
     int unsigned pad_cycle = 5;
+
+    /* 创建对象的句柄 */
     virtual IntfDut vif_dut;
 
     /* 注册对象 */

@@ -28,6 +28,8 @@ class CompAgtMstr extends uvm_agent;
         /* uvm_config_db::set() */
         uvm_config_db#(int unsigned)::set(this, "compDrv", "pad_cycle", cfgAgt.pad_cycle);
         uvm_config_db#(virtual IntfDut)::set(this, "compDrv", "vif_dut", cfgAgt.vif_dut);
+        uvm_config_db#(virtual IntfDut)::set(this, "compMon", "vif_dut", cfgAgt.vif_dut);
+
 
         /* type_id::create() 函数开辟 Comp 组件对象空间 */
         // UVM_ACTIVE: 创建 Seqr 和 Drv; UVM_PASSIVE: 只创建 Mon

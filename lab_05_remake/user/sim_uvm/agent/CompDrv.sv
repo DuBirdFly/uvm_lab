@@ -19,11 +19,11 @@ class CompDrv extends uvm_driver #(MySeqItem);
         super.build_phase(phase);
 
         /* uvm_config_db::get() */
-        if (!uvm_config_db#(int unsigned)::get(this, "", "pad_cycle", pad_cycle))
-            `uvm_fatal("CompDrv", "NOT GET PAD_CYCLE")
-
         if (!uvm_config_db#(virtual IntfDut)::get(this, "", "vif_dut", vif_dut))
             `uvm_fatal("CompDrv", "NOT GET INTERFACE")
+
+        if (!uvm_config_db#(int unsigned)::get(this, "", "pad_cycle", pad_cycle))
+            `uvm_fatal("CompDrv", "NOT GET PAD_CYCLE")
 
         /* uvm_config_db::set() */
 
