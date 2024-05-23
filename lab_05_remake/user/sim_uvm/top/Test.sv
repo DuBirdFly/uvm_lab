@@ -1,16 +1,18 @@
 class Test extends uvm_test;
 
-    `uvm_component_utils(Test)
-
     /* 声明变量 */
 
     /* 创建对象的句柄 */
     CompEnv compEnv;
 
+    /* 注册对象 */
+    `uvm_component_utils(Test)
+
+    /* 构造函数 */
     function new(string name = "Test", uvm_component parent);
         super.new(name, parent);
 
-        /* new() 函数开辟 Object 对象的空间*/
+        /* new() 函数开辟对象空间*/
 
     endfunction
 

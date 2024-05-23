@@ -1,7 +1,5 @@
 class CompAgtMstr extends uvm_agent;
   
-    `uvm_component_utils(CompAgtMstr)
-
     /* 声明变量 */
 
     /* 创建对象的句柄 */
@@ -9,8 +7,13 @@ class CompAgtMstr extends uvm_agent;
     CompDrv  compDrv;
     CompMon  compMon;
 
+    /* 注册对象 */
+    `uvm_component_utils(CompAgtMstr)
+
+    /* 构造函数 */
     function new(string name = "CompAgtMstr", uvm_component parent);
         super.new(name, parent);
+        /* new() 函数开辟对象空间*/
     endfunction
 
     virtual function void build_phase(uvm_phase phase);

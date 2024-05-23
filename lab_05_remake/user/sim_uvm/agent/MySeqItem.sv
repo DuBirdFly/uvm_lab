@@ -5,7 +5,9 @@ class MySeqItem extends uvm_sequence_item;
     rand bit [3:0] dst_addr;
     rand reg [7:0] payload [$];
 
-    /* 注册变量 */
+    /* 创建对象的句柄 */
+
+    /* 注册对象 */
     `uvm_object_utils_begin(MySeqItem)
         `uvm_field_int(src_addr, UVM_ALL_ON)
         `uvm_field_int(dst_addr, UVM_ALL_ON)
@@ -22,6 +24,7 @@ class MySeqItem extends uvm_sequence_item;
     /* 构造函数 */
     function new(string name = "MySeqItem");
         super.new(name);
+        /* new() 函数开辟对象空间*/
     endfunction
 
 endclass

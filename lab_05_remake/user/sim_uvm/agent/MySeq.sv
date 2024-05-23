@@ -1,13 +1,17 @@
 class MySeq extends uvm_sequence #(MySeqItem);
 
-    `uvm_object_utils(MySeq)
-
     /* 声明变量 */
     int item_num = 3;
+
+    /* 创建对象的句柄 */
+
+    /* 注册对象 */
+    `uvm_object_utils(MySeq)
 
     /* 构造函数 */
     function new(string name = "MySeq");
         super.new(name);
+        /* new() 函数开辟对象空间*/
     endfunction
 
     function void pre_randomize();

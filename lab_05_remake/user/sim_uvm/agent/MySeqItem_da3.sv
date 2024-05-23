@@ -2,7 +2,9 @@ class MySeqItem_da3 extends MySeqItem;
 
     /* 声明变量 */
     
-    /* 注册变量 */
+    /* 创建对象的句柄 */
+
+    /* 注册对象 */
     `uvm_object_utils(MySeqItem_da3)
 
     /* 约束 */
@@ -11,6 +13,7 @@ class MySeqItem_da3 extends MySeqItem;
     /* 构造函数 */
     function new(string name = "MySeqItem_da3");
         super.new(name);
+        /* new() 函数开辟对象空间*/
     endfunction
 
 endclass

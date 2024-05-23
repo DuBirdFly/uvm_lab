@@ -1,14 +1,19 @@
 class CompEnv extends uvm_env;
 
-    `uvm_component_utils(CompEnv)
 
     /* 声明变量 */
 
     /* 创建对象的句柄 */
     CompAgtMstr compAgtMstr;
 
+    /* 注册对象 */
+    `uvm_component_utils(CompEnv)
+
+    /* 构造函数 */
     function new(string name = "CompEnv", uvm_component parent);
         super.new(name, parent);
+        
+        /* new() 函数开辟对象空间*/
     endfunction
 
     virtual function void build_phase(uvm_phase phase);
