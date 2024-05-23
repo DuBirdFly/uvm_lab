@@ -1,4 +1,4 @@
-interface dut_interface(
+interface IntfDut(
     input bit       clk
 );
 

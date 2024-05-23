@@ -5,7 +5,7 @@ import uvm_pkg::*;
 `include "uvm_macros.svh"
 
 // dir: interface
-`include "dut_interface.sv"
+`include "IntfDut.sv"
 
 // dir: agent
 `include "MySeqItem.sv"
@@ -29,12 +29,12 @@ module Top;
 
     bit clk;
 
-    dut_interface inf(clk);
+    IntfDut inf(clk);
 
     always #5 clk = ~clk;
 
     initial begin
-        uvm_config_db#(virtual dut_interface)::set(null, "*.compAgtMstr.*", "dut_vif", inf);
+        uvm_config_db#(virtual IntfDut)::set(null, "*.compAgtMstr.*", "dut_vif", inf);
         run_test();
     end
 

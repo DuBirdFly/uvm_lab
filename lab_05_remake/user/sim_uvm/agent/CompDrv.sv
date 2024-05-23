@@ -6,7 +6,7 @@ class CompDrv extends uvm_driver #(MySeqItem);
     int unsigned pad_cycles = 5;
 
     /* 创建对象的句柄 */
-    virtual dut_interface dut_vif;
+    virtual IntfDut dut_vif;
 
     function new(string name = "CompDrv", uvm_component parent);
         super.new(name, parent);
@@ -16,7 +16,7 @@ class CompDrv extends uvm_driver #(MySeqItem);
         super.build_phase(phase);
 
         /* uvm_config_db::get() */
-        if (!uvm_config_db#(virtual dut_interface)::get(this, "*", "dut_vif", dut_vif))
+        if (!uvm_config_db#(virtual IntfDut)::get(this, "*", "dut_vif", dut_vif))
             `uvm_fatal("CompDrv", "NOT GET INTERFACE")
 
         /* uvm_config_db::set() */
