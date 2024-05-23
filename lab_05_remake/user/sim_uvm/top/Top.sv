@@ -7,6 +7,10 @@ import uvm_pkg::*;
 // dir: interface
 `include "IntfDut.sv"
 
+// dir: config
+`include "CfgAgt.sv"
+`include "CfgEnv.sv"
+
 // dir: agent
 `include "MySeqItem.sv"
 `include "MySeq.sv"
@@ -29,27 +33,29 @@ module Top;
 
     bit clk;
 
-    IntfDut inf(clk);
+    IntfDut intf(clk);
 
     always #5 clk = ~clk;
 
     initial begin
-        uvm_config_db#(virtual IntfDut)::set(null, "*.compAgtMstr.*", "vif_dut", inf);
+        uvm_config_db#(virtual IntfDut)::set(
+            null, "uvm_test_top", "top_if", intf
+        );
         run_test();
     end
 
     router dut (
-        .clk            (inf.clk),
-        .reset_n        (inf.reset_n),
+        .clk            (intf.clk),
+        .reset_n        (intf.reset_n),
 
-        .i_frame        (inf.i_frame),
-        .i_valid        (inf.i_valid),
-        .i_data         (inf.i_data),
+        .i_frame        (intf.i_frame),
+        .i_valid        (intf.i_valid),
+        .i_data         (intf.i_data),
 
-        .o_frame        (inf.o_frame),
-        .o_valid        (inf.o_valid),
-        .o_busy         (inf.o_busy),
-        .o_data         (inf.o_data)
+        .o_frame        (intf.o_frame),
+        .o_valid        (intf.o_valid),
+        .o_busy         (intf.o_busy),
+        .o_data         (intf.o_data)
     );
 
     `ifdef DUMP_VCD

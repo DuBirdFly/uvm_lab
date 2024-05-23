@@ -1,10 +1,11 @@
 class CompEnv extends uvm_env;
 
-
     /* 声明变量 */
 
     /* 创建对象的句柄 */
     CompAgtMstr compAgtMstr;
+
+    CfgEnv cfgEnv;
 
     /* 注册对象 */
     `uvm_component_utils(CompEnv)
@@ -20,11 +21,18 @@ class CompEnv extends uvm_env;
         super.build_phase(phase);
 
         /* uvm_config_db::get() */
+        if (!uvm_config_db #(CfgEnv)::get(this, "", "cfgEnv", cfgEnv))
+            `uvm_fatal("CompEnv", "CfgEnv not found")
 
         /* uvm_config_db::set() */
+        uvm_config_db#(CfgAgt)::set(this, "compAgtMstr", "cfgAgt", cfgEnv.cfgAgt);
 
         /* type_id::create() 函数开辟 Comp 组件对象空间 */
         compAgtMstr = CompAgtMstr::type_id::create("compAgtMstr", this);
+
+        /* User Code*/
+        if (cfgEnv.is_coverage) `uvm_info("CompEnv", "Coverage is enabled", UVM_MEDIUM)
+        if (cfgEnv.is_check) `uvm_info("CompEnv", "ScoreBoard for check is enabled", UVM_MEDIUM)
 
     endfunction
 

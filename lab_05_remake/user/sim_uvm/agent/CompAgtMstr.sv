@@ -7,6 +7,8 @@ class CompAgtMstr extends uvm_agent;
     CompDrv  compDrv;
     CompMon  compMon;
 
+    CfgAgt cfgAgt;
+
     /* 注册对象 */
     `uvm_component_utils(CompAgtMstr)
 
@@ -20,12 +22,16 @@ class CompAgtMstr extends uvm_agent;
         super.build_phase(phase);
 
         /* uvm_config_db::get() */
+        if (!uvm_config_db #(CfgAgt)::get(this, "", "cfgAgt", cfgAgt))
+            `uvm_fatal("CompAgtMstr", "CfgAgt not found")
 
         /* uvm_config_db::set() */
+        uvm_config_db#(int unsigned)::set(this, "compDrv", "pad_cycle", cfgAgt.pad_cycle);
+        uvm_config_db#(virtual IntfDut)::set(this, "compDrv", "vif_dut", cfgAgt.vif_dut);
 
         /* type_id::create() 函数开辟 Comp 组件对象空间 */
         // UVM_ACTIVE: 创建 Seqr 和 Drv; UVM_PASSIVE: 只创建 Mon
-        if (is_active == UVM_ACTIVE) begin
+        if (cfgAgt.is_active == UVM_ACTIVE) begin
             compSeqr = CompSeqr::type_id::create("compSeqr", this);
             compDrv  = CompDrv::type_id::create("compDrv", this);
         end

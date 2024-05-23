@@ -1,7 +1,7 @@
 class MySeq extends uvm_sequence #(MySeqItem);
 
     /* 声明变量 */
-    int item_num = 3;
+    int item_num = 1;
 
     /* 创建对象的句柄 */
 
@@ -15,7 +15,9 @@ class MySeq extends uvm_sequence #(MySeqItem);
     endfunction
 
     function void pre_randomize();
-        // 强行修改 rand_mode 并固定值
+        // 强行修改 rand_mode 并固定值, "m_sequencer" 是默认的 sequencer 句柄
+        if (!uvm_config_db#(int)::get(m_sequencer, "", "item_num", item_num))
+            `uvm_fatal("MySeq", "NOT GET ITEM_NUM")
     endfunction
 
     virtual task body();

@@ -13,6 +13,7 @@
 
 +incdir+../../user/sim_uvm
 +incdir+../../user/sim_uvm/agent
++incdir+../../user/sim_uvm/config
 +incdir+../../user/sim_uvm/env
 +incdir+../../user/sim_uvm/interface
 +incdir+../../user/sim_uvm/top

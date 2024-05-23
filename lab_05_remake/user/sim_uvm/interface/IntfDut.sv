@@ -10,7 +10,7 @@ interface IntfDut(
 
     logic [15:0]    o_frame;
     logic [15:0]    o_valid;
-    logic           o_busy;
+    logic [15:0]    o_busy;
     logic [15:0]    o_data;
 
     clocking drv_cb @(posedge clk);
