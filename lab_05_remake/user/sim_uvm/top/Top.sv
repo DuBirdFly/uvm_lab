@@ -34,7 +34,7 @@ module Top;
     always #5 clk = ~clk;
 
     initial begin
-        uvm_config_db#(virtual IntfDut)::set(null, "*.compAgtMstr.*", "dut_vif", inf);
+        uvm_config_db#(virtual IntfDut)::set(null, "*.compAgtMstr.*", "vif_dut", inf);
         run_test();
     end
 
