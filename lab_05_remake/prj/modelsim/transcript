@@ -3,7 +3,7 @@
 # vmap work work 
 # Modifying D:\Codes\Xilinx\APP\VivadoCompiledLib\modelsim.ini
 # Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
-# Start time: 01:09:54 on May 26,2024
+# Start time: 01:52:39 on May 26,2024
 # vlog -f vlog.f 
 # -- Compiling package uvm_pkg (uvm-1.1d Built-in)
 # -- Compiling module router
@@ -14,10 +14,10 @@
 # 
 # Top level modules:
 # 	Top
-# End time: 01:09:54 on May 26,2024, Elapsed time: 0:00:00
+# End time: 01:52:39 on May 26,2024, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -f vsim.f 
-# Start time: 01:09:54 on May 26,2024
+# Start time: 01:52:39 on May 26,2024
 # ** Note: (vsim-3812) Design is being optimized...
 # //  ModelSim SE-64 10.7 Dec  7 2017
 # //
@@ -89,9 +89,9 @@
 #   }
 # }
 # 
-# UVM_INFO ../../user/sim_uvm/agent/CompDrv.sv(34) @ 0: uvm_test_top.compEnv.compAgtMstr.compDrv [pre_reset_phase] PRE_RESET_PHASE START
+# UVM_INFO ../../user/sim_uvm/agent/CompDrv.sv(34) @ 0: uvm_test_top.compEnv.compAgtMstr.compDrv [pre_reset_phase] reset intferface to 'x
 # UVM_INFO ../../user/sim_uvm/agent/CompDrvNew.sv(18) @ 0: uvm_test_top.compEnv.compAgtMstr.compDrv [pre_reset_phase] DBG: Override pre_reset_phase
-# UVM_INFO ../../user/sim_uvm/agent/CompDrv.sv(47) @ 0: uvm_test_top.compEnv.compAgtMstr.compDrv [reset_phase] RESET_PHASE START
+# UVM_INFO ../../user/sim_uvm/agent/CompDrv.sv(47) @ 0: uvm_test_top.compEnv.compAgtMstr.compDrv [reset_phase] reset intferface to '0/1
 # UVM_INFO ../../user/sim_uvm/agent/CompDrv.sv(72) @ 295: uvm_test_top.compEnv.compAgtMstr.compDrv [run_phase] 
 # ---------------------------------------------------------------------------------------------------
 # Name                           Type           Size  Value                                          
@@ -130,28 +130,80 @@
 #   sequencer                    string         41    uvm_test_top.compEnv.compAgtMstr.compSeqr      
 # ---------------------------------------------------------------------------------------------------
 # 
-# UVM_FATAL ../uvm-1.1d/src/base/uvm_phase.svh(1268) @ 1000: reporter [PH_TIMEOUT] Explicit timeout of 1000 hit, indicating a probable testbench issue
+# UVM_INFO ../../user/sim_uvm/agent/CompDrv.sv(72) @ 1215: uvm_test_top.compEnv.compAgtMstr.compDrv [run_phase] 
+# ---------------------------------------------------------------------------------------------------
+# Name                           Type           Size  Value                                          
+# ---------------------------------------------------------------------------------------------------
+# req                            MySeqItem_da3  -     @1202                                          
+#   src_addr                     integral       4     'hb                                            
+#   dst_addr                     integral       4     'h6                                            
+#   payload                      da(integral)   8     -                                              
+#     [0]                        integral       8     'h7c                                           
+#     [1]                        integral       8     'hd3                                           
+#     [2]                        integral       8     'ha2                                           
+#     [3]                        integral       8     'h3                                            
+#     [4]                        integral       8     'he1                                           
+#     [5]                        integral       8     'h77                                           
+#     [6]                        integral       8     'hee                                           
+#     [7]                        integral       8     'h7d                                           
+#   begin_time                   time           64    1215                                           
+#   depth                        int            32    'd2                                            
+#   parent sequence (name)       string         5     MySeq                                          
+#   parent sequence (full name)  string         47    uvm_test_top.compEnv.compAgtMstr.compSeqr.MySeq
+#   sequencer                    string         41    uvm_test_top.compEnv.compAgtMstr.compSeqr      
+# ---------------------------------------------------------------------------------------------------
+# 
+# UVM_INFO ../uvm-1.1d/src/base/uvm_objection.svh(1267) @ 2095: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# 
+#### Factory Configuration (*)
+# 
+# Instance Overrides:
+# 
+#   Requested Type  Override Path                                Override Type
+#   --------------  -------------------------------------------  -------------
+#   CompDrv         uvm_test_top.compEnv.compAgtMstr.*           CompDrvNew
+#   MySeqItem       uvm_test_top.compEnv.compAgtMstr.compSeqr.*  MySeqItem_da3
+# 
+# No type overrides are registered with this factory
+# 
+# All types registered with the factory: 48 total
+# (types without type names will not be printed)
+# 
+#   Type Name
+#   ---------
+#   CfgAgt
+#   CfgEnv
+#   CompAgtMstr
+#   CompDrv
+#   CompDrvNew
+#   CompEnv
+#   CompMon
+#   MySeq
+#   MySeqItem
+#   MySeqItem_da3
+#   Test
+# (*) Types with no associated type name will be printed as <unknown>
+# 
+####
+# 
 # 
 # --- UVM Report Summary ---
 # 
 # ** Report counts by severity
-# UVM_INFO :   11
-# UVM_WARN :    0
+# UVM_INFO :   13
+# UVM_WARNING :    0
 # UVM_ERROR :    0
-# UVM_FATAL :    1
+# UVM_FATAL :    0
 # ** Report counts by id
-# [PH_TIMEOUT]     1
 # [RNTST]     1
+# [TEST_DONE]     1
 # [UVMTOP]     1
 # [build_phase]     3
 # [pre_reset_phase]     2
 # [reset_phase]     1
-# [run_phase]     2
+# [run_phase]     3
 # [start_of_simulation_phase]     1
-# ** Note: $finish    : ../uvm-1.1d/src/base/uvm_report_object.svh(292)
-#    Time: 1 us  Iteration: 0  Region: /uvm_pkg::uvm_phase::execute_phase
-# End time: 01:09:56 on May 26,2024, Elapsed time: 0:00:02
+# ** Note: $finish    : ../uvm-1.1d/src/base/uvm_root.svh(430)
+#    Time: 2095 ns  Iteration: 62  Instance: /Top
+# End time: 01:52:41 on May 26,2024, Elapsed time: 0:00:02
 # Errors: 0, Warnings: 0
-
-
-

@@ -22,7 +22,7 @@ class Test extends uvm_test;
         super.build_phase(phase);
 
         /* Set TimeOut */
-        uvm_top.set_timeout(1000ns, 0);  // (超时时间, 是否可以被别的 set_timeout() 覆盖)
+        uvm_top.set_timeout(5us, 0);  // (超时时间, 是否可以被别的 set_timeout() 覆盖)
 
         /* Override 对象 */
         set_inst_override_by_type(
