@@ -17,7 +17,7 @@ class CompMon extends uvm_monitor;
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
 
-        `uvm_info("CompMon", "BUILD PHASE", UVM_MEDIUM)
+        `uvm_info("build_phase", "BUILD PHASE", UVM_MEDIUM)
 
         /* uvm_config_db::get() */
         if (!uvm_config_db#(virtual IntfDut)::get(this, "", "vif_dut", vif_dut))

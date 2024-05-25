@@ -18,7 +18,7 @@ class MySeqItem extends uvm_sequence_item;
     constraint c_limit_var {
         src_addr inside {[0:15]};
         dst_addr inside {[0:15]};
-        payload.size() inside {[2:4]};
+        payload.size() inside {[2:8]};
     }
 
     /* 构造函数 */

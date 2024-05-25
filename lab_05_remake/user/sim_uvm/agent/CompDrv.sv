@@ -31,7 +31,7 @@ class CompDrv extends uvm_driver #(MySeqItem);
 
     virtual task pre_reset_phase(uvm_phase phase);
         super.pre_reset_phase(phase);
-        `uvm_info("CompDrv", "PRE_RESET_PHASE START", UVM_MEDIUM)
+        `uvm_info("pre_reset_phase", "PRE_RESET_PHASE START", UVM_MEDIUM)
 
         phase.raise_objection(this);    
         vif_dut.drv_cb.reset_n      <= 'x;
@@ -44,7 +44,7 @@ class CompDrv extends uvm_driver #(MySeqItem);
 
     virtual task reset_phase(uvm_phase phase);
         super.reset_phase(phase);
-        `uvm_info("CompDrv", "RESET_PHASE START", UVM_MEDIUM)
+        `uvm_info("reset_phase", "RESET_PHASE START", UVM_MEDIUM)
 
         phase.raise_objection(this);
         vif_dut.drv_cb.i_frame      <= '0;
@@ -57,7 +57,6 @@ class CompDrv extends uvm_driver #(MySeqItem);
         repeat(10) @(vif_dut.drv_cb);
 
         phase.drop_objection(this);
-        `uvm_info("CompDrv", "RESET_PHASE END", UVM_MEDIUM)
 
     endtask
 
@@ -70,7 +69,7 @@ class CompDrv extends uvm_driver #(MySeqItem);
 
         forever begin
             seq_item_port.get_next_item(req);
-            `uvm_info("CompDrv", {"\n", req.sprint()}, UVM_MEDIUM)
+            `uvm_info("run_phase", {"\n", req.sprint()}, UVM_MEDIUM)
 
             vif_dut.drv_cb.i_frame[req.src_addr] <= 1'b1;
 
@@ -95,6 +94,7 @@ class CompDrv extends uvm_driver #(MySeqItem);
             end
 
             vif_dut.drv_cb.i_frame[req.src_addr] <= 1'b0;
+            vif_dut.drv_cb.i_valid[req.src_addr] <= 1'b0;
 
             seq_item_port.item_done();
         end

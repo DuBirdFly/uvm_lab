@@ -71,13 +71,5 @@ module Top;
         end
     `endif
 
-    initial begin
-        #50000;
-        $display("//////////////////////////////////////////");
-        $display("///////// ERROR: RUN OUT OF TIME /////////");
-        $display("//////////////////////////////////////////");
-        $finish;
-    end
-
 endmodule
 

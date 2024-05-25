@@ -21,6 +21,9 @@ class Test extends uvm_test;
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
 
+        /* Set TimeOut */
+        uvm_top.set_timeout(1000ns, 0);  // (超时时间, 是否可以被别的 set_timeout() 覆盖)
+
         /* Override 对象 */
         set_inst_override_by_type(
             "compEnv.compAgtMstr.*",
@@ -55,7 +58,7 @@ class Test extends uvm_test;
 
     virtual function void start_of_simulation_phase(uvm_phase phase);
         super.start_of_simulation_phase(phase);
-        `uvm_info("Test", "start_of_simulation_phase print_topology", UVM_MEDIUM)
+        `uvm_info("start_of_simulation_phase", "print_topology", UVM_MEDIUM)
         uvm_top.print_topology(uvm_default_tree_printer);
     endfunction
 

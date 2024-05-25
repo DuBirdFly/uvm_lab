@@ -31,8 +31,8 @@ class CompEnv extends uvm_env;
         compAgtMstr = CompAgtMstr::type_id::create("compAgtMstr", this);
 
         /* User Code*/
-        if (cfgEnv.is_coverage) `uvm_info("CompEnv", "Coverage is enabled", UVM_MEDIUM)
-        if (cfgEnv.is_check) `uvm_info("CompEnv", "ScoreBoard for check is enabled", UVM_MEDIUM)
+        if (cfgEnv.is_coverage) `uvm_info("build_phase", "Coverage is enabled", UVM_MEDIUM)
+        if (cfgEnv.is_check) `uvm_info("build_phase", "ScoreBoard for check is enabled", UVM_MEDIUM)
 
     endfunction
 
