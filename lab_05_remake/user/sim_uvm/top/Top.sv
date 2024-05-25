@@ -54,7 +54,7 @@ module Top;
 
         .o_frame        (intf.o_frame),
         .o_valid        (intf.o_valid),
-        .o_busy         (intf.o_busy),
+        .o_grant        (intf.o_grant),
         .o_data         (intf.o_data)
     );
 

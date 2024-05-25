@@ -73,14 +73,14 @@ class CompDrv extends uvm_driver #(MySeqItem);
 
             vif_dut.drv_cb.i_frame[req.src_addr] <= 1'b1;
 
-            for (int i = 0; i < 4; i++) begin
+            for (int i = 0; i < 2; i++) begin
                 vif_dut.drv_cb.i_data[req.src_addr] <= req.dst_addr[i];
                 @(vif_dut.drv_cb);
             end
 
             repeat(pad_cycle) @(vif_dut.drv_cb);
 
-            while(vif_dut.drv_cb.o_busy[req.src_addr]) begin
+            while(!vif_dut.drv_cb.o_grant[req.src_addr]) begin
                 @(vif_dut.drv_cb);
             end
 

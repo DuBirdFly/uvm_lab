@@ -1,8 +1,8 @@
 class MySeqItem extends uvm_sequence_item;
 
     /* 声明变量 */
-    rand bit [3:0] src_addr;
-    rand bit [3:0] dst_addr;
+    rand bit [1:0] src_addr;
+    rand bit [1:0] dst_addr;
     rand reg [7:0] payload [$];
 
     /* 创建对象的句柄 */
@@ -16,9 +16,9 @@ class MySeqItem extends uvm_sequence_item;
 
     /* 约束 */
     constraint c_limit_var {
-        src_addr inside {[0:15]};
-        dst_addr inside {[0:15]};
-        payload.size() inside {[2:8]};
+        src_addr inside {[0:3]};
+        dst_addr inside {[0:3]};
+        payload.size() inside {[1:8]};
     }
 
     /* 构造函数 */

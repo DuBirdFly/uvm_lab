@@ -3,13 +3,26 @@ module router_iport (
     input                   reset_n,
 
     input                   i_frame,
-    input                   i_valid,
     input                   i_data,
+    output                  o_dst_addr,
 
-    output                  o_req,
-    output                  o_data
+    input                   i_gnt,
+    output                  o_req
 
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -4,14 +4,14 @@ interface IntfDut(
 
     logic           reset_n;
 
-    logic [15:0]    i_frame;
-    logic [15:0]    i_valid;
-    logic [15:0]    i_data;
+    logic [3:0]    i_frame;
+    logic [3:0]    i_valid;
+    logic [3:0]    i_data;
 
-    logic [15:0]    o_frame;
-    logic [15:0]    o_valid;
-    logic [15:0]    o_busy;
-    logic [15:0]    o_data;
+    logic [3:0]    o_frame;
+    logic [3:0]    o_valid;
+    logic [3:0]    o_grant;
+    logic [3:0]    o_data;
 
     clocking drv_cb @(posedge clk);
         default input #1 output #1;
@@ -19,7 +19,7 @@ interface IntfDut(
         output i_frame;
         output i_valid;
         output i_data;
-        input  o_busy;
+        input  o_grant;
     endclocking
 
     clocking mon_in_cb @(posedge clk);
@@ -27,7 +27,7 @@ interface IntfDut(
         input  i_frame;
         input  i_valid;
         input  i_data;
-        input  o_busy;
+        input  o_grant;
     endclocking
 
     clocking mon_out_cb @(posedge clk);
