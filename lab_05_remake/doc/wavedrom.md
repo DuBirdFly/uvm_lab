@@ -32,7 +32,7 @@ signal: [
 ],
 
 head: {
-  text: "router_iport.sv",
+  text: "RouterIPort.sv",
 }
 
 }
