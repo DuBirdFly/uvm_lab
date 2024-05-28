@@ -44,7 +44,7 @@ module Top;
         run_test();
     end
 
-    router dut (
+    Router dut (
         .clk            (intf.clk),
         .reset_n        (intf.reset_n),
 

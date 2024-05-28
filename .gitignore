@@ -1,6 +1,11 @@
 .vscode
+
 **/prj/modelsim/work
 **/prj/modelsim/*.vcd
 **/prj/modelsim/*.wlf
 **/prj/modelsim/*.vstf
+
 **/prj/uvm-1.1d
+
+**/prj/iverilog/*.vvp
+**/prj/iverilog/*.vcd

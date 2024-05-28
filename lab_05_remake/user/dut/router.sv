@@ -1,4 +1,4 @@
-module router (
+module Router (
     input                   clk,
     input                   reset_n,
 
