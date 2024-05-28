@@ -1,3 +1,4 @@
-../../user/sim_iverilog/tb_FixedPrioArb.sv
-../../user/dut/FixedPrioArb.sv
+../../user/sim_iverilog/tb_Router.sv
 
+../../user/dut/Router.sv
+../../user/dut/RouterIPort.sv

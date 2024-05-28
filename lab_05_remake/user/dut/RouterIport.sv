@@ -1,4 +1,4 @@
-module RouterIport (
+module RouterIPort (
     input                   clk,
     input                   reset_n,
 
@@ -11,7 +11,7 @@ module RouterIport (
 
 );
 
-localparam CNT_MAX = 1;
+localparam CNT_MAX = 2;
 
 typedef enum logic [1:0] { 
     S_IDLE  = 'b00,
@@ -22,7 +22,7 @@ typedef enum logic [1:0] {
 
 state_t cur_state, nxt_state;
 
-logic [0:0] cnt;
+logic [3:0] cnt;
 logic       r_req;
 
 assign o_req = r_req & i_frame;
@@ -69,24 +69,27 @@ always_comb begin
     endcase
 end
 
-always_ff @(posedge clk) begin
-    if (nxt_state == S_ADDR)
-        if (cnt == CNT_MAX)
-            cnt <= 0;
-        else
-            cnt <= cnt + 1;
+always_ff @(posedge clk or negedge reset_n) begin
+    if (!reset_n)
+        cnt <= 0;
+    else if (nxt_state == S_ADDR)
+        cnt <= cnt + 1;
+    else if (nxt_state == S_IDLE)
+        cnt <= 0;
 end
 
-always_ff @(posedge clk) begin
-    if (nxt_state == S_ADDR)
-        o_dst_addr <= {i_data, o_dst_addr[1]}
+always_ff @(posedge clk or negedge reset_n) begin
+    if (!reset_n)
+        o_dst_addr <= 0;
+    else if (nxt_state == S_ADDR)
+        o_dst_addr <= {i_data, o_dst_addr[1]};
 end
 
 always_ff @(posedge clk or negedge reset_n) begin
     if (!reset_n)
         r_req <= 0;
     else begin
-        if (nxt_state == S_ADDR && cnt == CNT_MAX)
+        if (nxt_state == S_ADDR && cnt == CNT_MAX - 1)
             r_req <= 1;
         else if (nxt_state == S_IDLE)
             r_req <= 0;
