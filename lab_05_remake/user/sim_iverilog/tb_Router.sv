@@ -26,13 +26,26 @@ module tb_Router;
         end
     endtask
 
-    function void print_finish();
-        $display("\n===============================");
-        $display("===== Simulation finished =====");
-        $display("===============================\n");
+    function void exit(int return_code);
+        if (return_code == 0) begin
+            $display("\n===============================");
+            $display("===== Simulation finished =====");
+            $display("===============================\n");
+        end
+        else if (return_code == 1) begin
+            $display("\n===============================");
+            $display("======= Run Out of Time =======");
+            $display("===============================\n");
+        end
+        else begin
+            $display("\n===============================");
+            $display("==== Unknown return_code! =====");
+            $display("===============================\n");
+        end
+        $finish;
     endfunction
 
-    // task send_data(
+    //!: 修复 task 在 fork-join 中静态存储的问题
     task send_data(
         input [1:0] iport_id,
         input [1:0] oport_id,
@@ -66,7 +79,6 @@ module tb_Router;
         i_frame[iport_id] = 0;
         // IDLE =========================
         delay(1);
-        $display("OUT: iport_id = %d, oport_id = %d, data = %b", iport_id, oport_id, data);
 
     endtask
 
@@ -84,8 +96,7 @@ module tb_Router;
         join
 
         delay(50);
-        print_finish();
-        $finish;
+        exit(0);
     end
 
     Router u_Router (
@@ -102,10 +113,7 @@ module tb_Router;
 
     initial begin
         #5000;
-        $display("\n===============================");
-        $display("======= Run Out of Time =======");
-        $display("===============================\n");
-        $finish;
+        exit(1);
     end
 
     `ifdef DUMP_VCD
