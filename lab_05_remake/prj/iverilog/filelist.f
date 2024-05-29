@@ -2,3 +2,6 @@
 
 ../../user/dut/Router.sv
 ../../user/dut/RouterIPort.sv
+../../user/dut/Lib.sv
+
+

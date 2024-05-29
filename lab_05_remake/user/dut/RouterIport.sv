@@ -4,10 +4,9 @@ module RouterIPort (
 
     input                   i_frame,
     input                   i_data,
+    input                   i_gnt,
 
-    output logic [1:0]      o_dst_addr,
-    output logic            o_req,
-    input                   i_gnt
+    output logic [3:0]      o_dst_addr
 
 );
 
@@ -22,10 +21,9 @@ typedef enum logic [1:0] {
 
 state_t cur_state, nxt_state;
 
-logic [3:0] cnt;
-logic       r_req;
-
-assign o_req = r_req & i_frame;
+logic   [3:0]   cnt;
+logic           r_req;
+logic   [1:0]   r_dst_addr;
 
 always_ff @(posedge clk or negedge reset_n) begin
     if (!reset_n) begin
@@ -80,10 +78,18 @@ end
 
 always_ff @(posedge clk or negedge reset_n) begin
     if (!reset_n)
-        o_dst_addr <= 0;
+        r_dst_addr <= 0;
     else if (nxt_state == S_ADDR)
-        o_dst_addr <= {i_data, o_dst_addr[1]};
+        r_dst_addr <= {i_data, r_dst_addr[1]};
 end
+
+Decoder #(
+    .N      ( 4                 )
+) u_decoder (
+    .EN     ( r_req & i_frame   ),
+    .A      ( r_dst_addr        ),
+    .Y      ( o_dst_addr        )
+);
 
 always_ff @(posedge clk or negedge reset_n) begin
     if (!reset_n)
