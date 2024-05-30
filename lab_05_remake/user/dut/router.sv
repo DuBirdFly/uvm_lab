@@ -14,14 +14,13 @@ module Router (
 
 ////////////////////////////////////
 logic [15:0] iport_addr;
-logic [3:0]  iport_gnt;
 
 logic [15:0] arb_req, arb_gnt;
 
-assign iport_gnt[0] = arb_gnt[12] | arb_gnt[8]  | arb_gnt[4] | arb_gnt[0];
-assign iport_gnt[1] = arb_gnt[13] | arb_gnt[9]  | arb_gnt[5] | arb_gnt[1];
-assign iport_gnt[2] = arb_gnt[14] | arb_gnt[10] | arb_gnt[6] | arb_gnt[2];
-assign iport_gnt[3] = arb_gnt[15] | arb_gnt[11] | arb_gnt[7] | arb_gnt[3];
+assign o_grant[0] = arb_gnt[12] | arb_gnt[8]  | arb_gnt[4] | arb_gnt[0];
+assign o_grant[1] = arb_gnt[13] | arb_gnt[9]  | arb_gnt[5] | arb_gnt[1];
+assign o_grant[2] = arb_gnt[14] | arb_gnt[10] | arb_gnt[6] | arb_gnt[2];
+assign o_grant[3] = arb_gnt[15] | arb_gnt[11] | arb_gnt[7] | arb_gnt[3];
 
 RouterIPort iport [3:0] (
     .clk        ( clk           ),
@@ -29,7 +28,7 @@ RouterIPort iport [3:0] (
 
     .i_frame    ( i_frame       ),
     .i_data     ( i_data        ),
-    .i_gnt      ( '1     ),
+    .i_gnt      ( o_grant       ),
 
     .o_dst_addr ( iport_addr    )
 );
