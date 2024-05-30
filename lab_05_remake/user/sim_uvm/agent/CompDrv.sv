@@ -67,6 +67,7 @@ class CompDrv extends uvm_driver #(MySeqItem);
 
         repeat(30) @(vif_dut.drv_cb);
 
+        //!: 重写 Drv 功能以适应我的 dut, 新写 Mon
         forever begin
             seq_item_port.get_next_item(req);
             `uvm_info("run_phase", {"\n", req.sprint()}, UVM_MEDIUM)

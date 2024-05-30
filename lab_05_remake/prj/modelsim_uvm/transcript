@@ -1,24 +1,30 @@
-# do {.\modelsim_shell.do}
+# do modelsim_shell.do
 # Model Technology ModelSim SE-64 vmap 10.7 Lib Mapping Utility 2017.12 Dec  7 2017
 # vmap work work 
 # Modifying D:\Codes\Xilinx\APP\VivadoCompiledLib\modelsim.ini
 # Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
-# Start time: 05:43:25 on May 26,2024
+# Start time: 06:36:25 on May 31,2024
 # vlog -f vlog.f 
 # -- Compiling package uvm_pkg (uvm-1.1d Built-in)
-# -- Compiling module router
+# -- Compiling module Router
+# -- Compiling module RouterIPort
+# -- Compiling module Mux
+# -- Compiling module Decoder
+# -- Compiling module FixedPrioArb
 # -- Compiling package Top_sv_unit
 # -- Importing package uvm_pkg (uvm-1.1d Built-in)
 # -- Compiling interface IntfDut
 # -- Compiling module Top
 # 
 # Top level modules:
+# 	Mux
 # 	Top
-# End time: 05:43:25 on May 26,2024, Elapsed time: 0:00:00
+# End time: 06:36:26 on May 31,2024, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vsim -f vsim.f 
-# Start time: 05:43:26 on May 26,2024
+# Start time: 06:36:26 on May 31,2024
 # ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "RouterIPort(fast)".
 # //  ModelSim SE-64 10.7 Dec  7 2017
 # //
 # //  Copyright 1991-2017 Mentor Graphics Corporation
@@ -40,8 +46,11 @@
 # different random seeds from your non-debug simulations.
 # Loading work.Top(fast)
 # Loading work.IntfDut(fast)
-# Loading work.router(fast)
+# Loading work.Router(fast)
 # Loading work.IntfDut(fast)
+# Loading work.RouterIPort(fast)
+# Loading work.Decoder(fast)
+# Loading work.FixedPrioArb(fast)
 # Loading .\../uvm-1.1d/win64/uvm_dpi.dll
 # ----------------------------------------------------------------
 # UVM-1.1d
@@ -202,5 +211,5 @@
 # [start_of_simulation_phase]     1
 # ** Note: $finish    : ../uvm-1.1d/src/base/uvm_root.svh(430)
 #    Time: 1795 ns  Iteration: 62  Instance: /Top
-# End time: 05:43:27 on May 26,2024, Elapsed time: 0:00:01
+# End time: 06:36:29 on May 31,2024, Elapsed time: 0:00:03
 # Errors: 0, Warnings: 0

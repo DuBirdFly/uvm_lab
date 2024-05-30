@@ -9,7 +9,9 @@
 ../uvm-1.1d/src/uvm_pkg.sv
 
 +incdir+../../user/dut
-../../user/dut/router.sv
+../../user/dut/Router.sv
+../../user/dut/RouterIPort.sv
+../../user/dut/Lib.sv
 
 +incdir+../../user/sim_uvm
 +incdir+../../user/sim_uvm/agent
