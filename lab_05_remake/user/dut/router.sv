@@ -12,8 +12,7 @@ module Router (
 );
 
 ////////////////////////////////////
-logic [15:0] iport_addr;
-logic [15:0] arb_req, arb_gnt;
+logic [15:0] iport_addr, arb_req, arb_gnt;
 logic [3:0]  arb_grant;
 
 assign o_grant = arb_grant;
@@ -44,13 +43,7 @@ FixedPrioArb arb [3:0] (
     .gnt        ( arb_gnt       )
 );
 
-RouterOPort oport_3 (
-    .i_frame    ( i_frame[3]    ),
-    .i_valid    ( i_valid[3]    ),
-    .i_data     ( i_data[3]     ),
-    .
-);
-
-
+assign o_valid = i_valid & arb_grant;
+assign o_data  = (i_data & arb_grant) & o_valid;
 
 endmodule
