@@ -13,7 +13,7 @@ interface IntfDut(
     logic [3:0]    o_data;
 
     clocking drv_cb @(posedge clk);
-        default input #1 output #1;
+        default input #2 output #2;
         output reset_n;
         output i_frame;
         output i_valid;
@@ -22,15 +22,14 @@ interface IntfDut(
     endclocking
 
     clocking mon_in_cb @(posedge clk);
-        default input #1 output #1;
+        default input #2 output #2;
         input  i_frame;
         input  i_valid;
         input  i_data;
-        input  o_grant;
     endclocking
 
     clocking mon_out_cb @(posedge clk);
-        default input #1 output #1;
+        default input #2 output #2;
         input  o_valid;
         input  o_data;
     endclocking

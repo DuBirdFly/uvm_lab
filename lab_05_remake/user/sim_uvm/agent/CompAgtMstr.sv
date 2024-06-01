@@ -5,7 +5,7 @@ class CompAgtMstr extends uvm_agent;
     /* 创建对象的句柄 */
     CompSeqr compSeqr;
     CompDrv  compDrv;
-    CompMon  compMon;
+    CompIMon  compMon;
 
     CfgAgt cfgAgt;
 
@@ -37,7 +37,7 @@ class CompAgtMstr extends uvm_agent;
             compSeqr = CompSeqr::type_id::create("compSeqr", this);
             compDrv  = CompDrv::type_id::create("compDrv", this);
         end
-        compMon = CompMon::type_id::create("compMon", this);
+        compMon = CompIMon::type_id::create("compMon", this);
 
     endfunction
 

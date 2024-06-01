@@ -38,6 +38,7 @@ class CompDrv extends uvm_driver #(MySeqItem);
         vif_dut.drv_cb.i_frame      <= 'x;
         vif_dut.drv_cb.i_valid      <= 'x;
         vif_dut.drv_cb.i_data       <= 'x;
+        repeat(2) @(vif_dut.drv_cb);
         phase.drop_objection(this);
 
     endtask
@@ -52,9 +53,9 @@ class CompDrv extends uvm_driver #(MySeqItem);
         vif_dut.drv_cb.i_data       <= '0;
 
         vif_dut.drv_cb.reset_n      <= '0;
-        repeat(10) @(vif_dut.drv_cb);
+        repeat(5) @(vif_dut.drv_cb);
         vif_dut.drv_cb.reset_n      <= '1;
-        repeat(10) @(vif_dut.drv_cb);
+        repeat(5) @(vif_dut.drv_cb);
 
         phase.drop_objection(this);
 
@@ -63,11 +64,8 @@ class CompDrv extends uvm_driver #(MySeqItem);
 
     virtual task run_phase(uvm_phase phase);
 
-        logic [7:0] tmp;
-
         repeat(30) @(vif_dut.drv_cb);
 
-        //!: 重写 Drv 功能以适应我的 dut, 新写 Mon
         forever begin
             seq_item_port.get_next_item(req);
             `uvm_info("run_phase", {"\n", req.sprint()}, UVM_MEDIUM)
@@ -81,14 +79,11 @@ class CompDrv extends uvm_driver #(MySeqItem);
 
             repeat(pad_cycle) @(vif_dut.drv_cb);
 
-            while(!vif_dut.drv_cb.o_grant[req.src_addr]) begin
-                @(vif_dut.drv_cb);
-            end
+            wait(vif_dut.drv_cb.o_grant[req.src_addr]);
 
             foreach(req.payload[i]) begin
-                tmp = req.payload[i];
                 for (int j = 0; j < 8; j++) begin
-                    vif_dut.drv_cb.i_data[req.src_addr] <= tmp[j];
+                    vif_dut.drv_cb.i_data[req.src_addr] <= req.payload[i][j];
                     vif_dut.drv_cb.i_valid[req.src_addr] <= 1'b1;
                     @(vif_dut.drv_cb);
                 end
@@ -96,6 +91,7 @@ class CompDrv extends uvm_driver #(MySeqItem);
 
             vif_dut.drv_cb.i_frame[req.src_addr] <= 1'b0;
             vif_dut.drv_cb.i_valid[req.src_addr] <= 1'b0;
+            @(vif_dut.drv_cb);
 
             seq_item_port.item_done();
         end
