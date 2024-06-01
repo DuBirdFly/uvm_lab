@@ -52,7 +52,7 @@ class Test extends uvm_test;
         cfgEnv.is_coverage = 1;
         cfgEnv.is_check = 1;
         cfgEnv.cfgAgt.is_active = UVM_ACTIVE;
-        cfgEnv.cfgAgt.pad_cycle = 10;
+        cfgEnv.cfgAgt.pad_cycle = 0;            // 0: 无延迟 (除非不给 grant)
 
     endfunction
 

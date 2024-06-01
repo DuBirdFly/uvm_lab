@@ -1,18 +1,18 @@
 class CompDrv extends uvm_driver #(MySeqItem);
 
-    /* å£°æ˜å˜é‡ */
+    /* ÉùÃ÷±äÁ¿ */
     int unsigned pad_cycle = 5;
 
-    /* åˆ›å»ºå¯¹è±¡çš„å¥æŸ„ */
+    /* ´´½¨¶ÔÏóµÄ¾ä?? */
     virtual IntfDut vif_dut;
 
-    /* æ³¨å†Œå¯¹è±¡ */
+    /* ×¢²á¶ÔÏó */
     `uvm_component_utils(CompDrv)
 
-    /* æ„é€ å‡½æ•° */
+    /* ¹¹Ôìº¯?? */
     function new(string name = "CompDrv", uvm_component parent);
         super.new(name, parent);
-        /* new() å‡½æ•°å¼€è¾Ÿå¯¹è±¡ç©ºé—´*/
+        /* new() º¯Êı¿ª±Ù¶ÔÏó¿Õ??*/
     endfunction
 
     virtual function void build_phase(uvm_phase phase);
@@ -67,7 +67,7 @@ class CompDrv extends uvm_driver #(MySeqItem);
 
         repeat(30) @(vif_dut.drv_cb);
 
-        //!: é‡å†™ Drv åŠŸèƒ½ä»¥é€‚åº”æˆ‘çš„ dut, æ–°å†™ Mon
+        //!: ÖØĞ´ Drv ¹¦ÄÜÒÔÊÊÓ¦ÎÒµÄ dut, ĞÂĞ´ Mon
         forever begin
             seq_item_port.get_next_item(req);
             `uvm_info("run_phase", {"\n", req.sprint()}, UVM_MEDIUM)

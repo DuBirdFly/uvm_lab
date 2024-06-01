@@ -52,7 +52,6 @@ module Top;
         .i_valid        (intf.i_valid),
         .i_data         (intf.i_data),
 
-        .o_frame        (intf.o_frame),
         .o_valid        (intf.o_valid),
         .o_grant        (intf.o_grant),
         .o_data         (intf.o_data)

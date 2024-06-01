@@ -8,7 +8,6 @@ interface IntfDut(
     logic [3:0]    i_valid;
     logic [3:0]    i_data;
 
-    logic [3:0]    o_frame;
     logic [3:0]    o_valid;
     logic [3:0]    o_grant;
     logic [3:0]    o_data;
@@ -32,7 +31,6 @@ interface IntfDut(
 
     clocking mon_out_cb @(posedge clk);
         default input #1 output #1;
-        input  o_frame;
         input  o_valid;
         input  o_data;
     endclocking

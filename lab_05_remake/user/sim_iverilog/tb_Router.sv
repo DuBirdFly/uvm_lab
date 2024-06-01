@@ -15,7 +15,6 @@ module tb_Router;
     logic [3:0] i_data  = 0;
     logic [3:0] o_grant;
 
-    logic [3:0] o_frame;
     logic [3:0] o_valid;
     logic [3:0] o_data;
 
@@ -78,14 +77,12 @@ module tb_Router;
     initial begin
         delay_clk(20);
 
-        $display("[%9t] 开始无冲突串行数据, ", $time);
         send_data(0, 3, 8'b01010101);
         send_data(1, 2, 8'b01010101);
         send_data(2, 1, 8'b01010101);
         send_data(3, 0, 8'b01010101);
         delay_clk(50);
 
-        $display("[%9t] 开始无冲突并行数据, ", $time);
         fork
             send_data(0, 3, 8'b01010101);
             send_data(1, 2, 8'b01010101);
@@ -94,7 +91,6 @@ module tb_Router;
         join
         delay_clk(50);
 
-        $display("[%9t] 开始一个输出端口同时被两个输入端口请求, ", $time);
         fork
             begin
                 send_data(0, 3, 8'b01010101);
@@ -106,7 +102,6 @@ module tb_Router;
         join
         delay_clk(50);
 
-        $display("[%9t] 开始四个端口同时请求同一个输出端口, ", $time);
         fork
             send_data(0, 3, 8'b01010101);
             send_data(1, 3, 8'b01010101);
@@ -127,16 +122,11 @@ module tb_Router;
         .i_valid    ( i_valid       ),
         .i_data     ( i_data        ),
         .o_grant    ( o_grant       ),
-        .o_frame    ( o_frame       ),
         .o_valid    ( o_valid       ),
         .o_data     ( o_data        )
     );
 
     initial begin
-        // -9    :表示时间单位为纳秒(10^-9秒)
-        // 0     :保留n位小数
-        // " ns" :添加的文本后缀
-        // 10    :最大时间宽度
         $timeformat(-9, 0, " ns", 10);
         #5000;
         my_exit(1);
