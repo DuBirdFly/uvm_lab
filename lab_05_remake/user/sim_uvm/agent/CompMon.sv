@@ -1,17 +1,17 @@
 class CompMon extends uvm_monitor;
 
-    /* å£°æ˜å˜é‡ */
+    /* ÉùÃ÷±äÁ¿ */
 
-    /* åˆ›å»ºå¯¹è±¡çš„å¥æŸ„ */
+    /* ´´½¨¶ÔÏóµÄ¾ä±ú */
     virtual IntfDut vif_dut;
 
-    /* æ³¨å†Œå¯¹è±¡ */
+    /* ×¢²á¶ÔÏó */
     `uvm_component_utils(CompMon)
 
-    /* æ„é€ å‡½æ•° */
+    /* ¹¹Ôìº¯Êı */
     function new(string name = "CompMon", uvm_component parent);
         super.new(name, parent);
-        /* new() å‡½æ•°å¼€è¾Ÿå¯¹è±¡ç©ºé—´*/
+        /* new() º¯Êı¿ª±Ù¶ÔÏó¿Õ¼ä*/
     endfunction
 
     virtual function void build_phase(uvm_phase phase);

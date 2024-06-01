@@ -1,19 +1,19 @@
 class MySeqItem_da3 extends MySeqItem;
 
-    /* å£°æ˜å˜é‡ */
+    /* ÉùÃ÷±äÁ¿ */
     
-    /* åˆ›å»ºå¯¹è±¡çš„å¥æŸ„ */
+    /* ´´½¨¶ÔÏóµÄ¾ä±ú */
 
-    /* æ³¨å†Œå¯¹è±¡ */
+    /* ×¢²á¶ÔÏó */
     `uvm_object_utils(MySeqItem_da3)
 
-    /* çº¦æŸ */
+    /* Ô¼Êø */
     constraint c_dst_addr { dst_addr == 3; }
 
-    /* æ„é€ å‡½æ•° */
+    /* ¹¹Ôìº¯Êı */
     function new(string name = "MySeqItem_da3");
         super.new(name);
-        /* new() å‡½æ•°å¼€è¾Ÿå¯¹è±¡ç©ºé—´*/
+        /* new() º¯Êı¿ª±Ù¶ÔÏó¿Õ¼ä*/
     endfunction
 
 endclass

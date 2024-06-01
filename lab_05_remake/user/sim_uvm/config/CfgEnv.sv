@@ -1,23 +1,23 @@
 class CfgEnv extends uvm_object;
-    /* å£°æ˜å˜é‡ */
-    int is_coverage = 0;    // ä»£ç è¦†ç›–ç‡
-    int is_check = 0;       // æ˜¯å¦æœ‰ scoreboard
+    /* ÉùÃ÷±äÁ¿ */
+    int is_coverage = 0;    // ´úÂë¸²¸ÇÂÊ
+    int is_check = 0;       // ÊÇ·ñÓĞ scoreboard
 
-    /* åˆ›å»ºå¯¹è±¡çš„å¥æŸ„ */
+    /* ´´½¨¶ÔÏóµÄ¾ä±ú */
     CfgAgt cfgAgt;
 
-    /* æ³¨å†Œå¯¹è±¡ */
+    /* ×¢²á¶ÔÏó */
     `uvm_object_utils_begin(CfgEnv)
         `uvm_field_int(is_coverage, UVM_ALL_ON)
         `uvm_field_int(is_check, UVM_ALL_ON)
         `uvm_field_object(cfgAgt, UVM_ALL_ON)
     `uvm_object_utils_end
 
-    /* æ„é€ å‡½æ•° */
+    /* ¹¹Ôìº¯Êı */
     function new(string name = "CfgEnv");
         super.new(name);
 
-        /* new() å‡½æ•°å¼€è¾Ÿå¯¹è±¡ç©ºé—´*/
+        /* new() º¯Êı¿ª±Ù¶ÔÏó¿Õ¼ä*/
         cfgAgt = new("cfgAgt");
     endfunction
 

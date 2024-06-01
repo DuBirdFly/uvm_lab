@@ -2,23 +2,23 @@
 
 ## lab_03_factory_0
 
-æ·»åŠ æ–‡ä»¶: my_driver_count.sv, my_test_da3.sv, my_transaction_da3.sv
-ä¿®æ”¹æ–‡ä»¶: pgm.sv, æ–°å¢ include
-ä¿®æ”¹è„šæœ¬: vsim.f, `+UVM_TESTNAME=my_test` --> `+UVM_TESTNAME=my_test_da3`
+Ìí¼ÓÎÄ¼ş: my_driver_count.sv, my_test_da3.sv, my_transaction_da3.sv
+ĞŞ¸ÄÎÄ¼ş: pgm.sv, ĞÂÔö include
+ĞŞ¸Ä½Å±¾: vsim.f, `+UVM_TESTNAME=my_test` --> `+UVM_TESTNAME=my_test_da3`
 
-è¯´æ˜: å­¦ä¹ UVMä¸­çš„factoryæœºåˆ¶çš„ Override æœºåˆ¶
+ËµÃ÷: Ñ§Ï°UVMÖĞµÄfactory»úÖÆµÄ Override »úÖÆ
 
 ## lab_03_factory_1
 
-ç»§æ‰¿è‡ª lab_03_factory_0
-ä¿®æ”¹ `user/sim_uvm` çš„æ–‡ä»¶ç»“æ„
+¼Ì³Ğ×Ô lab_03_factory_0
+ĞŞ¸Ä `user/sim_uvm` µÄÎÄ¼ş½á¹¹
 
 **Question: both in "lab_03_factory_0" and "lab_03_factory_1"**
 
-1. `my_driver_count` å¹¶æ²¡æœ‰æˆåŠŸè¦†ç›– `my_driver`
-2. åœ¨ `my_test_da3.sv`
-3. ä¼šæŠ¥é”™: `set_type_override_by_type(my_driver::get_type(), my_driver_count::get_type());`
-4. ä¸æŠ¥é”™, ä½†ä¸è¦†ç›–: `set_inst_override_by_type("my_env.m_agent.m_drv.*", my_driver::get_type(), my_driver_count::get_type());`
+1. `my_driver_count` ²¢Ã»ÓĞ³É¹¦¸²¸Ç `my_driver`
+2. ÔÚ `my_test_da3.sv`
+3. »á±¨´í: `set_type_override_by_type(my_driver::get_type(), my_driver_count::get_type());`
+4. ²»±¨´í, µ«²»¸²¸Ç: `set_inst_override_by_type("my_env.m_agent.m_drv.*", my_driver::get_type(), my_driver_count::get_type());`
 
     ```log
         # UVM_FATAL @ 0: reporter [FCTTYP] Factory did not return a component of type 'my_driver'. A component of type 'my_driver_count' was returned instead. Name=m_drv Parent=master_agent contxt=uvm_test_top.my_env.m_agent
@@ -26,35 +26,35 @@
 
 ## lab_04_config_0_variable
 
-ç»§æ‰¿: lab_03_factory_1
-è§†é¢‘: "29-07 - UVM_configurationæœºåˆ¶ - 03_å¦‚ä½•ä½¿ç”¨configurationæœºåˆ¶ - 2.mp4"
+¼Ì³Ğ: lab_03_factory_1
+ÊÓÆµ: "29-07 - UVM_configuration»úÖÆ - 03_ÈçºÎÊ¹ÓÃconfiguration»úÖÆ - 2.mp4"
 
-ä¿®æ”¹å†…å®¹:
+ĞŞ¸ÄÄÚÈİ:
 
-1. my_sequence.sv é‡Œæœ‰ä¸€ä¸ª int:item_num = 3 çš„é…ç½®é¡¹, è¿™ä¸ªé…ç½®é¡¹ç”¨äºç”Ÿæˆ transaction çš„ä¸ªæ•°
-2. my_test.sv é‡Œç”¨ `uvm_config_db#(int)::set` è®¾ç½®è¿™ä¸ªé…ç½®é¡¹çš„å€¼ -> åœ¨ `pre_randomize()` é‡Œè®¾ç½®, ä»¥ç¡®ä¿èƒ½åœ¨éšæœºåŒ–ä¹‹å‰è®¾ç½®
-3. my_sequence.sv é‡Œç”¨ `uvm_config_db#(int)::get` è·å–è¿™ä¸ªé…ç½®é¡¹çš„å€¼
+1. my_sequence.sv ÀïÓĞÒ»¸ö int:item_num = 3 µÄÅäÖÃÏî, Õâ¸öÅäÖÃÏîÓÃÓÚÉú³É transaction µÄ¸öÊı
+2. my_test.sv ÀïÓÃ `uvm_config_db#(int)::set` ÉèÖÃÕâ¸öÅäÖÃÏîµÄÖµ -> ÔÚ `pre_randomize()` ÀïÉèÖÃ, ÒÔÈ·±£ÄÜÔÚËæ»ú»¯Ö®Ç°ÉèÖÃ
+3. my_sequence.sv ÀïÓÃ `uvm_config_db#(int)::get` »ñÈ¡Õâ¸öÅäÖÃÏîµÄÖµ
 
-*NOTE: ä¸€èˆ¬åœ¨ `pre_randomize()` é‡Œå¹²ä»€ä¹ˆ:*
+*NOTE: Ò»°ãÔÚ `pre_randomize()` Àï¸ÉÊ²Ã´:*
 
-1. *æ£€æŸ¥å’Œä¿®æ”¹éšæœºåŒ–å˜é‡çš„å–å€¼èŒƒå›´*
-2. *æ ¹æ®å…¶ä»–ç±»æˆå‘˜çš„å€¼æ¥è®¾ç½®éšæœºåŒ–å˜é‡çš„çº¦æŸ*
-3. *æ‰§è¡Œä¸€äº›é¢„å¤„ç†é€»è¾‘*
-4. *è°ƒç”¨å…¶ä»–å‡½æ•°æˆ–æ–¹æ³•æ¥å‡†å¤‡éšæœºåŒ–è¿‡ç¨‹*
+1. *¼ì²éºÍĞŞ¸ÄËæ»ú»¯±äÁ¿µÄÈ¡Öµ·¶Î§*
+2. *¸ù¾İÆäËûÀà³ÉÔ±µÄÖµÀ´ÉèÖÃËæ»ú»¯±äÁ¿µÄÔ¼Êø*
+3. *Ö´ĞĞÒ»Ğ©Ô¤´¦ÀíÂß¼­*
+4. *µ÷ÓÃÆäËûº¯Êı»ò·½·¨À´×¼±¸Ëæ»ú»¯¹ı³Ì*
 
 ## lab_04_config_1_interface
 
-ç»§æ‰¿: lab_04_config_0_variable
-è§†é¢‘: "29-07 - UVM_configurationæœºåˆ¶ - 04_å¦‚ä½•ä½¿ç”¨configurationæœºåˆ¶ - 3.mp4"
+¼Ì³Ğ: lab_04_config_0_variable
+ÊÓÆµ: "29-07 - UVM_configuration»úÖÆ - 04_ÈçºÎÊ¹ÓÃconfiguration»úÖÆ - 3.mp4"
 
-ä¿®æ”¹å†…å®¹:
+ĞŞ¸ÄÄÚÈİ:
 
-1. æ·»åŠ äº†ä¸€ä¸ª dut: "router.sv" -> åªæœ‰ IO, è¿˜æ²¡ç©ºå†™å†…å®¹
-2. æ·»åŠ äº†ä¸€ä¸ª interface: "dut_interface.sv"
-3. åœ¨ "driver.sv" é‡Œå®ä¾‹åŒ–äº†è¿™ä¸ª interface
-   1. å£°æ˜äº†ä¸€ä¸ª `virtual dut_interface m_vif;` çš„å¥æŸ„(æŒ‡é’ˆ)
-   2. åœ¨ `build_phase` é‡Œä½¿ç”¨ `uvm_config_db #(type)::get()`, type ä½¿ç”¨ **virtual interface**
-   3. åœ¨ `pre_reset_phase()` å’Œ `reset_phase()`, å®ç° 'x å’Œ '0 çš„å¤ä½
-   4. åœ¨ `main_phase()`, å®ç°æ¿€åŠ±çš„å‘é€
+1. Ìí¼ÓÁËÒ»¸ö dut: "router.sv" -> Ö»ÓĞ IO, »¹Ã»¿ÕĞ´ÄÚÈİ
+2. Ìí¼ÓÁËÒ»¸ö interface: "dut_interface.sv"
+3. ÔÚ "driver.sv" ÀïÊµÀı»¯ÁËÕâ¸ö interface
+   1. ÉùÃ÷ÁËÒ»¸ö `virtual dut_interface m_vif;` µÄ¾ä±ú(Ö¸Õë)
+   2. ÔÚ `build_phase` ÀïÊ¹ÓÃ `uvm_config_db #(type)::get()`, type Ê¹ÓÃ **virtual interface**
+   3. ÔÚ `pre_reset_phase()` ºÍ `reset_phase()`, ÊµÏÖ 'x ºÍ '0 µÄ¸´Î»
+   4. ÔÚ `main_phase()`, ÊµÏÖ¼¤ÀøµÄ·¢ËÍ
 
 ## lab_04_config_2_object

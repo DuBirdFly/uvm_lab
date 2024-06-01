@@ -1,30 +1,30 @@
 class MySeqItem extends uvm_sequence_item;
 
-    /* å£°æ˜å˜é‡ */
+    /* ÉùÃ÷±äÁ¿ */
     rand bit [1:0] src_addr;
     rand bit [1:0] dst_addr;
     rand reg [7:0] payload [$];
 
-    /* åˆ›å»ºå¯¹è±¡çš„å¥æŸ„ */
+    /* ´´½¨¶ÔÏóµÄ¾ä±ú */
 
-    /* æ³¨å†Œå¯¹è±¡ */
+    /* ×¢²á¶ÔÏó */
     `uvm_object_utils_begin(MySeqItem)
         `uvm_field_int(src_addr, UVM_ALL_ON)
         `uvm_field_int(dst_addr, UVM_ALL_ON)
         `uvm_field_queue_int(payload, UVM_ALL_ON)
     `uvm_object_utils_end
 
-    /* çº¦æŸ */
+    /* Ô¼Êø */
     constraint c_limit_var {
         src_addr inside {[0:3]};
         dst_addr inside {[0:3]};
         payload.size() inside {[1:8]};
     }
 
-    /* æ„é€ å‡½æ•° */
+    /* ¹¹Ôìº¯Êı */
     function new(string name = "MySeqItem");
         super.new(name);
-        /* new() å‡½æ•°å¼€è¾Ÿå¯¹è±¡ç©ºé—´*/
+        /* new() º¯Êı¿ª±Ù¶ÔÏó¿Õ¼ä*/
     endfunction
 
 endclass

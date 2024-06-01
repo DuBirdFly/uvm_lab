@@ -3,16 +3,16 @@ class CompDrv extends uvm_driver #(MySeqItem);
     /* 声明变量 */
     int unsigned pad_cycle = 5;
 
-    /* 创建对象的句?? */
+    /* 创建对象的句柄 */
     virtual IntfDut vif_dut;
 
     /* 注册对象 */
     `uvm_component_utils(CompDrv)
 
-    /* 构造函?? */
+    /* 构造函数 */
     function new(string name = "CompDrv", uvm_component parent);
         super.new(name, parent);
-        /* new() 函数开辟对象空??*/
+        /* new() 函数开辟对象空间*/
     endfunction
 
     virtual function void build_phase(uvm_phase phase);

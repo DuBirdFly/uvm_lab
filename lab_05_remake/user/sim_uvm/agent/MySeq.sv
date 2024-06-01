@@ -1,21 +1,21 @@
 class MySeq extends uvm_sequence #(MySeqItem);
 
-    /* å£°æ˜å˜é‡ */
+    /* ÉùÃ÷±äÁ¿ */
     int item_num = 1;
 
-    /* åˆ›å»ºå¯¹è±¡çš„å¥æŸ„ */
+    /* ´´½¨¶ÔÏóµÄ¾ä±ú */
 
-    /* æ³¨å†Œå¯¹è±¡ */
+    /* ×¢²á¶ÔÏó */
     `uvm_object_utils(MySeq)
 
-    /* æ„é€ å‡½æ•° */
+    /* ¹¹Ôìº¯Êı */
     function new(string name = "MySeq");
         super.new(name);
-        /* new() å‡½æ•°å¼€è¾Ÿå¯¹è±¡ç©ºé—´*/
+        /* new() º¯Êı¿ª±Ù¶ÔÏó¿Õ¼ä*/
     endfunction
 
     function void pre_randomize();
-        // å¼ºè¡Œä¿®æ”¹ rand_mode å¹¶å›ºå®šå€¼, "m_sequencer" æ˜¯é»˜è®¤çš„ sequencer å¥æŸ„
+        // Ç¿ĞĞĞŞ¸Ä rand_mode ²¢¹Ì¶¨Öµ, "m_sequencer" ÊÇÄ¬ÈÏµÄ sequencer ¾ä±ú
         if (!uvm_config_db#(int)::get(m_sequencer, "", "item_num", item_num))
             `uvm_fatal("MySeq", "NOT GET ITEM_NUM")
     endfunction

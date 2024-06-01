@@ -4,11 +4,11 @@
 
 ### What is Factory?
 
-- The UVM Factory mechanism(æœºåˆ¶) allows users to replace different class(ç±») without modifying the code
+- The UVM Factory mechanism(»úÖÆ) allows users to replace different class(Àà) without modifying the code
 - Factory is a built-in data structure in UVM
   - It operates within the entire platform space
   - It has only one instantiated object (i.e., a singleton class)
-  - It serves as a polymorphic(å¤šæ€) constructor --> Allows users to instantiate many different types of class using just one function.
+  - It serves as a polymorphic(¶àÌ¬) constructor --> Allows users to instantiate many different types of class using just one function.
 - Factory object must be derived from a base class (called `uvm_object`?)
   - It's in order to return multiple types of class from just one function
 
@@ -42,7 +42,7 @@ UVM has 2 LUTs (Look-Up Tables) to implement Factory mechanism:
 
 1. Register table
 2. Override table
-   1. The replacement classes must have an inheritance(ç»§æ‰¿) relationship
+   1. The replacement classes must have an inheritance(¼Ì³Ğ) relationship
 
 ```mermaid {align="center"}
 flowchart TB
@@ -88,7 +88,7 @@ The workflow of the Factory:
 
 The workflow of these 4 register macro:
 
-1. Create a proxy(ä»£ç†) class for the registered class: which named 'type_id'
+1. Create a proxy(´úÀí) class for the registered class: which named 'type_id'
    - 'type-id' is specifically used to replace the `new()` function, so it's called a proxy class
 2. Create a registered class, Register the class in Factory (complex process)
 3. Create a static function `type_id::create()`
@@ -151,17 +151,17 @@ rand reg [7:0] payload [$];
    1. `uvm_object_utils_begin()`+`uvm_object_utils_end()`
    2. `uvm_component_utils_begin()`+`uvm_component_utils_end()`
 
-|æ–¹æ³•å|åŠŸèƒ½|
+|·½·¨Ãû|¹¦ÄÜ|
 |---|---|
-| **æ³¨!** | **ä»¥ä¸‹æ–¹æ³•ä»…é™äºä½¿ç”¨äº† UVM field automation macro çš„æˆå‘˜, å¦‚æœæœ‰å“ªä¸ªæˆå‘˜æ²¡è¢« UVM field automation macro æ³¨å†Œ, åˆ™ä»¥ä¸‹å‡½æ•°æ‰§è¡Œæ—¶ä¼šå¿½ç•¥è¿™ä¸ªæˆå‘˜** |
-| print   | æ‰“å°å‡ºè¯¥å¯¹è±¡æ‰€æœ‰çš„æˆå‘˜ |
-| sprint  | åŒ print, ä½†è¿”å›çš„æ˜¯å­—ç¬¦ä¸² |
-| clone   | æ·±åº¦å¤åˆ¶; å¦‚æœç›®æ ‡å¯¹è±¡çš„æˆå‘˜ä¸­åŒ…å«äº†å…¶ä»–å¯¹è±¡, åˆ™ä¼šè°ƒç”¨è¯¥å­å¯¹è±¡çš„ clone æ–¹æ³•è¿›è¡Œå¤åˆ¶ |
-| copy    | æµ…å¤åˆ¶; å¦‚æœç›®æ ‡å¯¹è±¡çš„æˆå‘˜ä¸­åŒ…å«äº†å…¶ä»–å¯¹è±¡, å´ä¹Ÿä¸ä¼šå†è°ƒç”¨è¯¥å­å¯¹è±¡çš„ copy æ–¹æ³•, è€Œä»…å¯¹å­å¯¹è±¡çš„å¥æŸ„è¿›è¡Œå¤åˆ¶ |
-| compare | æ·±åº¦æ¯”è¾ƒ |
-| pack    | å°†å¯¹è±¡çš„æˆå‘˜æ‰“åŒ…åˆ°ä¸€ä¸ªå­—èŠ‚æµä¸­ |
-| unpack  | ä»å­—èŠ‚æµä¸­è§£åŒ…å¯¹è±¡çš„æˆå‘˜ |
-| record  | å¯¹æˆå‘˜åšè®°å½• |
+| **×¢!** | **ÒÔÏÂ·½·¨½öÏŞÓÚÊ¹ÓÃÁË UVM field automation macro µÄ³ÉÔ±, Èç¹ûÓĞÄÄ¸ö³ÉÔ±Ã»±» UVM field automation macro ×¢²á, ÔòÒÔÏÂº¯ÊıÖ´ĞĞÊ±»áºöÂÔÕâ¸ö³ÉÔ±** |
+| print   | ´òÓ¡³ö¸Ã¶ÔÏóËùÓĞµÄ³ÉÔ± |
+| sprint  | Í¬ print, µ«·µ»ØµÄÊÇ×Ö·û´® |
+| clone   | Éî¶È¸´ÖÆ; Èç¹ûÄ¿±ê¶ÔÏóµÄ³ÉÔ±ÖĞ°üº¬ÁËÆäËû¶ÔÏó, Ôò»áµ÷ÓÃ¸Ã×Ó¶ÔÏóµÄ clone ·½·¨½øĞĞ¸´ÖÆ |
+| copy    | Ç³¸´ÖÆ; Èç¹ûÄ¿±ê¶ÔÏóµÄ³ÉÔ±ÖĞ°üº¬ÁËÆäËû¶ÔÏó, È´Ò²²»»áÔÙµ÷ÓÃ¸Ã×Ó¶ÔÏóµÄ copy ·½·¨, ¶ø½ö¶Ô×Ó¶ÔÏóµÄ¾ä±ú½øĞĞ¸´ÖÆ |
+| compare | Éî¶È±È½Ï |
+| pack    | ½«¶ÔÏóµÄ³ÉÔ±´ò°üµ½Ò»¸ö×Ö½ÚÁ÷ÖĞ |
+| unpack  | ´Ó×Ö½ÚÁ÷ÖĞ½â°ü¶ÔÏóµÄ³ÉÔ± |
+| record  | ¶Ô³ÉÔ±×ö¼ÇÂ¼ |
 
 Macro `uvm_field_xxx(ARG, FLAG)`:
 
@@ -240,7 +240,7 @@ typedef enum {
    end
 
 # eg.
-`uvm_info("MON_RESET_PHASE", "Monitor æ­£åœ¨è¿›è¡Œå¤ä½", UVM_MEDIUM)
+`uvm_info("MON_RESET_PHASE", "Monitor ÕıÔÚ½øĞĞ¸´Î»", UVM_MEDIUM)
 ```
 
 <center>
@@ -296,7 +296,7 @@ set_report_verbosity_level_hier(verbosity);
 
 UVM Configuration is a tool to configure attributes
 
-1. Pass(ä¼ é€’) Value
+1. Pass(´«µİ) Value
 2. Pass Object
 3. Pass Interface
 
@@ -316,10 +316,10 @@ uvm_config_db#(uvm_object_wrapper)::set(
 
 The feature of UVM Configuration:
 
-1. Semi-global(åŠå…¨å±€) variable -> avoid the risk associated with global variable
+1. Semi-global(°ëÈ«¾Ö) variable -> avoid the risk associated with global variable
 2. High-level component can change the variable of their included sub-components without modifying the code
 3. UVM Configuration can be used at **EVERY LEVEL**
-4. Support **wildcard**(é€šé…ç¬¦) and **RegEx**(æ­£åˆ™è¡¨è¾¾å¼) -> for path searching, and can configure multiple variables
+4. Support **wildcard**(Í¨Åä·û) and **RegEx**(ÕıÔò±í´ïÊ½) -> for path searching, and can configure multiple variables
 5. Support user-defined data type -> value, object, interface
 6. Dynamic configure during the simulation
 
@@ -364,7 +364,7 @@ Set Configuration: UVM resource database
 
 Configure user-defined object
 
-1. "Configurable property" provide a way to implement paltform reusability(å¤ç”¨æ€§)
+1. "Configurable property" provide a way to implement paltform reusability(¸´ÓÃĞÔ)
 2. You can package "all congiguration items of a component" into a configuration object(class)
 3. The configuration object is configured as a whole
 

@@ -1,13 +1,13 @@
 class CompDrvNew extends CompDrv;
 
-    /* å£°æ˜å˜é‡ */
+    /* ÉùÃ÷±äÁ¿ */
 
-    /* åˆ›å»ºå¯¹è±¡çš„å¥æŸ„ */
+    /* ´´½¨¶ÔÏóµÄ¾ä±ú */
 
-    /* æ³¨å†Œå¯¹è±¡ */
+    /* ×¢²á¶ÔÏó */
     `uvm_component_utils(CompDrvNew)
 
-    /* æ„é€ å‡½æ•° */
+    /* ¹¹Ôìº¯Êı */
     function new(string name = "CompDrvNew", uvm_component parent);
         super.new(name, parent);
     endfunction

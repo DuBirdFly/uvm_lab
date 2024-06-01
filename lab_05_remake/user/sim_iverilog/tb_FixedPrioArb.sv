@@ -4,12 +4,6 @@
 
 module tb_FixedPrioArb;
 
-    // bit clk = 0;
-    // always #5 clk = ~clk;
-
-    // bit rst_n = 1'b0;
-    // initial #50 rst_n = 1'b1;
-
     logic [3:0] req;
     logic [3:0] gnt;
 

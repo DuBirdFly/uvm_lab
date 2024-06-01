@@ -1,20 +1,20 @@
 class Test extends uvm_test;
 
-    /* å£°æ˜å˜é‡ */
+    /* ÉùÃ÷±äÁ¿ */
 
-    /* åˆ›å»ºå¯¹è±¡çš„å¥æŸ„ */
+    /* ´´½¨¶ÔÏóµÄ¾ä±ú */
     CompEnv compEnv;
 
     CfgEnv cfgEnv;
 
-    /* æ³¨å†Œå¯¹è±¡ */
+    /* ×¢²á¶ÔÏó */
     `uvm_component_utils(Test)
 
-    /* æ„é€ å‡½æ•° */
+    /* ¹¹Ôìº¯Êı */
     function new(string name = "Test", uvm_component parent);
         super.new(name, parent);
 
-        /* new() å‡½æ•°å¼€è¾Ÿå¯¹è±¡ç©ºé—´*/
+        /* new() º¯Êı¿ª±Ù¶ÔÏó¿Õ¼ä*/
         cfgEnv = new("cfgEnv");
     endfunction
 
@@ -22,9 +22,9 @@ class Test extends uvm_test;
         super.build_phase(phase);
 
         /* Set TimeOut */
-        uvm_top.set_timeout(5us, 0);  // (è¶…æ—¶æ—¶é—´, æ˜¯å¦å¯ä»¥è¢«åˆ«çš„ set_timeout() è¦†ç›–)
+        uvm_top.set_timeout(5us, 0);  // (³¬Ê±Ê±¼ä, ÊÇ·ñ¿ÉÒÔ±»±ğµÄ set_timeout() ¸²¸Ç)
 
-        /* Override å¯¹è±¡ */
+        /* Override ¶ÔÏó */
         set_inst_override_by_type(
             "compEnv.compAgtMstr.*",
             CompDrv::get_type(),
@@ -45,14 +45,14 @@ class Test extends uvm_test;
         uvm_config_db#(CfgEnv)::set(this, "compEnv", "cfgEnv", cfgEnv);
         uvm_config_db#(int)::set(this, "*.compSeqr", "item_num", 3);
 
-        /* type_id::create() å‡½æ•°å¼€è¾Ÿ Comp ç»„ä»¶å¯¹è±¡ç©ºé—´ */
+        /* type_id::create() º¯Êı¿ª±Ù Comp ×é¼ş¶ÔÏó¿Õ¼ä */
         compEnv = CompEnv::type_id::create("compEnv", this);
 
         /* User Code */
         cfgEnv.is_coverage = 1;
         cfgEnv.is_check = 1;
         cfgEnv.cfgAgt.is_active = UVM_ACTIVE;
-        cfgEnv.cfgAgt.pad_cycle = 0;            // 0: æ— å»¶è¿Ÿ (é™¤éä¸ç»™ grant)
+        cfgEnv.cfgAgt.pad_cycle = 0;            // 0: ÎŞÑÓ³Ù (³ı·Ç²»¸ø grant)
 
     endfunction
 

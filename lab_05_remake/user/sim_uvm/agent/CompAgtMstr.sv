@@ -1,21 +1,21 @@
 class CompAgtMstr extends uvm_agent;
   
-    /* å£°æ˜å˜é‡ */
+    /* ÉùÃ÷±äÁ¿ */
 
-    /* åˆ›å»ºå¯¹è±¡çš„å¥æŸ„ */
+    /* ´´½¨¶ÔÏóµÄ¾ä±ú */
     CompSeqr compSeqr;
     CompDrv  compDrv;
     CompMon  compMon;
 
     CfgAgt cfgAgt;
 
-    /* æ³¨å†Œå¯¹è±¡ */
+    /* ×¢²á¶ÔÏó */
     `uvm_component_utils(CompAgtMstr)
 
-    /* æ„é€ å‡½æ•° */
+    /* ¹¹Ôìº¯Êı */
     function new(string name = "CompAgtMstr", uvm_component parent);
         super.new(name, parent);
-        /* new() å‡½æ•°å¼€è¾Ÿå¯¹è±¡ç©ºé—´*/
+        /* new() º¯Êı¿ª±Ù¶ÔÏó¿Õ¼ä*/
     endfunction
 
     virtual function void build_phase(uvm_phase phase);
@@ -31,8 +31,8 @@ class CompAgtMstr extends uvm_agent;
         uvm_config_db#(virtual IntfDut)::set(this, "compMon", "vif_dut", cfgAgt.vif_dut);
 
 
-        /* type_id::create() å‡½æ•°å¼€è¾Ÿ Comp ç»„ä»¶å¯¹è±¡ç©ºé—´ */
-        // UVM_ACTIVE: åˆ›å»º Seqr å’Œ Drv; UVM_PASSIVE: åªåˆ›å»º Mon
+        /* type_id::create() º¯Êı¿ª±Ù Comp ×é¼ş¶ÔÏó¿Õ¼ä */
+        // UVM_ACTIVE: ´´½¨ Seqr ºÍ Drv; UVM_PASSIVE: Ö»´´½¨ Mon
         if (cfgAgt.is_active == UVM_ACTIVE) begin
             compSeqr = CompSeqr::type_id::create("compSeqr", this);
             compDrv  = CompDrv::type_id::create("compDrv", this);

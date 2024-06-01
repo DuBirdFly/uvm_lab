@@ -1,20 +1,20 @@
 class CompEnv extends uvm_env;
 
-    /* å£°æ˜å˜é‡ */
+    /* ÉùÃ÷±äÁ¿ */
 
-    /* åˆ›å»ºå¯¹è±¡çš„å¥æŸ„ */
+    /* ´´½¨¶ÔÏóµÄ¾ä±ú */
     CompAgtMstr compAgtMstr;
 
     CfgEnv cfgEnv;
 
-    /* æ³¨å†Œå¯¹è±¡ */
+    /* ×¢²á¶ÔÏó */
     `uvm_component_utils(CompEnv)
 
-    /* æ„é€ å‡½æ•° */
+    /* ¹¹Ôìº¯Êı */
     function new(string name = "CompEnv", uvm_component parent);
         super.new(name, parent);
         
-        /* new() å‡½æ•°å¼€è¾Ÿå¯¹è±¡ç©ºé—´*/
+        /* new() º¯Êı¿ª±Ù¶ÔÏó¿Õ¼ä*/
     endfunction
 
     virtual function void build_phase(uvm_phase phase);
@@ -27,7 +27,7 @@ class CompEnv extends uvm_env;
         /* uvm_config_db::set() */
         uvm_config_db#(CfgAgt)::set(this, "compAgtMstr", "cfgAgt", cfgEnv.cfgAgt);
 
-        /* type_id::create() å‡½æ•°å¼€è¾Ÿ Comp ç»„ä»¶å¯¹è±¡ç©ºé—´ */
+        /* type_id::create() º¯Êı¿ª±Ù Comp ×é¼ş¶ÔÏó¿Õ¼ä */
         compAgtMstr = CompAgtMstr::type_id::create("compAgtMstr", this);
 
         /* User Code*/

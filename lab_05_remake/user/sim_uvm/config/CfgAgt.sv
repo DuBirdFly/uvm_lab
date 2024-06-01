@@ -1,22 +1,22 @@
 class CfgAgt extends uvm_object;
 
-    /* å£°æ˜å˜é‡ */
+    /* ÉùÃ÷±äÁ¿ */
     uvm_active_passive_enum is_active = UVM_ACTIVE;
     int unsigned pad_cycle = 5;
 
-    /* åˆ›å»ºå¯¹è±¡çš„å¥æŸ„ */
+    /* ´´½¨¶ÔÏóµÄ¾ä±ú */
     virtual IntfDut vif_dut;
 
-    /* æ³¨å†Œå¯¹è±¡ */
+    /* ×¢²á¶ÔÏó */
     `uvm_object_utils_begin(CfgAgt)
         `uvm_field_enum(uvm_active_passive_enum, is_active, UVM_ACTIVE)
         `uvm_field_int(pad_cycle, UVM_ALL_ON)
     `uvm_object_utils_end
 
-    /* æ„é€ å‡½æ•° */
+    /* ¹¹Ôìº¯Êı */
     function new(string name = "CfgAgt");
         super.new(name);
-        /* new() å‡½æ•°å¼€è¾Ÿå¯¹è±¡ç©ºé—´*/
+        /* new() º¯Êı¿ª±Ù¶ÔÏó¿Õ¼ä*/
     endfunction
 
 endclass
