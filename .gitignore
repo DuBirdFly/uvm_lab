@@ -4,6 +4,7 @@
 **/prj/modelsim*/*.vcd
 **/prj/modelsim*/*.wlf
 **/prj/modelsim*/*.vstf
+**/prj/modelsim*/transcript
 
 **/prj/uvm-1.1d
 
