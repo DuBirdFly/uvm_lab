@@ -5,6 +5,8 @@
 -L mtiUvm
 -L mtiUPF
 
++acc
+
 +incdir+../uvm-1.1d/src
 ../uvm-1.1d/src/uvm_pkg.sv
 
