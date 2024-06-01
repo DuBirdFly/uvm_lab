@@ -57,6 +57,10 @@ module Top;
         .o_data         (intf.o_data)
     );
 
+    initial begin
+        $timeformat(-6, 0, " ns", 8);
+    end
+
     `ifdef DUMP_VCD
         initial begin
             $dumpfile("vsim.vcd");
