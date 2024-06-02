@@ -117,4 +117,3 @@
       3. rsp.set_id_info(req) 用于设置 rsp 的 id 信息
       4. seq_item_port.put_response(rsp);
 
-## lab
