@@ -116,3 +116,5 @@
       2. (用于测试) 将 req.clone() 赋值给 rsp
       3. rsp.set_id_info(req) 用于设置 rsp 的 id 信息
       4. seq_item_port.put_response(rsp);
+
+## lab
