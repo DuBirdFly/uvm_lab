@@ -4,6 +4,7 @@ class CompEnv extends uvm_env;
 
     /* 创建对象的句柄 */
     CompAgtMstr compAgtMstr;
+    CompRefModel compRefModel;
 
     CfgEnv cfgEnv;
 
@@ -13,7 +14,6 @@ class CompEnv extends uvm_env;
     /* 构造函数 */
     function new(string name = "CompEnv", uvm_component parent);
         super.new(name, parent);
-        
         /* new() 函数开辟对象空间*/
     endfunction
 
@@ -29,11 +29,19 @@ class CompEnv extends uvm_env;
 
         /* type_id::create() 函数开辟 Comp 组件对象空间 */
         compAgtMstr = CompAgtMstr::type_id::create("compAgtMstr", this);
+        compRefModel = CompRefModel::type_id::create("compRefModel", this);
 
         /* User Code*/
         if (cfgEnv.is_coverage) `uvm_info("build_phase", "Coverage is enabled", UVM_MEDIUM)
         if (cfgEnv.is_check) `uvm_info("build_phase", "ScoreBoard for check is enabled", UVM_MEDIUM)
 
+    endfunction
+
+    virtual function void connect_phase(uvm_phase phase);
+        super.connect_phase(phase);
+        $display("DBG: CompEnv connect_phase");
+        `uvm_info("connect_phase", "connect CompAgtMstr and CompRefModel", UVM_MEDIUM)
+        compAgtMstr.magt2ref_export.connect(compRefModel.imon2ref_imp);
     endfunction
 
 endclass

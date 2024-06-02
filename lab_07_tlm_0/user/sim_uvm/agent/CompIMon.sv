@@ -4,6 +4,7 @@ class CompIMon extends uvm_monitor;
 
     /* 创建对象的句柄 */
     virtual IntfDut vif_dut;
+    uvm_blocking_put_port #(MySeqItem) imon2ref_port;   // imonitor_to_refmodel_port
 
     /* 注册对象 */
     `uvm_component_utils(CompIMon)
@@ -12,6 +13,7 @@ class CompIMon extends uvm_monitor;
     function new(string name = "CompIMon", uvm_component parent);
         super.new(name, parent);
         /* new() 函数开辟对象空间*/
+        this.imon2ref_port = new("imon2ref_port", this);
     endfunction
 
     virtual function void build_phase(uvm_phase phase);
@@ -84,7 +86,9 @@ class CompIMon extends uvm_monitor;
                 @(vif_dut.mon_in_cb);
             end
 
-            `uvm_info("CompIMon", {"\n", tr.sprint()}, UVM_MEDIUM)
+            `uvm_info("CompIMon", {"\nIMon Catched a MySeqItem from vif\n", tr.sprint()}, UVM_MEDIUM)
+            `uvm_info("CompIMon", "Now IMon will send the MySeqItem to RefModel!", UVM_MEDIUM)
+            this.imon2ref_port.put(tr);
 
         end
 

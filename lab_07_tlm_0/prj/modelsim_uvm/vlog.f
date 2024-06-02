@@ -3,7 +3,7 @@
 // 使用 sv 语法
 -sv
 // 使用增量编译
--incr
+// -incr
 // 使用 uvm 1.1d 版本
 -L mtiAvm
 -L mtiOvm

@@ -18,6 +18,7 @@ import uvm_pkg::*;
 `include "CompSeqr.sv"
 `include "CompDrv.sv"
 `include "CompIMon.sv"
+`include "CompRefModel.sv"
 `include "CompAgtMstr.sv"
 
 `include "CompDrvNew.sv"
