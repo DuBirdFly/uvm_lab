@@ -44,6 +44,8 @@ class CompAgtMstr extends uvm_agent;
     virtual function void connect_phase(uvm_phase phase);
         super.connect_phase(phase);
         if (is_active == UVM_ACTIVE) begin
+            // seq_item_port 是 uvm_sequencer 这个 uvm 类内建的成员: uvm_seq_item_pull_imp #(REQ, RSP, this_type) seq_item_export;
+            // 非常秀的是, 这里是一个 *_imp, 却取名为 *_export, 也许是因为用的 fifo tml ?
             compDrv.seq_item_port.connect(compSeqr.seq_item_export);
         end
     endfunction
