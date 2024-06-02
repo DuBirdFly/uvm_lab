@@ -30,6 +30,7 @@ class Test extends uvm_test;
             CompDrv::get_type(),
             CompDrvNew::get_type()
         );
+        //!: MySeqItem_da3 重新约束了 dst_addr = 3, 但是没有生效 ???
         set_inst_override_by_type(
             "compEnv.compAgtMstr.compSeqr.*",
             MySeqItem::get_type(),
@@ -41,9 +42,9 @@ class Test extends uvm_test;
            `uvm_fatal("NOVIF", "uvm_config_db::get(vif) failed");
 
         /* uvm_config_db::set() */
-        uvm_config_db#(uvm_object_wrapper)::set(this, "*.compSeqr.run_phase", "default_sequence", MySeq::get_type());
+        // uvm_config_db#(uvm_object_wrapper)::set(this, "*.compSeqr.run_phase", "default_sequence", MySeq::get_type());
         uvm_config_db#(CfgEnv)::set(this, "compEnv", "cfgEnv", cfgEnv);
-        uvm_config_db#(int)::set(this, "*.compSeqr", "item_num", 3);
+        uvm_config_db#(int)::set(this, "compEnv.compAgtMstr.compSeqr", "item_num", 3);
 
         /* type_id::create() 函数开辟 Comp 组件对象空间 */
         compEnv = CompEnv::type_id::create("compEnv", this);
@@ -61,6 +62,14 @@ class Test extends uvm_test;
         `uvm_info("start_of_simulation_phase", "print_topology", UVM_MEDIUM)
         uvm_top.print_topology(uvm_default_tree_printer);
     endfunction
+
+    virtual task run_phase(uvm_phase phase);
+        MySeq mySeq;
+        mySeq = MySeq::type_id::create("mySeq");
+        phase.raise_objection(this);
+        mySeq.start(compEnv.compAgtMstr.compSeqr);
+        phase.drop_objection(this);
+    endtask
 
     virtual function void report_phase(uvm_phase phase);
         super.report_phase(phase);

@@ -1,5 +1,10 @@
+// work 库是当前目录下的 work 目录
 -work work
+// 使用 sv 语法
 -sv
+// 使用增量编译
+-incr
+// 使用 uvm 1.1d 版本
 -L mtiAvm
 -L mtiOvm
 -L mtiUvm
@@ -7,6 +12,7 @@
 
 +acc
 
+// "include 目录" 与 "需要编译的 sv 文件"
 +incdir+../uvm-1.1d/src
 ../uvm-1.1d/src/uvm_pkg.sv
 

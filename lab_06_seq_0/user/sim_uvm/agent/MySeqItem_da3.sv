@@ -13,6 +13,7 @@ class MySeqItem_da3 extends MySeqItem;
     /* 构造函数 */
     function new(string name = "MySeqItem_da3");
         super.new(name);
+        `uvm_info(get_type_name(), "Override new func", UVM_MEDIUM)
         /* new() 函数开辟对象空间*/
     endfunction
 

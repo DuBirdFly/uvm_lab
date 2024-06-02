@@ -81,3 +81,38 @@
 2. 添加了 CompIMon.sv
 3. 完善了 dut
 4. 添加了 iverilog 的仿真相关文件
+
+## lab_06_seq_0
+
+继承: lab_05_remake
+视频: 1. "35-08 - UVM sequence机制 - 04_如何使用UVM sequence机制_2_uvm_do宏.mp4"
+视频: 2. "36-08 - UVM sequence机制 - 05_如何使用UVM sequence机制_3_uvm sequence的启动.mp4"
+视频: 3. "37-08 - UVM sequence机制 - 06_如何使用UVM sequence机制_4_sequence嵌套&仲裁&响应和本章小结.mp4"
+
+修改内容:
+
+1. 修改 MySeqItem.sv, 手动实现 `uvm_do` 宏
+   1. 修改 body() 这个 task
+   2. 注释掉 `uvm_do` 宏
+   3. 在 `body()` 里创建 uvm_sequence_item 类型的对象句柄 : tr (但暂时先不开辟空间)
+      1. 在 repeat 代码块里, 用 `类名::type_id::create()` 创建对象空间
+      2. 调用 `start_item(tr)`
+      3. 调用 `tr.randomize()` (非 'void 函数, 有可能失败)
+      4. 调用 `finish_item(tr)`
+
+2. 修改 Test.sv, 手动启动 MySeq
+   1. 注释掉 `uvm_config_db#(uvm_object_wrapper)::set(this, "*.compSeqr.run_phase", "default_sequence", MySeq::get_type());`
+   2. 重载 run_phase() 任务
+      1. 创建 mySeq 句柄
+      2. 开辟对象空间, 使用`类名::type_id::create()`, mySeq 指向该空间
+      3. `phase.raise_objection(this);` 用于开始 run_phase
+      4. mySeq.start() 方法启动该对象, 注: 括号里放 mySeq 对应的 Seqr 对象
+      5. `phase.drop_objection(this);` 用于结束 run_phase
+
+3. 修改 MySeq.sv 与 CompDrv.sv, 说明 Seq 和 Drv 之间获取相应的关系
+   1. MySeq.sv 的 body().repeat() 里, 用 `get_response()` 获取 Drv 的相应
+   2. CompDrv.sv
+      1. 添加了一个空的 rsp 句柄
+      2. (用于测试) 将 req.clone() 赋值给 rsp
+      3. rsp.set_id_info(req) 用于设置 rsp 的 id 信息
+      4. seq_item_port.put_response(rsp);

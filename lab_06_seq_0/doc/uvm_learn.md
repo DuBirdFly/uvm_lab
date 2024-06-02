@@ -352,13 +352,13 @@ uvm_config_db#(type)::get(
 Set Configuration: UVM resource database
 </center>
 
-| Source(UVM_Comp) | Path         | Type          | ID         | Value     |
-| ---------------- | ------------ | ------------- | ---------- | --------- |
-| uvm_top          | "*.m_seqr"   | int           | "num"      | 10        |
-| uvm_test_top     | "*.m_agent   | str           | "massage"  | "config"  |
-| m_env            | "*.m_master" | uvm_object    | "m_config" | my_config |
-| m_agent          | "*.m_drv"    | uvm_component | "m_comp"   | my_comp   |
-| ...              | ...          | ...           | ...        | ...       |
+| Source(UVM_Comp) | Path            | Type          | ID         | Value     |
+| ---------------- | --------------- | ------------- | ---------- | --------- |
+| uvm_top          | "*.compSeqr"    | int           | "num"      | 10        |
+| uvm_test_top     | "*.compAgtMstr  | str           | "massage"  | "config"  |
+| compEnv          | "*.compAgtMstr" | uvm_object    | "m_config" | my_config |
+| compAgtMstr      | "*.compDrv"     | uvm_component | "m_comp"   | my_comp   |
+| ...              | ...             | ...           | ...        | ...       |
 
 ### Configure object
 

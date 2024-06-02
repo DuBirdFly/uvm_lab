@@ -5,7 +5,7 @@ class CompAgtMstr extends uvm_agent;
     /* 创建对象的句柄 */
     CompSeqr compSeqr;
     CompDrv  compDrv;
-    CompIMon  compMon;
+    CompIMon compMon;
 
     CfgAgt cfgAgt;
 

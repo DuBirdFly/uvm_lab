@@ -93,6 +93,11 @@ class CompDrv extends uvm_driver #(MySeqItem);
             vif_dut.drv_cb.i_valid[req.src_addr] <= 1'b0;
             @(vif_dut.drv_cb);
 
+            rsp = MySeqItem::type_id::create("rsp");    // 此时只是一个空的响应句柄
+            $cast(rsp, req.clone());                    // 为了测试方便, 把 Drv 获取的 req 作为 rsp
+            rsp.set_id_info(req);                       // 将相应与对应的事物相关联 --> 相应与事物应该一一对应
+            seq_item_port.put_response(rsp);            // 将响应放入 seq_item_port
+
             seq_item_port.item_done();
         end
     endtask
