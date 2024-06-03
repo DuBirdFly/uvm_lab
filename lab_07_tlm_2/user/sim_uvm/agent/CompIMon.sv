@@ -4,7 +4,7 @@ class CompIMon extends uvm_monitor;
 
     /* 创建对象的句柄 */
     virtual IntfDut vif_dut;
-    uvm_blocking_get_imp #(MySeqItem, CompIMon) imon2ref_imp;               // imonitor_to_refmodel_import
+    uvm_blocking_put_port #(MySeqItem) imon2ref_port;
 
     MySeqItem   tr_fifo[$];
 
@@ -15,7 +15,7 @@ class CompIMon extends uvm_monitor;
     function new(string name = "CompIMon", uvm_component parent);
         super.new(name, parent);
         /* new() 函数开辟对象空间*/
-        this.imon2ref_imp = new("imon2ref_imp", this);
+        this.imon2ref_port = new("imon2ref_port", this);
     endfunction
 
     virtual function void build_phase(uvm_phase phase);
@@ -89,17 +89,11 @@ class CompIMon extends uvm_monitor;
             end
 
             `uvm_info("run_phase", {"IMon Catched a MySeqItem from vif, ", tr.my_sprint()}, UVM_MEDIUM)
-            `uvm_info("run_phase", "Now IMon will push the MySeqItem to tr_fifo!", UVM_MEDIUM)
-            this.tr_fifo.push_back(tr);
+            `uvm_info("run_phase", {"IMon Send a MySeqItem to RefModel, ", tr.my_sprint()}, UVM_MEDIUM)
+            imon2ref_port.put(tr);
 
         end
 
-    endtask
-
-    task get(output MySeqItem s_tr);
-        while(this.tr_fifo.size() == 0) @(vif_dut.mon_in_cb);
-        s_tr = this.tr_fifo.pop_front();
-        `uvm_info("get", {"IMon has sent a MySeqItem to RefModel:, ", s_tr.my_sprint()}, UVM_MEDIUM)
     endtask
 
 endclass

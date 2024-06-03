@@ -8,6 +8,8 @@ class CompEnv extends uvm_env;
 
     CfgEnv cfgEnv;
 
+    uvm_tlm_analysis_fifo #(MySeqItem) magt2ref_fifo;
+
     /* 注册对象 */
     `uvm_component_utils(CompEnv)
 
@@ -15,6 +17,7 @@ class CompEnv extends uvm_env;
     function new(string name = "CompEnv", uvm_component parent);
         super.new(name, parent);
         /* new() 函数开辟对象空间*/
+        magt2ref_fifo = new("magt2ref_fifo", this);
     endfunction
 
     virtual function void build_phase(uvm_phase phase);
@@ -39,9 +42,12 @@ class CompEnv extends uvm_env;
 
     virtual function void connect_phase(uvm_phase phase);
         super.connect_phase(phase);
-        `uvm_info("connect_phase", "connect CompAgtMstr and CompRefModel", UVM_MEDIUM)
-        // compAgtMstr.magt2ref_export.connect(compRefModel.imon2ref_imp);
-        compRefModel.imon2ref_port.connect(compAgtMstr.magt2ref_export);
+        `uvm_info("connect_phase", "connect CompAgtMstr to fifo", UVM_MEDIUM)
+        compAgtMstr.magt2ref_export.connect(magt2ref_fifo.blocking_put_export);
+
+        `uvm_info("connect_phase", "connect fifo to CompRefModel", UVM_MEDIUM)
+        compRefModel.imon2ref_port.connect(magt2ref_fifo.blocking_get_export);
+
     endfunction
 
 endclass
