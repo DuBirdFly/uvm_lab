@@ -59,7 +59,7 @@ module Top;
     );
 
     initial begin
-        $timeformat(-6, 0, " ns", 8);
+        // $timeformat(-6, 0, " ns", 8);   // 有 bug, 似乎会影响 `uvm_info() 时间
     end
 
     `ifdef DUMP_VCD

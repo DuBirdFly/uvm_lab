@@ -68,7 +68,7 @@ class CompDrv extends uvm_driver #(MySeqItem);
 
         forever begin
             seq_item_port.get_next_item(req);
-            `uvm_info("run_phase", {"\n", req.sprint()}, UVM_MEDIUM)
+            `uvm_info("run_phase", {"", req.my_sprint()}, UVM_MEDIUM)
 
             vif_dut.drv_cb.i_frame[req.src_addr] <= 1'b1;
 

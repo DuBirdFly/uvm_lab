@@ -27,4 +27,9 @@ class MySeqItem extends uvm_sequence_item;
         /* new() 函数开辟对象空间*/
     endfunction
 
+    /* 获取变量的简述 String */
+    function string my_sprint();
+        return $sformatf("src_addr(%0d) --> dst_addr(%0d), payload=%p", src_addr, dst_addr, payload);
+    endfunction
+
 endclass

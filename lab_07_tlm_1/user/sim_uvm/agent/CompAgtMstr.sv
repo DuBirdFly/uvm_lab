@@ -9,7 +9,7 @@ class CompAgtMstr extends uvm_agent;
     
     CfgAgt      cfgAgt;
 
-    uvm_blocking_put_export #(MySeqItem) magt2ref_export;   // master_agent_to_refmodel_export
+    uvm_blocking_get_export #(MySeqItem) magt2ref_export;   // master_agent_to_refmodel_export
 
     /* 注册对象 */
     `uvm_component_utils(CompAgtMstr)
@@ -47,10 +47,10 @@ class CompAgtMstr extends uvm_agent;
         super.connect_phase(phase);
         if (is_active == UVM_ACTIVE) begin
             // seq_item_port 是 uvm_sequencer 这个 uvm 类内建的成员: uvm_seq_item_pull_imp #(REQ, RSP, this_type) seq_item_export;
-            // 非常秀的是, 这里是一个 *_imp, 却取名为 *_export, 也许是因为用的 fifo tml ?
             compDrv.seq_item_port.connect(compSeqr.seq_item_export);
         end
-        compIMon.imon2ref_port.connect(this.magt2ref_export);
+        // compIMon.imon2ref_port.connect(this.magt2ref_export);
+        this.magt2ref_export.connect(compIMon.imon2ref_imp);
     endfunction
 
 endclass

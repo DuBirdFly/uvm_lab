@@ -117,22 +117,14 @@
       3. rsp.set_id_info(req) 用于设置 rsp 的 id 信息
       4. seq_item_port.put_response(rsp);
 
-## lab_07_tlm_0
+## lab_07_tlm_0/1/2
 
 继承: lab_06_seq_0
 视频: 1. "42-09 - UVM TLM - 05_普通TLM端口的用法-1.mp4"
+视频: 2. "43-09 - UVM TLM - 06_普通TLM端口的用法-2.mp4"
+视频: 3. "44-09 - UVM TLM - 07_普通TLM端口的用法-3.mp4"
 
-修改内容: 实现 put 模式的普通 tlm
-
-
-
-
-
-
-
-
-
-
-
-
+修改内容: lab_07_tlm_0: 实现 put  模式的普通 tlm -> put  模式
+修改内容: lab_07_tlm_1: 实现 get  模式的普通 tlm -> get  模式
+修改内容: lab_07_tlm_2: 实现 fifo 模式的普通 tlm -> fifo 模式
 

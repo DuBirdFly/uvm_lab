@@ -3,8 +3,7 @@ class CompRefModel extends uvm_component;
     /* 声明变量 */
 
     /* 创建对象的句柄 */
-    // 因为 RefModel 是 SeqItem 的消费者，所以 RefModel 需要一个 SeqItem 的输入端口 (import = *_imp)
-    uvm_blocking_put_imp#(MySeqItem, CompRefModel) imon2ref_imp;   // imonitor_to_refmodel_import
+    uvm_blocking_get_port #(MySeqItem) imon2ref_port;               // imonitor_to_refmodel_port
 
     /* 注册对象 */
     `uvm_component_utils(CompRefModel)
@@ -13,11 +12,17 @@ class CompRefModel extends uvm_component;
     function new(string name = "CompRefModel", uvm_component parent);
         super.new(name, parent);
         /* new() 函数开辟对象空间*/
-        this.imon2ref_imp = new("imon2ref_imp", this);
+        this.imon2ref_port = new("imon2ref_port", this);
     endfunction
 
-    task put (MySeqItem tr);
-        `uvm_info("put", {"\nCompRefModel 接收到一个 MySeqItem, 内容为\n", tr.sprint()}, UVM_MEDIUM)
+    /* 重写 run_phase */
+    virtual task run_phase(uvm_phase phase);
+        MySeqItem item;
+        `uvm_info("run_phase", "CompRefModel try to get item from imonitor", UVM_MEDIUM)
+        forever begin
+            imon2ref_port.get(item);
+            `uvm_info("run_phase", {"CompRefModel has received a item, ", item.my_sprint()}, UVM_MEDIUM)
+        end
     endtask
 
 endclass

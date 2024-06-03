@@ -39,9 +39,9 @@ class CompEnv extends uvm_env;
 
     virtual function void connect_phase(uvm_phase phase);
         super.connect_phase(phase);
-        $display("DBG: CompEnv connect_phase");
         `uvm_info("connect_phase", "connect CompAgtMstr and CompRefModel", UVM_MEDIUM)
-        compAgtMstr.magt2ref_export.connect(compRefModel.imon2ref_imp);
+        // compAgtMstr.magt2ref_export.connect(compRefModel.imon2ref_imp);
+        compRefModel.imon2ref_port.connect(compAgtMstr.magt2ref_export);
     endfunction
 
 endclass

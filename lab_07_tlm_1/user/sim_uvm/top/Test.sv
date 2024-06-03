@@ -53,7 +53,7 @@ class Test extends uvm_test;
         cfgEnv.is_coverage = 1;
         cfgEnv.is_check = 1;
         cfgEnv.cfgAgt.is_active = UVM_ACTIVE;
-        cfgEnv.cfgAgt.pad_cycle = 0;            // 0: 无延迟 (除非不给 grant)
+        cfgEnv.cfgAgt.pad_cycle = 0;            // 0: ADDR 和 DATA 之间无延迟 (除非不给 grant)
 
     endfunction
 
@@ -65,6 +65,8 @@ class Test extends uvm_test;
 
     virtual task run_phase(uvm_phase phase);
         MySeq mySeq;
+
+        `uvm_info("run_phase", "create mySeq; mySeq --> compEnv.compAgtMstr.compSeqr", UVM_MEDIUM)
         mySeq = MySeq::type_id::create("mySeq");
         phase.raise_objection(this);
         mySeq.start(compEnv.compAgtMstr.compSeqr);
@@ -73,6 +75,7 @@ class Test extends uvm_test;
 
     virtual function void report_phase(uvm_phase phase);
         super.report_phase(phase);
+        `uvm_info("report_phase", "print_factory", UVM_MEDIUM)
         factory.print();
     endfunction
 

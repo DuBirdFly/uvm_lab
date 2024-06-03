@@ -36,7 +36,7 @@ class MySeq extends uvm_sequence #(MySeqItem);
 
             // 从 Drv 获取响应
             get_response(rsp);
-            `uvm_info("body", {"\nMySeq get the response:\n", rsp.sprint()}, UVM_MEDIUM)
+            `uvm_info("body", {"MySeq get the response, ", rsp.my_sprint()}, UVM_MEDIUM)
         end
 
         #100; // 说明 seq 是带仿真时间的
