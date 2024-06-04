@@ -6,8 +6,6 @@ class CompIMon extends uvm_monitor;
     virtual IntfDut vif_dut;
     uvm_blocking_put_port #(MySeqItem) imon2ref_port;
 
-    MySeqItem   tr_fifo[$];
-
     /* 注册对象 */
     `uvm_component_utils(CompIMon)
 
@@ -21,11 +19,10 @@ class CompIMon extends uvm_monitor;
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
 
-        `uvm_info("build_phase", "BUILD PHASE", UVM_MEDIUM)
-
         /* uvm_config_db::get() */
         if (!uvm_config_db#(virtual IntfDut)::get(this, "", "vif_dut", vif_dut))
             `uvm_fatal("CompIMon", "NOT GET INTERFACE")
+        `uvm_info("build_phase", "get vif_dut success", UVM_MEDIUM)
 
         /* uvm_config_db::set() */
 

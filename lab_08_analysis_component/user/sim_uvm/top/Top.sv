@@ -18,8 +18,11 @@ import uvm_pkg::*;
 `include "CompSeqr.sv"
 `include "CompDrv.sv"
 `include "CompIMon.sv"
-`include "CompRefModel.sv"
+`include "CompOMon.sv"
 `include "CompAgtMstr.sv"
+`include "CompAgtSlv.sv"
+`include "CompRefModel.sv"
+`include "CompScb.sv"
 
 `include "CompDrvNew.sv"
 `include "MySeqItem_da3.sv"
