@@ -3,7 +3,7 @@ class CompOMon extends uvm_monitor;
 
     /* 创建对象的句柄 */
     virtual IntfDut vif_dut;
-    //!uvm_blocking_put_port #(MySeqItem) omon2sagt_port;
+    uvm_blocking_put_port #(MySeqItem) omon2sagt_port;
 
     /* 注册对象 */
     `uvm_component_utils(CompOMon)
@@ -11,6 +11,8 @@ class CompOMon extends uvm_monitor;
     /* 构造函数 */
     function new(string name = "CompOMon", uvm_component parent);
         super.new(name, parent);
+        /* new() 函数开辟对象空间*/
+        omon2sagt_port = new("omon2sagt_port", this);
     endfunction
 
     virtual function void build_phase(uvm_phase phase);
@@ -69,7 +71,7 @@ class CompOMon extends uvm_monitor;
             end
 
             `uvm_info("run_phase", {"OMon Catched a MySeqItem from vif (src_addr is invalid), ", tr.my_sprint()}, UVM_MEDIUM)
-            //!omon2sagt_port.put(tr);
+            omon2sagt_port.put(tr);
         end
 
     endtask
