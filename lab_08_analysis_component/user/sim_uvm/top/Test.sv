@@ -30,9 +30,13 @@ class Test extends uvm_test;
             CompDrv::get_type(),
             CompDrvNew::get_type()
         );
-        //!: MySeqItem_da3 重新约束了 dst_addr = 3, 但是没有生效 ???
-        set_inst_override_by_type(
-            "compEnv.compAgtMstr.compSeqr.*",
+        //!: MySeqItem 到底在哪个路径下? Test 中例化了 MySeq?
+        // set_inst_override_by_type(
+        //     "*compEnv.compAgtMstr.compSeqr.*",
+        //     MySeqItem::get_type(),
+        //     MySeqItem_da3::get_type()
+        // );
+        set_type_override_by_type(
             MySeqItem::get_type(),
             MySeqItem_da3::get_type()
         );
