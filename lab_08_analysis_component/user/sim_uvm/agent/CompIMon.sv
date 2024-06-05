@@ -54,13 +54,12 @@ class CompIMon extends uvm_monitor;
                     $sformat(msg, "Invalid i_frame = %4b", vif_dut.mon_in_cb.i_frame);
                     `uvm_error("CompIMon", msg)
                 end
-
             endcase
 
             // Get Dst Address
             for (int i = 0; i < 2; i++) begin
-                @(vif_dut.mon_in_cb);
                 tr.dst_addr[i] = vif_dut.mon_in_cb.i_data[tr.src_addr];
+                if (i != 1) @(vif_dut.mon_in_cb);
             end
 
             // Get Payload

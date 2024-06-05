@@ -6,6 +6,7 @@ module RouterIPort (
     input                   i_data,
     input                   i_gnt,
 
+    // 0000, 0001, 0010, 0100, 1000 (请求的目标端口, 最多只能 1 位为 1)
     output logic [3:0]      o_dst_addr
 
 );

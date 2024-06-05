@@ -19,6 +19,7 @@
 +incdir+../../user/dut
 ../../user/dut/Router.sv
 ../../user/dut/RouterIPort.sv
+../../user/dut/RouterOPort.sv
 ../../user/dut/Lib.sv
 
 +incdir+../../user/sim_uvm
