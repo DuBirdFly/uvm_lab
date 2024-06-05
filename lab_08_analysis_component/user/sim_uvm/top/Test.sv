@@ -32,7 +32,7 @@ class Test extends uvm_test;
         );
         //!: MySeqItem 到底在哪个路径下? Test 中例化了 MySeq?
         // set_inst_override_by_type(
-        //     "*compEnv.compAgtMstr.compSeqr.*",
+        //     "compEnv.compAgtMstr.compSeqr.*",
         //     MySeqItem::get_type(),
         //     MySeqItem_da3::get_type()
         // );

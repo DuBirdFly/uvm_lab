@@ -135,6 +135,17 @@
 
 修改内容:
 
-1. 创建 CompOMon.sv
+1. 创建 CompOMon.sv, CompAgtSlv.sv, CompRefModel.sv, CompScb.sv, 并用 3 个 tlm_fifo 构建完整的 uvm 平台
+2. 修复设计中oport错
+3. 修复IMon在dst_addr生成时多了1拍
+4. 修复 scb的fifo少了一次new的问题
+5. 修复 override SeqItem 时, 路径设置错误的问题
 
+## lab_09_callback
 
+继承: lab_08_analysis_component
+视频: "50-11 - UVM callback - 04_如何使用UVM callback - 3.mp4"
+
+修改内容:
+
+1. 进行错误注入, 使用 Callback 机制在 Driver 为 payload 追加 5 个 bit (5'b10101, 使其不符合 8 的倍数的要求)
