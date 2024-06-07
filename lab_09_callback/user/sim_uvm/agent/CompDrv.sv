@@ -33,7 +33,7 @@ class CompDrv extends uvm_driver #(MySeqItem);
         super.pre_reset_phase(phase);
         `uvm_info("pre_reset_phase", "reset intferface to 'x", UVM_MEDIUM)
 
-        phase.raise_objection(this);    
+        phase.raise_objection(this);
         vif_dut.drv_cb.reset_n      <= 'x;
         vif_dut.drv_cb.i_frame      <= 'x;
         vif_dut.drv_cb.i_valid      <= 'x;
@@ -61,6 +61,30 @@ class CompDrv extends uvm_driver #(MySeqItem);
 
     endtask
 
+    virtual task send_req(MySeqItem req);
+        vif_dut.drv_cb.i_frame[req.src_addr] <= 1'b1;
+
+        for (int i = 0; i < 2; i++) begin
+            vif_dut.drv_cb.i_data[req.src_addr] <= req.dst_addr[i];
+            @(vif_dut.drv_cb);
+        end
+
+        repeat(pad_cycle) @(vif_dut.drv_cb);
+
+        wait(vif_dut.drv_cb.o_grant[req.src_addr]);
+
+        foreach(req.payload[i]) begin
+            for (int j = 0; j < 8; j++) begin
+                vif_dut.drv_cb.i_data[req.src_addr] <= req.payload[i][j];
+                vif_dut.drv_cb.i_valid[req.src_addr] <= 1'b1;
+                @(vif_dut.drv_cb);
+            end
+        end
+
+        vif_dut.drv_cb.i_frame[req.src_addr] <= 1'b0;
+        vif_dut.drv_cb.i_valid[req.src_addr] <= 1'b0;
+        @(vif_dut.drv_cb);
+    endtask
 
     virtual task run_phase(uvm_phase phase);
 
@@ -70,33 +94,12 @@ class CompDrv extends uvm_driver #(MySeqItem);
             seq_item_port.get_next_item(req);
             `uvm_info("run_phase", {"", req.my_sprint()}, UVM_MEDIUM)
 
-            vif_dut.drv_cb.i_frame[req.src_addr] <= 1'b1;
+            this.send_req(req);
 
-            for (int i = 0; i < 2; i++) begin
-                vif_dut.drv_cb.i_data[req.src_addr] <= req.dst_addr[i];
-                @(vif_dut.drv_cb);
-            end
-
-            repeat(pad_cycle) @(vif_dut.drv_cb);
-
-            wait(vif_dut.drv_cb.o_grant[req.src_addr]);
-
-            foreach(req.payload[i]) begin
-                for (int j = 0; j < 8; j++) begin
-                    vif_dut.drv_cb.i_data[req.src_addr] <= req.payload[i][j];
-                    vif_dut.drv_cb.i_valid[req.src_addr] <= 1'b1;
-                    @(vif_dut.drv_cb);
-                end
-            end
-
-            vif_dut.drv_cb.i_frame[req.src_addr] <= 1'b0;
-            vif_dut.drv_cb.i_valid[req.src_addr] <= 1'b0;
-            @(vif_dut.drv_cb);
-
-            rsp = MySeqItem::type_id::create("rsp");    // 此时只是一个空的响应句柄
-            $cast(rsp, req.clone());                    // 为了测试方便, 把 Drv 获取的 req 作为 rsp
-            rsp.set_id_info(req);                       // 将相应与对应的事物相关联 --> 相应与事物应该一一对应
-            seq_item_port.put_response(rsp);            // 将响应放入 seq_item_port
+            rsp = MySeqItem::type_id::create("rsp");
+            $cast(rsp, req.clone());
+            rsp.set_id_info(req);
+            seq_item_port.put_response(rsp);
 
             seq_item_port.item_done();
         end
