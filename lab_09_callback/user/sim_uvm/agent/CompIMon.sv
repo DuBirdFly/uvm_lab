@@ -28,11 +28,6 @@ class CompIMon extends uvm_monitor;
 
     endfunction
 
-    virtual task reset_phase(uvm_phase phase);
-        phase.raise_objection(this);
-        phase.drop_objection(this);
-    endtask
-
     virtual task run_phase(uvm_phase phase);
         MySeqItem   tr;       // transaction
         logic [7:0] tmp;

@@ -23,7 +23,7 @@ class MySeq extends uvm_sequence #(MySeqItem);
     virtual task body();
         MySeqItem tr;
 
-        if (starting_phase != null) starting_phase.raise_objection(this);
+        // if (starting_phase != null) starting_phase.raise_objection(this);
 
         this.pre_randomize();
 
@@ -42,7 +42,7 @@ class MySeq extends uvm_sequence #(MySeqItem);
         #100; // 说明 seq 是带仿真时间的
         `uvm_info("body", $sformatf("MySeq is done"), UVM_MEDIUM)
 
-        if (starting_phase != null) starting_phase.drop_objection(this);
+        // if (starting_phase != null) starting_phase.drop_objection(this);
     endtask
 
 endclass
