@@ -33,11 +33,13 @@ class CompDrv extends uvm_driver #(MySeqItem);
         super.pre_reset_phase(phase);
         `uvm_info("pre_reset_phase", "reset intferface to 'x", UVM_MEDIUM)
 
+        phase.raise_objection(this);    
         vif_dut.drv_cb.reset_n      <= 'x;
         vif_dut.drv_cb.i_frame      <= 'x;
         vif_dut.drv_cb.i_valid      <= 'x;
         vif_dut.drv_cb.i_data       <= 'x;
         repeat(2) @(vif_dut.drv_cb);
+        phase.drop_objection(this);
 
     endtask
 
@@ -45,6 +47,7 @@ class CompDrv extends uvm_driver #(MySeqItem);
         super.reset_phase(phase);
         `uvm_info("reset_phase", "reset intferface to '0/1", UVM_MEDIUM)
 
+        phase.raise_objection(this);
         vif_dut.drv_cb.i_frame      <= '0;
         vif_dut.drv_cb.i_valid      <= '0;
         vif_dut.drv_cb.i_data       <= '0;
@@ -53,6 +56,8 @@ class CompDrv extends uvm_driver #(MySeqItem);
         repeat(5) @(vif_dut.drv_cb);
         vif_dut.drv_cb.reset_n      <= '1;
         repeat(5) @(vif_dut.drv_cb);
+
+        phase.drop_objection(this);
 
     endtask
 

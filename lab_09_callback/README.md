@@ -148,4 +148,6 @@
 
 修改内容:
 
-1. 进行错误注入, 使用 Callback 机制在 Driver 为 payload 追加 5 个 bit (5'b10101, 使其不符合 8 的倍数的要求)
+1. 进行额外注入, 使用 Callback 机制在 Driver 追加一个 payload (值固定为 8'b1111_1111 = 8'ff)
+
+**注意!**, 由于 mentor 不推荐使用 callback, 所以使用更合适的 override 机制来实现
