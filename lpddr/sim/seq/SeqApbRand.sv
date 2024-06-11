@@ -4,7 +4,7 @@ class SeqApbRand extends uvm_sequence #(TrApb);
     `uvm_object_utils(SeqApbRand)
 
     /* Declare Normal Variables */
-    int tr_num = 3;
+    int tr_num = 8;
 
     /* Declare Object Handles */
 
