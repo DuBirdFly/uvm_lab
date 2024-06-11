@@ -4,8 +4,8 @@ class TrApb extends uvm_sequence_item;
     `uvm_object_utils(TrApb)
 
     /* Declare Normal Variables */
-    rand bit [`APB_DEPTH - 1:0]  addr;
-    rand bit [`APB_WIDTH - 1:0]  data;
+    rand bit [`APB_ADDR_WIDTH - 1:0]  addr;
+    rand bit [`APB_DATA_WIDTH - 1:0]  data;
     rand bit                     write;
 
     /* constraints */

@@ -4,7 +4,7 @@ class RefApb extends uvm_component;
     `uvm_component_utils(RefApb)
 
     /* Declare Normal Variables */
-    logic [`APB_WIDTH - 1:0] mem [`APB_DEPTH-1:0];
+    logic [`APB_DATA_WIDTH - 1:0] mem [`APB_ADDR_WIDTH-1:0];
 
     /* Declare Object Handles */
     uvm_blocking_put_imp #(TrApb, RefApb) put_imp = new("put_imp", this);

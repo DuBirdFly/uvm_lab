@@ -1,16 +1,16 @@
 interface IfApb(
-    input bit           pclk
+    input bit                pclk
 );
 
     // APB interface
     logic                    presetn;
-    logic [`APB_DEPTH - 1:0] paddr;
-    logic [`APB_WIDTH - 1:0] pwdata;
+    logic [`APB_ADDR_WIDTH - 1:0] paddr;
+    logic [`APB_DATA_WIDTH - 1:0] pwdata;
     logic                    pwrite;
     logic                    psel;
     logic                    penable;
     logic                    pready;
-    logic [`APB_WIDTH - 1:0] prdata;
+    logic [`APB_DATA_WIDTH - 1:0] prdata;
 
     clocking drv_cb @(posedge pclk);
         default input #1 output #1;
