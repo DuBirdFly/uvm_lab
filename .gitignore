@@ -1,12 +1,14 @@
 .vscode
 
+**/prj/iverilog/*.vvp
+**/prj/iverilog/*.vcd
+
 **/prj/modelsim*/work
 **/prj/modelsim*/*.vcd
 **/prj/modelsim*/*.wlf
 **/prj/modelsim*/*.vstf
 **/prj/modelsim*/transcript
 
-**/prj/uvm-1.1d
+**/prj/python/run
 
-**/prj/iverilog/*.vvp
-**/prj/iverilog/*.vcd
+**/prj/uvm-1.1d
