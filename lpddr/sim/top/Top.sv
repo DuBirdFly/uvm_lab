@@ -1,8 +1,10 @@
-`define DUMP_VCD
-`define DUMP_WLF
+`timescale 1ns/1ns
 
 import uvm_pkg::*;
 `include "uvm_macros.svh"
+
+// defines
+`include "define.svh"
 
 // interface
 `include "IfApb.sv"

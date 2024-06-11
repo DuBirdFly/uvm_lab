@@ -3,14 +3,14 @@ interface IfApb(
 );
 
     // APB interface
-    logic               presetn;
-    logic       [15:0]  paddr;
-    logic       [31:0]  pwdata;
-    logic               pwrite;
-    logic               psel;
-    logic               penable;
-    logic               pready;
-    logic       [31:0]  prdata;
+    logic                    presetn;
+    logic [`APB_DEPTH - 1:0] paddr;
+    logic [`APB_WIDTH - 1:0] pwdata;
+    logic                    pwrite;
+    logic                    psel;
+    logic                    penable;
+    logic                    pready;
+    logic [`APB_WIDTH - 1:0] prdata;
 
     clocking drv_cb @(posedge pclk);
         default input #1 output #1;
