@@ -1,5 +1,3 @@
-`timescale 1ns/1ns
-
 import uvm_pkg::*;
 `include "uvm_macros.svh"
 
@@ -8,17 +6,25 @@ import uvm_pkg::*;
 
 // interface
 `include "IfApb.sv"
+`include "IfAxi.sv"
 
 // seq
 `include "TrApb.sv"
 `include "ApbSeqRand.sv"
 `include "ApbSeqInit.sv"
 
+`include "TrAxi.sv"
+`include "AxiSeqRand.sv"
+
 // agent
 `include "ApbMasterDrv.sv"
 `include "ApbMasterMon.sv"
 `include "ApbMasterSeqr.sv"
 `include "ApbMasterAgent.sv"
+
+`include "AxiMasterDrv.sv"
+`include "AxiMasterSeqr.sv"
+`include "AxiMasterAgent.sv"
 
 // env
 `include "ApbMasterRef.sv"
@@ -30,29 +36,75 @@ import uvm_pkg::*;
 module Top;
 
     bit pclk;
-
-    IfApb ifApb(pclk);
-
     always #5 pclk = ~pclk;
+    IfApb ifApb (pclk);
+
+    bit aclk;
+    always #10 aclk = ~aclk;
+    IfAxi ifAxi (aclk);
 
     initial begin
         uvm_config_db#(virtual IfApb)::set(null, "uvm_test_top.env.apbMasterAgent.apbMasterDrv", "vifApb", ifApb);
         uvm_config_db#(virtual IfApb)::set(null, "uvm_test_top.env.apbMasterAgent.apbMasterMon", "vifApb", ifApb);
+
+        uvm_config_db#(virtual IfAxi)::set(null, "uvm_test_top.env.axiMasterAgent.axiMasterDrv", "vifAxi", ifAxi);
         run_test();
     end
 
-    lpddr_ctl u_lpddr_ctl (
-        .pclk       (pclk),
-        .presetn    (ifApb.presetn),
-        .paddr      (ifApb.paddr),
-        .pwdata     (ifApb.pwdata),
-        .pwrite     (ifApb.pwrite),
-        .psel       (ifApb.psel),
-        .penable    (ifApb.penable),
-        .pready     (ifApb.pready),
-        .prdata     (ifApb.prdata)
-    );
+    lpddr_ctrl u_lpddr_ctrl (
+        .pclk       ( pclk              ),
+        .presetn    ( ifApb.presetn     ),
+        .paddr      ( ifApb.paddr       ),
+        .pwdata     ( ifApb.pwdata      ),
+        .pwrite     ( ifApb.pwrite      ),
+        .psel       ( ifApb.psel        ),
+        .penable    ( ifApb.penable     ),
+        .pready     ( ifApb.pready      ),
+        .prdata     ( ifApb.prdata      ),
 
+        .aclk       ( ifAxi.aclk        ),
+        .aresetn    ( ifAxi.aresetn     ),
+
+        .awid       ( ifAxi.awid        ),
+        .awaddr     ( ifAxi.awaddr      ),
+        .awlen      ( ifAxi.awlen       ),
+        .awsize     ( ifAxi.awsize      ),
+        .awburst    ( ifAxi.awburst     ),
+        .awlock     ( ifAxi.awlock      ),
+        .awcache    ( ifAxi.awcache     ),
+        .awprot     ( ifAxi.awprot      ),
+        .awvalid    ( ifAxi.awvalid     ),
+        .awready    ( ifAxi.awready     ),
+
+        .wdata      ( ifAxi.wdata       ),
+        .wstrb      ( ifAxi.wstrb       ),
+        .wlast      ( ifAxi.wlast       ),
+        .wvalid     ( ifAxi.wvalid      ),
+        .wready     ( ifAxi.wready      ),
+
+        .bid        ( ifAxi.bid         ),
+        .bresp      ( ifAxi.bresp       ),
+        .bvalid     ( ifAxi.bvalid      ),
+        .bready     ( ifAxi.bready      ),
+
+        .arid       ( ifAxi.arid        ),
+        .araddr     ( ifAxi.araddr      ),
+        .arlen      ( ifAxi.arlen       ),
+        .arsize     ( ifAxi.arsize      ),
+        .arburst    ( ifAxi.arburst     ),
+        .arlock     ( ifAxi.arlock      ),
+        .arcache    ( ifAxi.arcache     ),
+        .arprot     ( ifAxi.arprot      ),
+        .arvalid    ( ifAxi.arvalid     ),
+        .arready    ( ifAxi.arready     ),
+
+        .rid        ( ifAxi.rid         ),
+        .rdata      ( ifAxi.rdata       ),
+        .rresp      ( ifAxi.rresp       ),
+        .rlast      ( ifAxi.rlast       ),
+        .rvalid     ( ifAxi.rvalid      ),
+        .rready     ( ifAxi.rready      )
+    );
 
     `ifdef DUMP_VCD
         initial begin

@@ -82,7 +82,6 @@ class ApbMasterDrv extends uvm_driver #(TrApb);
         int delay;
 
         repeat(10) @(vifApb.drv_cb);
-        `uvm_info("run_phase", "run_phase", UVM_MEDIUM)
 
         forever begin
             seq_item_port.get_next_item(req);

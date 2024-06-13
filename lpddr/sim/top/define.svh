@@ -1,3 +1,5 @@
+`timescale 1ns/1ns
+
 // 可配置
 `define APB_DATA_WIDTH  32
 `define APB_ADDR_WIDTH  16

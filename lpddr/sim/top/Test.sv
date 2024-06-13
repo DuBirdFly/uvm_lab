@@ -35,11 +35,14 @@ class Test extends uvm_test;
         ApbSeqRand apbSeqRand = ApbSeqRand::type_id::create("apbSeqRand");
         ApbSeqInit apbSeqInit = ApbSeqInit::type_id::create("apbSeqInit");
 
+        AxiSeqRand axiSeqRand = AxiSeqRand::type_id::create("axiSeqRand");
+
         phase.raise_objection(this);
-        // apbSeqInit.tr_num = 8;
         apbSeqInit.start(env.apbMasterAgent.apbMasterSeqr);
         #500;
         apbSeqRand.start(env.apbMasterAgent.apbMasterSeqr);
+        #500;
+        axiSeqRand.start(env.axiMasterAgent.axiMasterSeqr);
         #500;
         phase.drop_objection(this);
 

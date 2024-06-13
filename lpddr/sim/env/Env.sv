@@ -9,6 +9,8 @@ class Env extends uvm_env;
     ApbMasterAgent  apbMasterAgent = ApbMasterAgent::type_id::create("apbMasterAgent", this);
     ApbMasterRef    apbMasterRef   = ApbMasterRef::type_id::create("apbMasterRef", this);
 
+    AxiMasterAgent  axiMasterAgent = AxiMasterAgent::type_id::create("axiMasterAgent", this);
+
     /* Constructor Func */
     function new(string name = "Env", uvm_component parent);
         super.new(name, parent);
@@ -19,10 +21,7 @@ class Env extends uvm_env;
         super.build_phase(phase);
     
         /* uvm_config_db#(<type>)::get(<uvm_component>, <"inst_name">, <"field_name">, <value>); */
-
         /* uvm_config_db#(<type>)::set(<uvm_component>, <"inst_name">, <"field_name">, <value>); */
-        
-        /* Create Object Space */
 
     endfunction
 
