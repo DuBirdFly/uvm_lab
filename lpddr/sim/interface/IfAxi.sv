@@ -13,11 +13,11 @@
 // 5. 同时读取和写入事务
 
 interface IfAxi(
-    input bit           aclk
+    input bit                       aclk
 );
 
     // AXI interface
-    logic               aresetn;
+    logic                           aresetn;
 
     // Write address channel
     logic [`AXI_ID_WIDTH - 1:0]     awid;
@@ -33,14 +33,14 @@ interface IfAxi(
 
     // Write data channel
     logic [`AXI_DATA_WIDTH - 1:0]   wdata;
-    logic [`AXI_DATA_WIDTH/8 - 1:0] wstrb;
+    logic [`AXI_STRB_WIDTH - 1:0]   wstrb;
     logic                           wlast;
     logic                           wvalid;
     logic                           wready;
 
     // Write response channel
     logic [`AXI_ID_WIDTH - 1:0]     bid;
-    logic                           bresp;
+    logic [`AXI_RESP_WIDTH - 1:0]   bresp;
     logic                           bvalid;
     logic                           bready;
 
@@ -64,38 +64,29 @@ interface IfAxi(
     logic                           rvalid;
     logic                           rready;
 
-    clocking aw_drv_cb @(posedge aclk);
+    // master clocking block
+    clocking m_cb @(posedge aclk);
         default input #1 output #1;
+        output aresetn;
+
         output awid, awaddr, awlen, awsize, awburst;
         output awlock, awcache, awprot;
         output awvalid;
         input  awready;
-    endclocking
 
-    clocking w_drv_cb @(posedge aclk);
-        default input #1 output #1;
         output wdata, wstrb, wlast;
         output wvalid;
         input  wready;
-    endclocking
 
-    clocking b_drv_cb @(posedge aclk);
-        default input #1 output #1;
         input  bid, bresp;
         input  bvalid;
         output bready;
-    endclocking
 
-    clocking ar_drv_cb @(posedge aclk);
-        default input #1 output #1;
         output arid, araddr, arlen, arsize, arburst;
         output arlock, arcache, arprot;
         output arvalid;
         input  arready;
-    endclocking
 
-    clocking r_drv_cb @(posedge aclk);
-        default input #1 output #1;
         input  rid;
         input  rdata, rresp, rlast;
         input  rvalid;
