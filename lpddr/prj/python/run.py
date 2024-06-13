@@ -10,9 +10,11 @@ TB_TOP_RELPATH : str = "sim/top/Top.sv"
 TB_TOP_NAME : str = "Top"
 TB_TEST_NAME : str = "Test"
 SV_SEED : int = 0
-RUN_PATH : str = f"./run"
+RUN_PATH : str = f"./out"
 
 ##########################################################
+if not os.path.exists(RUN_PATH): os.makedirs(RUN_PATH)
+
 lines : list[str] = []
 lines.append(f"vlib work")
 lines.append(f"vmap work work")

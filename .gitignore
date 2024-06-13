@@ -9,6 +9,6 @@
 **/prj/modelsim*/*.vstf
 **/prj/modelsim*/transcript
 
-**/prj/python/run
+**/prj/python/out
 
 **/prj/uvm-1.1d
