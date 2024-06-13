@@ -1,5 +1,5 @@
 class ApbMasterAgent extends uvm_agent;
-    
+
     /* Factory Register this Class */
     `uvm_component_utils(ApbMasterAgent)
 
