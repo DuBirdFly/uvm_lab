@@ -6,8 +6,8 @@ class Env extends uvm_env;
     /* Declare Normal Variables */
 
     /* Declare Object Handles */
-    AgentApb  agentApb = AgentApb::type_id::create("agentApb", this);
-    RefApb    refApb   = RefApb::type_id::create("refApb", this);
+    ApbMasterAgent  apbMasterAgent = ApbMasterAgent::type_id::create("apbMasterAgent", this);
+    ApbMasterRef    apbMasterRef   = ApbMasterRef::type_id::create("apbMasterRef", this);
 
     /* Constructor Func */
     function new(string name = "Env", uvm_component parent);
@@ -27,7 +27,7 @@ class Env extends uvm_env;
     endfunction
 
     virtual function void connect_phase(uvm_phase phase);
-        agentApb.put_export.connect(refApb.put_imp);
+        apbMasterAgent.put_export.connect(apbMasterRef.put_imp);
     endfunction
 
 endclass

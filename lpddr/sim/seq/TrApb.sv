@@ -6,7 +6,7 @@ class TrApb extends uvm_sequence_item;
     /* Declare Normal Variables */
     rand bit [`APB_ADDR_WIDTH - 1:0]  addr;
     rand bit [`APB_DATA_WIDTH - 1:0]  data;
-    rand bit                     write;
+    rand bit                          write;
 
     /* constraints */
     constraint c_addr {

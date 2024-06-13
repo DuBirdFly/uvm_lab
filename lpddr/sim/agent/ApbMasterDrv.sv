@@ -1,7 +1,7 @@
-class DrvApb extends uvm_driver #(TrApb);
+class ApbMasterDrv extends uvm_driver #(TrApb);
 
     /* Factory Register this Class */
-    `uvm_component_utils(DrvApb)
+    `uvm_component_utils(ApbMasterDrv)
 
     /* Declare Normal Variables */
 
@@ -9,7 +9,7 @@ class DrvApb extends uvm_driver #(TrApb);
     virtual IfApb vifApb;
 
     /* Constructor Func */
-    function new(string name = "DrvApb", uvm_component parent);
+    function new(string name = "ApbMasterDrv", uvm_component parent);
         super.new(name, parent);
         /* Create Object Space */
     endfunction

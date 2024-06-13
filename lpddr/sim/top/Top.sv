@@ -11,17 +11,17 @@ import uvm_pkg::*;
 
 // seq
 `include "TrApb.sv"
-`include "SeqApbRand.sv"
-`include "SeqApbInit.sv"
+`include "ApbSeqRand.sv"
+`include "ApbSeqInit.sv"
 
 // agent
-`include "DrvApb.sv"
-`include "MonApb.sv"
-`include "SeqrApb.sv"
-`include "AgentApb.sv"
+`include "ApbMasterDrv.sv"
+`include "ApbMasterMon.sv"
+`include "ApbMasterSeqr.sv"
+`include "ApbMasterAgent.sv"
 
 // env
-`include "RefApb.sv"
+`include "ApbMasterRef.sv"
 `include "Env.sv"
 
 // top
@@ -36,8 +36,8 @@ module Top;
     always #5 pclk = ~pclk;
 
     initial begin
-        uvm_config_db#(virtual IfApb)::set(null, "uvm_test_top.env.agentApb.drvApb", "vifApb", ifApb);
-        uvm_config_db#(virtual IfApb)::set(null, "uvm_test_top.env.agentApb.monApb", "vifApb", ifApb);
+        uvm_config_db#(virtual IfApb)::set(null, "uvm_test_top.env.apbMasterAgent.apbMasterDrv", "vifApb", ifApb);
+        uvm_config_db#(virtual IfApb)::set(null, "uvm_test_top.env.apbMasterAgent.apbMasterMon", "vifApb", ifApb);
         run_test();
     end
 

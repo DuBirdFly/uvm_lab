@@ -1,12 +1,15 @@
-class SeqApbInit extends uvm_sequence #(TrApb);
+class ApbSeqRand extends uvm_sequence #(TrApb);
 
     /* Factory Register this Class */
-    `uvm_object_utils(SeqApbInit)
+    `uvm_object_utils(ApbSeqRand)
+
+    /* Declare Normal Variables */
+    int tr_num = 0;
 
     /* Declare Object Handles */
 
     /* Constructor Func */
-    function new(string name = "SeqApbInit");
+    function new(string name = "ApbSeqRand");
         super.new(name);
         /* Create Object Space */
     endfunction
@@ -14,12 +17,12 @@ class SeqApbInit extends uvm_sequence #(TrApb);
     virtual task body();
         if (starting_phase != null) starting_phase.raise_objection(this);
 
-        for (int i = 0; i <= 'hf; i++) begin
-            TrApb tr = TrApb::type_id::create($sformatf("tr_%0d", i));
-            TrApb rsp;
+        if (tr_num == 0) `uvm_error("TR_NUM", "tr_num is 0, please set tr_num in Test.sv")
+        repeat(tr_num) begin
+            TrApb tr = TrApb::type_id::create("tr");
 
-            tr.set_item(i, i, 1);
             start_item(tr);
+            if (!tr.randomize()) `uvm_error("RANDOMIZE", "Failed to randomize transaction")
             finish_item(tr);
 
             get_response(rsp);

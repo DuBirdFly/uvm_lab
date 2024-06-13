@@ -22,7 +22,6 @@ class Test extends uvm_test;
         /* Override */
 
         /* uvm_config_db#(<type>)::get(<uvm_component>, <"inst_name">, <"field_name">, <value>); */
-
         /* uvm_config_db#(<type>)::set(<uvm_component>, <"inst_name">, <"field_name">, <value>); */
 
     endfunction
@@ -33,13 +32,14 @@ class Test extends uvm_test;
     endfunction
 
     virtual task run_phase(uvm_phase phase);
-        SeqApbRand seqApbRand = SeqApbRand::type_id::create("seqApbRand");
-        SeqApbInit seqApbInit = SeqApbInit::type_id::create("seqApbInit");
+        ApbSeqRand apbSeqRand = ApbSeqRand::type_id::create("apbSeqRand");
+        ApbSeqInit apbSeqInit = ApbSeqInit::type_id::create("apbSeqInit");
 
         phase.raise_objection(this);
-        seqApbInit.start(env.agentApb.seqrApb);
+        // apbSeqInit.tr_num = 8;
+        apbSeqInit.start(env.apbMasterAgent.apbMasterSeqr);
         #500;
-        seqApbRand.start(env.agentApb.seqrApb);
+        apbSeqRand.start(env.apbMasterAgent.apbMasterSeqr);
         #500;
         phase.drop_objection(this);
 

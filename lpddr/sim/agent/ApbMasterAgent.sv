@@ -1,19 +1,19 @@
-class AgentApb extends uvm_agent;
+class ApbMasterAgent extends uvm_agent;
     
     /* Factory Register this Class */
-    `uvm_component_utils(AgentApb)
+    `uvm_component_utils(ApbMasterAgent)
 
     /* Declare Normal Variables */
 
     /* Declare Object Handles */
-    SeqrApb seqrApb = SeqrApb::type_id::create("seqrApb", this);
-    DrvApb  drvApb  = DrvApb::type_id::create("drvApb", this);
-    MonApb  monApb  = MonApb::type_id::create("monApb", this);
+    ApbMasterSeqr apbMasterSeqr = ApbMasterSeqr::type_id::create("apbMasterSeqr", this);
+    ApbMasterDrv  apbMasterDrv  = ApbMasterDrv::type_id::create("apbMasterDrv", this);
+    ApbMasterMon  apbMasterMon  = ApbMasterMon::type_id::create("apbMasterMon", this);
     uvm_blocking_put_export #(TrApb) put_export = new("put_export", this);
 
 
     /* Constructor Func */
-    function new(string name = "AgentApb", uvm_component parent);
+    function new(string name = "ApbMasterAgent", uvm_component parent);
         super.new(name, parent);
         /* Create Object Space */
     endfunction
@@ -28,8 +28,8 @@ class AgentApb extends uvm_agent;
     endfunction
 
     virtual function void connect_phase(uvm_phase phase);
-        drvApb.seq_item_port.connect(seqrApb.seq_item_export);
-        monApb.put_port.connect(put_export);
+        apbMasterDrv.seq_item_port.connect(apbMasterSeqr.seq_item_export);
+        apbMasterMon.put_port.connect(put_export);
     endfunction
 
 endclass

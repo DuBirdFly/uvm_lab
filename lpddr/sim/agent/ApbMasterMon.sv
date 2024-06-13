@@ -1,7 +1,7 @@
-class MonApb extends uvm_monitor;
+class ApbMasterMon extends uvm_monitor;
 
     /* Factory Register this Class */
-    `uvm_component_utils(MonApb)
+    `uvm_component_utils(ApbMasterMon)
 
     /* Declare Normal Variables */
 
@@ -10,7 +10,7 @@ class MonApb extends uvm_monitor;
     uvm_blocking_put_port #(TrApb) put_port = new("put_port", this);
 
     /* Constructor Func */
-    function new(string name = "MonApb", uvm_component parent);
+    function new(string name = "ApbMasterMon", uvm_component parent);
         super.new(name, parent);
         /* Create Object Space */
     endfunction
