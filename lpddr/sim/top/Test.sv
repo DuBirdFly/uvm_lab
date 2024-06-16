@@ -6,6 +6,7 @@ class Test extends uvm_test;
     /* Declare Normal Variables */
 
     /* Declare Object Handles */
+    virtual IfAxi vifAxi;
     Env env = Env::type_id::create("env", this);
 
     /* Constructor Func */
@@ -22,6 +23,8 @@ class Test extends uvm_test;
         /* Override */
 
         /* uvm_config_db#(<type>)::get(<uvm_component>, <"inst_name">, <"field_name">, <value>); */
+        if (!uvm_config_db#(virtual IfAxi)::get(this, "", "vifAxi", vifAxi))
+            `uvm_fatal("NO_IFAXI", "No IfAxi Interface Specified")
         /* uvm_config_db#(<type>)::set(<uvm_component>, <"inst_name">, <"field_name">, <value>); */
 
     endfunction
@@ -35,15 +38,27 @@ class Test extends uvm_test;
         ApbSeqRand apbSeqRand = ApbSeqRand::type_id::create("apbSeqRand");
         ApbSeqInit apbSeqInit = ApbSeqInit::type_id::create("apbSeqInit");
 
-        AxiSeqRand axiSeqRand = AxiSeqRand::type_id::create("axiSeqRand");
+        AxiSeqFocus axiSeqFocus;
+        AxiSeqRand axiSeqRand;
 
         phase.raise_objection(this);
+
         apbSeqInit.start(env.apbMasterAgent.apbMasterSeqr);
-        #500;
+        #200;
         apbSeqRand.start(env.apbMasterAgent.apbMasterSeqr);
+        #200;
+        `ifdef CASE_0
+            axiSeqFocus = AxiSeqFocus::type_id::create("axiSeqFocus");
+            axiSeqFocus.start(env.axiMasterAgent.axiMasterSeqr);
+        `else
+            axiSeqRand = AxiSeqRand::type_id::create("axiSeqRand");
+            axiSeqRand.start(env.axiMasterAgent.axiMasterSeqr);
+        `endif
+
         #500;
-        axiSeqRand.start(env.axiMasterAgent.axiMasterSeqr);
-        #500;
+
+        vifAxi.peek_mem();
+
         phase.drop_objection(this);
 
     endtask

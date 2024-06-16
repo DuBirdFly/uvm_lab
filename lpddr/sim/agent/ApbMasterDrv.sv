@@ -70,7 +70,7 @@ class ApbMasterDrv extends uvm_driver #(TrApb);
         vifApb.drv_cb.penable   <= 1;
         @(vifApb.drv_cb);
 
-        while (vifApb.drv_cb.pready == 0) @(vifApb.drv_cb);
+        while (!vifApb.drv_cb.pready) @(vifApb.drv_cb);
         vifApb.drv_cb.psel      <= 0;
         vifApb.drv_cb.penable   <= 0;
 
@@ -79,16 +79,13 @@ class ApbMasterDrv extends uvm_driver #(TrApb);
     endtask
 
     virtual task run_phase(uvm_phase phase);
-        int delay;
 
         repeat(10) @(vifApb.drv_cb);
 
         forever begin
             seq_item_port.get_next_item(req);
 
-            delay = $urandom_range(0, 7);
-
-            this.drv_data(req, $urandom_range(0, 7));
+            this.drv_data(req, $urandom_range(2));
 
             rsp = TrApb::type_id::create("rsp");
             $cast(rsp, req.my_clone);

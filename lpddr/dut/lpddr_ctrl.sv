@@ -84,7 +84,7 @@ axi_ram #(
     .PIPELINE_OUTPUT    ( 0                 )
 )u_axi_ram(
     .clk                ( aclk              ),
-    .rst                ( aresetn           ),
+    .rst                ( ~aresetn          ),
     .s_axi_awid         ( awid              ),
     .s_axi_awaddr       ( awaddr            ),
     .s_axi_awlen        ( awlen             ),

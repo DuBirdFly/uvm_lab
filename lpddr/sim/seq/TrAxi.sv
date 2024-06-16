@@ -7,14 +7,14 @@ class TrAxi extends uvm_sequence_item;
     rand bit [`AXI_ID_WIDTH - 1:0]     id;
     rand bit [`AXI_ADDR_WIDTH - 1:0]   addr;
     rand bit [`AXI_LEN_WIDTH - 1:0]    len;
-         bit [`AXI_SIZE_WIDTH - 1:0]   size;
+    rand bit [`AXI_SIZE_WIDTH - 1:0]   size;
     rand bit [`AXI_BURST_WIDTH - 1:0]  burst;
     rand bit                           lock;
     rand bit [`AXI_CACHE_WIDTH - 1:0]  cache;
     rand bit [`AXI_PROT_WIDTH - 1:0]   prot;
 
     rand bit [`AXI_DATA_WIDTH - 1:0]   data[$];
-    rand bit [`AXI_STRB_WIDTH - 1:0]   strb;
+    rand bit [`AXI_STRB_WIDTH - 1:0]   strb[$];
 
     bit      [`AXI_RESP_WIDTH - 1:0]   resp;
 
@@ -23,16 +23,14 @@ class TrAxi extends uvm_sequence_item;
         id == 0;
         addr <= 2 ** `AXI_ADDR_WIDTH - `AXI_STRB_WIDTH * len;  // keep addr in the range
         addr % `AXI_STRB_WIDTH == 0;  // keep the address aligned
-        len inside {[0:3]};
+        len inside {[0:4]};
+        size inside {[0:$clog2(`AXI_STRB_WIDTH)]};
         burst == 1;
         lock == 0;
         cache == 0;
         prot == 0;
         data.size() == len + 1;
-    }
-
-    constraint c_wstrb {
-        $countones(strb) == 2 ** size;
+        strb.size() == len + 1;
     }
 
     /* Constructor Func */
@@ -41,18 +39,18 @@ class TrAxi extends uvm_sequence_item;
         /* Create Object Space */
     endfunction
 
-    virtual function void pre_rand();
-        size = $urandom_range($clog2(`AXI_STRB_WIDTH));
-        $display("DBG: size = %0d", size);
-    endfunction
-
     virtual function string my_print();
         string str = "";
+        str = {str, $sformatf("=============== time = %0t ================\n", $realtime)};
         str = {str, $sformatf("id = %0d, addr = 0x%0H, len = %0d(+1), size = %0d (%0d byte)\n", id, addr, len, size, 2**size)};
-        str = {str, $sformatf("burst = 0b%d, lock = 0b%d, cache = 0b%d, prot = 0b%d\n", burst, lock, cache, prot)};
-        str = {str, $sformatf("strb = 0b%b\n", strb)};
-        foreach (data[i]) str = {str, $sformatf("data[%0d] = 0x%h\n", i, data[i])};
+        str = {str, $sformatf("burst = %b, lock = %b, cache = %b, prot = %b\n", burst, lock, cache, prot)};
 
+        foreach (data[i]) begin
+            logic [`AXI_DATA_WIDTH - 1:0] data_tmp = data[i];
+            bit   [`AXI_STRB_WIDTH - 1:0] strb_tmp = strb[i];
+            foreach (strb_tmp[j]) data_tmp[j * 8 +: 8] = strb_tmp[j] ? data_tmp[j * 8 +: 8] : 'hx;
+            str = {str, $sformatf("data[%0d] = %h <-- %h (strb = %b) \n", i, data_tmp, data[i], strb[i])};
+        end
         return str;
     endfunction
 

@@ -4,7 +4,6 @@ class AxiSeqRand extends uvm_sequence #(TrAxi);
     `uvm_object_utils(AxiSeqRand)
 
     /* Declare Normal Variables */
-    int tr_num = 8;
 
     /* Declare Object Handles */
 
@@ -15,12 +14,10 @@ class AxiSeqRand extends uvm_sequence #(TrAxi);
     endfunction
 
     virtual task body();
-        TrAxi tr;
         if (starting_phase != null) starting_phase.raise_objection(this);
 
-        repeat(tr_num) begin
-            tr = TrAxi::type_id::create("tr");
-            tr.pre_rand();
+        repeat(8) begin
+            TrAxi tr = TrAxi::type_id::create("tr");
             if (!tr.randomize()) `uvm_error("RANDOMIZE", "Failed to randomize transaction")
 
             start_item(tr);

@@ -1,5 +1,8 @@
 # command: vsim -c -do modelsim_shell.do
 # command: vsim -view vsim.wlf
+# command: vsim -view vsim.wlf -do ../signal/apb_axi.do
+# command: vsim -view vsim.wlf
+# command: do ../signal/apb_axi.do
 
 if {[file exists work]} {
 	vdel -lib work -all

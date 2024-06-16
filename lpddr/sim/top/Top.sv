@@ -15,6 +15,7 @@ import uvm_pkg::*;
 
 `include "TrAxi.sv"
 `include "AxiSeqRand.sv"
+`include "AxiSeqFocus.sv"
 
 // agent
 `include "ApbMasterDrv.sv"
@@ -36,17 +37,18 @@ import uvm_pkg::*;
 module Top;
 
     bit pclk;
-    always #5 pclk = ~pclk;
+    always #10 pclk = ~pclk;
     IfApb ifApb (pclk);
 
     bit aclk;
-    always #10 aclk = ~aclk;
+    always #5 aclk = ~aclk;
     IfAxi ifAxi (aclk);
 
     initial begin
         uvm_config_db#(virtual IfApb)::set(null, "uvm_test_top.env.apbMasterAgent.apbMasterDrv", "vifApb", ifApb);
         uvm_config_db#(virtual IfApb)::set(null, "uvm_test_top.env.apbMasterAgent.apbMasterMon", "vifApb", ifApb);
 
+        uvm_config_db#(virtual IfAxi)::set(null, "uvm_test_top", "vifAxi", ifAxi);
         uvm_config_db#(virtual IfAxi)::set(null, "uvm_test_top.env.axiMasterAgent.axiMasterDrv", "vifAxi", ifAxi);
         run_test();
     end
@@ -62,7 +64,7 @@ module Top;
         .pready     ( ifApb.pready      ),
         .prdata     ( ifApb.prdata      ),
 
-        .aclk       ( ifAxi.aclk        ),
+        .aclk       ( aclk              ),
         .aresetn    ( ifAxi.aresetn     ),
 
         .awid       ( ifAxi.awid        ),

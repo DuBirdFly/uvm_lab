@@ -37,6 +37,7 @@ lines.append(f"")
 
 lines.append(f"+define+DUMP_VCD")
 lines.append(f"+define+DUMP_WLF")
+lines.append(f"+define+CASE_0")
 lines.append(f"")
 
 lines.append(f"+incdir+{UVM_HOME}/src")
