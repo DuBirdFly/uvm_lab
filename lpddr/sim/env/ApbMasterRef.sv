@@ -16,7 +16,6 @@ class ApbMasterRef extends uvm_component;
     endfunction
 
     task put (TrApb trApb);
-        // `uvm_info("put", trApb.my_print(), UVM_MEDIUM)
         if (trApb.write)
             mem[trApb.addr] = trApb.data;
         else begin

@@ -40,7 +40,9 @@ class AxiMasterDrv extends uvm_driver #(TrAxi);
         phase.drop_objection(this);
     endtask
 
-    virtual task aw_channel(TrAxi req);
+    virtual task aw_channel(TrAxi req, int pre_delay = 0);
+        repeat (pre_delay) @(vifAxi.m_cb);
+
         vifAxi.m_cb.awid    <= req.id;
         vifAxi.m_cb.awaddr  <= req.addr;
         vifAxi.m_cb.awlen   <= req.len;
@@ -58,27 +60,32 @@ class AxiMasterDrv extends uvm_driver #(TrAxi);
 
     endtask
 
-    virtual task w_channel(TrAxi req);
+    virtual task w_channel(TrAxi req, int pre_delay = 0);
+        repeat (pre_delay) @(vifAxi.m_cb);
 
         for (int i = 0; i < req.data.size(); i++) begin
             vifAxi.m_cb.wvalid <= 1;
-            while (!vifAxi.m_cb.wready) @(vifAxi.m_cb);
             vifAxi.m_cb.wdata  <= req.data[i];
-            vifAxi.m_cb.wstrb  <= req.strb[i];
-            if (i == req.data.size() - 1) vifAxi.m_cb.wlast  <= 1;            
+            vifAxi.m_cb.wstrb  <= req.align_strb[i];
+            if (i == req.data.size() - 1) vifAxi.m_cb.wlast  <= 1;
             @(vifAxi.m_cb);
+            while (!vifAxi.m_cb.wready) @(vifAxi.m_cb);
         end
 
         vifAxi.m_cb.wlast  <= 0;
         vifAxi.m_cb.wvalid <= 0;
     endtask
 
-    virtual task b_channel(TrAxi req);
-        while (!vifAxi.m_cb.bvalid) @(vifAxi.m_cb);
+    virtual task b_channel(TrAxi req, int pre_delay = 0);
+        repeat (pre_delay) @(vifAxi.m_cb);
+
         req.id = vifAxi.m_cb.bid;
         req.resp = vifAxi.m_cb.bresp;
         vifAxi.m_cb.bready <= 1;
         @(vifAxi.m_cb);
+
+        while (!vifAxi.m_cb.bvalid) @(vifAxi.m_cb);
+
         vifAxi.m_cb.bready <= 0;
     endtask
 
@@ -92,15 +99,16 @@ class AxiMasterDrv extends uvm_driver #(TrAxi);
 
             @(vifAxi.m_cb);
 
-            $display(req.my_print());
+            $display(req.get_info());
 
-            aw_channel(req);
-            repeat(10) @(vifAxi.m_cb);
-            w_channel(req);
-            repeat(10) @(vifAxi.m_cb);
-            b_channel(req);
+            fork
+                aw_channel(req, 3);
+                w_channel(req, 0);
+            join
 
-            repeat(10) @(vifAxi.m_cb);
+            b_channel(req, 1);
+
+            repeat(5) @(vifAxi.m_cb);
 
             seq_item_port.item_done();
         end

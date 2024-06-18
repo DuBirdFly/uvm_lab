@@ -20,7 +20,7 @@ class TrApb extends uvm_sequence_item;
         /* Create Object Space */
     endfunction
 
-    virtual function string my_print();
+    virtual function string get_info();
         // to substitute for $sformatf
         return $sformatf("addr = 0x%0h, data = 0x%0h, write = %0d", addr, data, write);
     endfunction

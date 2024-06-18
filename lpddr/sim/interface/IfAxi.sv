@@ -94,12 +94,14 @@ interface IfAxi(
     endclocking
 
     function void peek_mem();
+        $display("\n================================ PEEK MEMORY ================================");
         for (int i = 0; i < 2**(`AXI_ADDR_WIDTH - $clog2(`AXI_STRB_WIDTH)); i++) begin
             logic [`AXI_DATA_WIDTH - 1:0] data;
             data = Top.u_lpddr_ctrl.u_axi_ram.mem[i];
             if (data != 0)
                 $display("mem[0x%0h] = %h", i, data);
         end
+        $display("=============================================================================\n");
     endfunction
 
 endinterface

@@ -56,8 +56,7 @@ class ApbMasterDrv extends uvm_driver #(TrApb);
 
     virtual task drv_data(TrApb req, int delay);
 
-        // `uvm_info("drv_data", {req.my_print(), ", delay = ", $sformatf("%0d", delay)}, UVM_MEDIUM)
-        `uvm_info("drv_data", $sformatf("%s, delay = %0d", req.my_print(), delay), UVM_MEDIUM)
+        `uvm_info("drv_data", $sformatf("%s, delay = %0d", req.get_info(), delay), UVM_MEDIUM)
 
         vifApb.drv_cb.paddr     <= req.addr;
         if (req.write)

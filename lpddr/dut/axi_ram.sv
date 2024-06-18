@@ -139,6 +139,7 @@ assign s_axi_rvalid = PIPELINE_OUTPUT ? s_axi_rvalid_pipe_reg : s_axi_rvalid_reg
 
 integer i, j;
 
+/*
 initial begin
     // two nested loops for smaller number of iterations per loop
     // workaround for synthesizer complaints about large loop counts
@@ -148,6 +149,7 @@ initial begin
         end
     end
 end
+*/
 
 always @* begin
     write_state_next = WRITE_STATE_IDLE;
@@ -240,6 +242,10 @@ always @(posedge clk) begin
         if (mem_wr_en & s_axi_wstrb[i]) begin
             mem[write_addr_valid][WORD_SIZE*i +: WORD_SIZE] <= s_axi_wdata[WORD_SIZE*i +: WORD_SIZE];
         end
+    end
+
+    if (mem_wr_en) begin
+        $display("write_addr_valid: 0x%h, s_axi_wdata: 0x%h", write_addr_valid, s_axi_wdata);
     end
 
     if (rst) begin

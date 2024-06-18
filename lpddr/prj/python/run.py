@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 
+# command: vsim -c -do modelsim_shell.do
+# command: vsim -view vsim.wlf -do ../signal/apb_axi.do
+
+# command: vsim -view vsim.wlf
+# command: do ../signal/apb_axi.do
+# command: do dataset reload -f
+
 import os, subprocess
 
 # 获取当前路径上两级的路径

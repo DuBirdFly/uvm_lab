@@ -52,4 +52,14 @@ awsize 只决定说 4 个 transfer 之后, 内部 addr + 1;
 
 极端情况, awaddr = 0, awlen = 0(+1), awsize = 0, strb = '1 --> awdata 的所有 byte 都写入了, 而不是只有 1 byte.
 
+## 系统函数
+
+对于随机对象，可以采用object.randomize()的方式进行随机化，但有的时候可以通过更简单的方式，不必定义类和例化对象，甚至变量都不是随机类型，也可以对其进行随机化，这就是系统随机化函数 `std::randomize`。
+
+```SystemVerilog
+initial begin
+    int value;  
+    std::randomize(value) with {value>=0 && value<=10;};
+end
+```
 
