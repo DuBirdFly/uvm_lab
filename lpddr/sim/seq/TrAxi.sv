@@ -11,6 +11,7 @@ class TrAxi extends uvm_sequence_item;
     /* Declare Normal Variables */
     bit [`AXI_STRB_WIDTH - 1:0] align_mask [$];
     bit [`AXI_STRB_WIDTH - 1:0] align_strb [$];
+    int                         mem_addr [$];
 
     /* Declare Random Variables */
     rand bit [`AXI_ID_WIDTH - 1:0]     id;
@@ -43,6 +44,7 @@ class TrAxi extends uvm_sequence_item;
     virtual function void align_calcu();
         align_mask.delete();
         align_strb.delete();
+        mem_addr.delete();
 
         // Initialize align_mask, align_strb
         repeat (len + 1) align_mask.push_back('0);
@@ -66,6 +68,9 @@ class TrAxi extends uvm_sequence_item;
         // 根据 align_mask[$], strb[$] 生成 align_strb[$]
         for (int i = 0; i <= len; i++) align_strb[i] = strb[i] & align_mask[i];
 
+        // 生成 mem_addr[$]
+        for (int i = 0; i <= len; i++) mem_addr.push_back((addr + i * (2 ** size)) / `AXI_STRB_WIDTH);
+
     endfunction
 
     virtual function string get_info();
@@ -75,7 +80,7 @@ class TrAxi extends uvm_sequence_item;
         str = {str, $sformatf("burst = %b, lock = %b, cache = %b, prot = %b. resp = %0d\n", burst, lock, cache, prot, resp)};
 
         for (int i = 0; i <= len; i++) begin
-            str = {str, $sformatf("[%4d] 0x%h, %b - %b - %b\n", i, data[i], strb[i], align_mask[i], align_strb[i])};
+            str = {str, $sformatf("[%0d] [0x%0h] 0x%h, %b - %b - %b\n", i, mem_addr[i], data[i], strb[i], align_mask[i], align_strb[i])};
         end
 
         return str;

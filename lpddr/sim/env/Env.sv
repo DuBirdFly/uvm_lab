@@ -10,6 +10,7 @@ class Env extends uvm_env;
     ApbMasterRef    apbMasterRef   = ApbMasterRef::type_id::create("apbMasterRef", this);
 
     AxiMasterAgent  axiMasterAgent = AxiMasterAgent::type_id::create("axiMasterAgent", this);
+    AxiMasterRef    axiMasterRef   = AxiMasterRef::type_id::create("axiMasterRef", this);
 
     /* Constructor Func */
     function new(string name = "Env", uvm_component parent);
@@ -27,6 +28,7 @@ class Env extends uvm_env;
 
     virtual function void connect_phase(uvm_phase phase);
         apbMasterAgent.put_export.connect(apbMasterRef.put_imp);
+        axiMasterAgent.put_export_wr.connect(axiMasterRef.put_imp_wr);
     endfunction
 
 endclass

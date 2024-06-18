@@ -244,9 +244,9 @@ always @(posedge clk) begin
         end
     end
 
-    if (mem_wr_en) begin
-        $display("write_addr_valid: 0x%h, s_axi_wdata: 0x%h", write_addr_valid, s_axi_wdata);
-    end
+    // if (mem_wr_en) begin
+    //     $display("write_addr_valid: 0x%h, s_axi_wdata: 0x%h", write_addr_valid, s_axi_wdata);
+    // end
 
     if (rst) begin
         write_state_reg <= WRITE_STATE_IDLE;

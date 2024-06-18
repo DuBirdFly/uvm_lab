@@ -7,6 +7,7 @@ class AxiMasterDrv extends uvm_driver #(TrAxi);
 
     /* Declare Object Handles */
     virtual IfAxi vifAxi;
+    uvm_blocking_put_port #(TrAxi) put_port = new("put_port", this);
 
     /* Constructor Func */
     function new(string name = "AxiMasterDrv", uvm_component parent);
@@ -99,16 +100,13 @@ class AxiMasterDrv extends uvm_driver #(TrAxi);
 
             @(vifAxi.m_cb);
 
-            $display(req.get_info());
-
             fork
                 aw_channel(req, 3);
                 w_channel(req, 0);
             join
-
             b_channel(req, 1);
 
-            repeat(5) @(vifAxi.m_cb);
+            put_port.put(req);
 
             seq_item_port.item_done();
         end

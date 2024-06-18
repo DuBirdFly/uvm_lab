@@ -8,9 +8,7 @@ class AxiMasterAgent extends uvm_agent;
     /* Declare Object Handles */
     AxiMasterSeqr axiMasterSeqr = AxiMasterSeqr::type_id::create("axiMasterSeqr", this);
     AxiMasterDrv  axiMasterDrv  = AxiMasterDrv::type_id::create("axiMasterDrv", this);
-    // AxiMasterMon  axiMasterMon  = AxiMasterMon::type_id::create("axiMasterMon", this);
-    // uvm_blocking_put_export #(TrAxi) put_export_wr = new("put_export_wr", this);
-    // uvm_blocking_put_export #(TrAxi) put_export_rd = new("put_export_rd", this);
+    uvm_blocking_put_export #(TrAxi) put_export_wr = new("put_export_wr", this);
 
     /* Constructor Func */
     function new(string name = "AxiMasterAgent", uvm_component parent);
@@ -26,8 +24,7 @@ class AxiMasterAgent extends uvm_agent;
 
     virtual function void connect_phase(uvm_phase phase);
         axiMasterDrv.seq_item_port.connect(axiMasterSeqr.seq_item_export);
-        // axiMasterDrv.put_port.connect(put_export_wr);
-        // axiMasterMon.put_port.connect(put_export_rd);
+        axiMasterDrv.put_port.connect(put_export_wr);
     endfunction
 
 endclass

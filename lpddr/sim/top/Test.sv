@@ -57,13 +57,13 @@ class Test extends uvm_test;
 
         #500;
 
-        vifAxi.peek_mem();
-
         phase.drop_objection(this);
 
     endtask
 
     virtual function void report_phase(uvm_phase phase);
+        vifAxi.peek_mem();
+        env.axiMasterRef.peek_mem();
         `uvm_info("report_phase", "print_report", UVM_MEDIUM)
         factory.print();
     endfunction

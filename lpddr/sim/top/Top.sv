@@ -29,6 +29,7 @@ import uvm_pkg::*;
 
 // env
 `include "ApbMasterRef.sv"
+`include "AxiMasterRef.sv"
 `include "Env.sv"
 
 // top
