@@ -1,1 +1,0 @@
-typedef uvm_sequencer #(TrAxi) AxiMasterSeqr;
